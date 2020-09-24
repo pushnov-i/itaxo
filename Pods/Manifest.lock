@@ -17,13 +17,12 @@ DEPENDENCIES:
   - SnapKit (~> 5.0.0)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - RxCocoa
+    - RxMKMapView
     - RxRelay
     - RxSwift
     - SnapKit
-  trunk:
-    - RxMKMapView
 
 SPEC CHECKSUMS:
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
@@ -34,4 +33,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 6de3dec86592c86e0cf185280feb024c39763d70
 
-COCOAPODS: 1.9.2
+COCOAPODS: 1.9.3
