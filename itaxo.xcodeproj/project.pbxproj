@@ -9,21 +9,29 @@
 /* Begin PBXBuildFile section */
 		6694D6AB251CC33300575904 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6694D6AA251CC33300575904 /* AppDelegate.swift */; };
 		6694D6AD251CC33300575904 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6694D6AC251CC33300575904 /* SceneDelegate.swift */; };
-		6694D6AF251CC33300575904 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6694D6AE251CC33300575904 /* ViewController.swift */; };
 		6694D6B2251CC33300575904 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6694D6B0251CC33300575904 /* Main.storyboard */; };
 		6694D6B4251CC33600575904 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6694D6B3251CC33600575904 /* Assets.xcassets */; };
 		6694D6B7251CC33600575904 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6694D6B5251CC33600575904 /* LaunchScreen.storyboard */; };
+		6694D6BF251CE00900575904 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6694D6BE251CE00900575904 /* RootViewController.swift */; };
+		6694D6C2251CE0E000575904 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6694D6C1251CE0E000575904 /* SignUpViewController.swift */; };
+		6694D6C5251CE2C500575904 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6694D6C4251CE2C500575904 /* Extensions.swift */; };
+		9FB22AD6DB0CE764A77E747B /* Pods_itaxo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 723718595FDD7E863FC4992A /* Pods_itaxo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6694D6A7251CC33300575904 /* itaxo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = itaxo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6694D6AA251CC33300575904 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6694D6AC251CC33300575904 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6694D6AE251CC33300575904 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6694D6B1251CC33300575904 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6694D6B3251CC33600575904 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6694D6B6251CC33600575904 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6694D6B8251CC33600575904 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6694D6BE251CE00900575904 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		6694D6C1251CE0E000575904 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		6694D6C4251CE2C500575904 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		723718595FDD7E863FC4992A /* Pods_itaxo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_itaxo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7382595607223B6332FA5D2F /* Pods-itaxo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-itaxo.release.xcconfig"; path = "Target Support Files/Pods-itaxo/Pods-itaxo.release.xcconfig"; sourceTree = "<group>"; };
+		F54780FB957BCFB0159E60E4 /* Pods-itaxo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-itaxo.debug.xcconfig"; path = "Target Support Files/Pods-itaxo/Pods-itaxo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +39,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FB22AD6DB0CE764A77E747B /* Pods_itaxo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		081D80F38F9422F6F8D27FFE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F54780FB957BCFB0159E60E4 /* Pods-itaxo.debug.xcconfig */,
+				7382595607223B6332FA5D2F /* Pods-itaxo.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		6244EE43EFB4561EA5A1B037 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				723718595FDD7E863FC4992A /* Pods_itaxo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6694D69E251CC33300575904 = {
 			isa = PBXGroup;
 			children = (
 				6694D6A9251CC33300575904 /* itaxo */,
 				6694D6A8251CC33300575904 /* Products */,
+				081D80F38F9422F6F8D27FFE /* Pods */,
+				6244EE43EFB4561EA5A1B037 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +85,33 @@
 		6694D6A9251CC33300575904 /* itaxo */ = {
 			isa = PBXGroup;
 			children = (
+				6694D6C3251CE2BB00575904 /* Helpers */,
+				6694D6C0251CE0CD00575904 /* Auth */,
 				6694D6AA251CC33300575904 /* AppDelegate.swift */,
 				6694D6AC251CC33300575904 /* SceneDelegate.swift */,
-				6694D6AE251CC33300575904 /* ViewController.swift */,
+				6694D6BE251CE00900575904 /* RootViewController.swift */,
 				6694D6B0251CC33300575904 /* Main.storyboard */,
 				6694D6B3251CC33600575904 /* Assets.xcassets */,
 				6694D6B5251CC33600575904 /* LaunchScreen.storyboard */,
 				6694D6B8251CC33600575904 /* Info.plist */,
 			);
 			path = itaxo;
+			sourceTree = "<group>";
+		};
+		6694D6C0251CE0CD00575904 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				6694D6C1251CE0E000575904 /* SignUpViewController.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		6694D6C3251CE2BB00575904 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				6694D6C4251CE2C500575904 /* Extensions.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +121,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6694D6BB251CC33600575904 /* Build configuration list for PBXNativeTarget "itaxo" */;
 			buildPhases = (
+				5D42CB69903AC5A76D9F246C /* [CP] Check Pods Manifest.lock */,
 				6694D6A3251CC33300575904 /* Sources */,
 				6694D6A4251CC33300575904 /* Frameworks */,
 				6694D6A5251CC33300575904 /* Resources */,
+				9001F86E69056E64830E0733 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -133,13 +182,57 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5D42CB69903AC5A76D9F246C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-itaxo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9001F86E69056E64830E0733 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-itaxo/Pods-itaxo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-itaxo/Pods-itaxo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-itaxo/Pods-itaxo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		6694D6A3251CC33300575904 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6694D6AF251CC33300575904 /* ViewController.swift in Sources */,
+				6694D6C5251CE2C500575904 /* Extensions.swift in Sources */,
 				6694D6AB251CC33300575904 /* AppDelegate.swift in Sources */,
+				6694D6BF251CE00900575904 /* RootViewController.swift in Sources */,
+				6694D6C2251CE0E000575904 /* SignUpViewController.swift in Sources */,
 				6694D6AD251CC33300575904 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,6 +375,7 @@
 		};
 		6694D6BC251CC33600575904 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F54780FB957BCFB0159E60E4 /* Pods-itaxo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -300,6 +394,7 @@
 		};
 		6694D6BD251CC33600575904 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7382595607223B6332FA5D2F /* Pods-itaxo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
