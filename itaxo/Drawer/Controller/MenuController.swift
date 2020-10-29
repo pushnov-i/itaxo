@@ -12,11 +12,10 @@ private let reuseIdentifier = "MenuOptionCell"
 
 class MenuController: UIViewController {
     
-    
     //MARK: - Properties
     var tableView: UITableView!
-    // MARK - Init
     
+    // MARK - Init
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
@@ -39,7 +38,6 @@ class MenuController: UIViewController {
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor  ).isActive = true
     }
-    
 }
 extension MenuController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,19 +45,15 @@ extension MenuController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? MenuOptionCell else {fatalError("Unexpected Table View Cell")}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? MenuOptionCell
+            else {fatalError("Unexpected Table View Cell")}
         var viewModel : MenuOptionRepresentable?
         guard let menuOption = MenuOption(rawValue: indexPath.row) else { fatalError("Unexpected Index Path") }
         viewModel = MenuOptionViewModel(menuOption: menuOption)
         if let viewModel = viewModel {
             cell.configure(withViewModel: viewModel)
+            // cell.iconImageView.image = menuOption?.image
         }
-        // cell.iconImageView.image = menuOption?.image
         return cell
     }
-    
-    
-    
-    
 }

@@ -9,10 +9,8 @@
 import UIKit
 
 class MenuOptionCell: UITableViewCell {
-    //MARK: - Properties
     
     let iconImageView: UIImageView = {
-        
         let iconView = UIImageView()
         iconView.contentMode = .scaleAspectFit
         iconView.clipsToBounds = true
@@ -24,24 +22,19 @@ class MenuOptionCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .darkGray
         label.font = UIFont.systemFont(ofSize: 16)
-       // label.text = "Sample text"
+        label.text = "Sample text"
         return label
     }()
     
-    // MARK: - Init
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         backgroundColor = .white
-        
         addSubview(iconImageView)
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         iconImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         iconImageView.leftAnchor.constraint(equalTo: leftAnchor,constant: 12).isActive = true
         iconImageView.heightAnchor.constraint(equalToConstant: 24).isActive = true
         iconImageView.widthAnchor.constraint(equalToConstant: 24).isActive = true
-        
         addSubview(descriptionLabel)
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
@@ -52,12 +45,7 @@ class MenuOptionCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Configuration
-
     func configure(withViewModel viewModel: MenuOptionRepresentable) {
         descriptionLabel.text = viewModel.description
     }
-    
-    
-    
 }
