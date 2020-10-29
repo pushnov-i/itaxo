@@ -13,7 +13,7 @@ class HomeController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(hex: "#FFDE43ff")
+        view.backgroundColor = .darkGray
         configureNavigationBar()
     }
     

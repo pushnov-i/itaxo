@@ -21,6 +21,11 @@ enum MenuOption: Int {
     case MapOfGasStation // "Карта заправок"
 }
 
+enum UserCredentials: Int {
+    case name
+    case surname
+}
+
 struct MenuOptionViewModel : MenuOptionRepresentable {
 
     

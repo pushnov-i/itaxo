@@ -21,6 +21,8 @@ class ContainerController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor(hex: "#FFDE43ff")
+        configureMenuController()
         configureHomeController()
     }
     
@@ -30,7 +32,7 @@ class ContainerController: UIViewController {
         let homeController = HomeController()
         homeController.delegate = self 
         centerController = UINavigationController(rootViewController: homeController)
-        
+        self.centerController.view.frame.origin.y = 30
         view.addSubview(centerController.view)
         addChild(centerController)
         centerController.didMove(toParent: self)
@@ -40,6 +42,7 @@ class ContainerController: UIViewController {
         if menuController == nil {
             //add our menu controller
             menuController = MenuController()
+            self.menuController.view.frame.origin.y = 150
             view.insertSubview(menuController.view, at: 0)
             addChild(menuController)
             menuController.didMove(toParent: self)
@@ -50,16 +53,26 @@ class ContainerController: UIViewController {
     func showMenuController(shouldExpand:Bool) {
         if shouldExpand {
             //show Drawer menu
-            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {self.centerController.view.frame.origin.x = self.centerController.view.frame.width - 80}, completion: nil)
+           // configureHomeController()
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+                self.centerController.view.frame.origin.x = self.centerController.view.frame.width - 80
+                self.centerController.view.frame.origin.y = 30
+                print(self.centerController.view.frame.height)
+                print(self.centerController.view.frame.width)
+            }, completion: nil)
         } else {
             //hide Drawer menu
-            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {self.centerController.view.frame.origin.x = 0}, completion: nil)
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+                self.centerController.view.frame.origin.x = 0
+                self.centerController.view.frame.origin.y = 30
+            }, completion: nil)
         }
     }
-    
 }
 
 extension ContainerController: HomeControllerDelegate {
+    
+    //handlemenu is responseble for state 
     func handleMenu() {
         if !isExpanded {
             configureMenuController()
