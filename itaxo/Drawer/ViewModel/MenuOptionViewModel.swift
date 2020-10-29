@@ -8,7 +8,8 @@
 
 import UIKit
 
-enum MenuOption: Int,CustomStringConvertible {
+enum MenuOption: Int {
+    
     
     case Trips // "Мої поїздки"
     case Payment // "Оплата"
@@ -18,9 +19,15 @@ enum MenuOption: Int,CustomStringConvertible {
     case Partners // "Партнери"
     case DriverRegistration // "Реєстрація водія"
     case MapOfGasStation // "Карта заправок"
+}
+
+struct MenuOptionViewModel : MenuOptionRepresentable {
+
+    
+    let menuOption : MenuOption
     
     var description: String {
-        switch self {
+        switch menuOption {
         case .Trips: return "Мої поїздки"
         case .Payment: return "Оплата"
         case .Help: return "Допомога"
@@ -31,20 +38,21 @@ enum MenuOption: Int,CustomStringConvertible {
         case .MapOfGasStation: return "Карта заправок"
         }
     }
-    
-    var image: UIImage {
-        switch self {
-        case .Trips: return UIImage(named: "logo") ?? UIImage()
-        case .Payment:return UIImage(named: "logo") ?? UIImage()
-        case .Help: return UIImage(named: "logo") ?? UIImage()
-        case .AboutService: return UIImage(named: "logo") ?? UIImage()
-        case .EcoProjects: return UIImage(named: "logo") ?? UIImage()
-        case .Partners: return UIImage(named: "logo") ?? UIImage()
-        case .DriverRegistration: return UIImage(named: "logo") ?? UIImage()
-        case .MapOfGasStation: return UIImage(named: "logo") ?? UIImage()
-        }
-    }
-    
-    
 }
+//
+//    var image: UIImage {
+//        switch self {
+//        case .Trips: return UIImage(named: "logo") ?? UIImage()
+//        case .Payment:return UIImage(named: "logo") ?? UIImage()
+//        case .Help: return UIImage(named: "logo") ?? UIImage()
+//        case .AboutService: return UIImage(named: "logo") ?? UIImage()
+//        case .EcoProjects: return UIImage(named: "logo") ?? UIImage()
+//        case .Partners: return UIImage(named: "logo") ?? UIImage()
+//        case .DriverRegistration: return UIImage(named: "logo") ?? UIImage()
+//        case .MapOfGasStation: return UIImage(named: "logo") ?? UIImage()
+//        }
+//    }
+//
+
+
 

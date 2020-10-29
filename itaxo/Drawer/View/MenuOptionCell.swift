@@ -24,7 +24,7 @@ class MenuOptionCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .darkGray
         label.font = UIFont.systemFont(ofSize: 16)
-        label.text = "Sample text"
+       // label.text = "Sample text"
         return label
     }()
     
@@ -50,6 +50,12 @@ class MenuOptionCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Configuration
+
+    func configure(withViewModel viewModel: MenuOptionRepresentable) {
+        descriptionLabel.text = viewModel.description
     }
     
     

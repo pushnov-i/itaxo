@@ -9,12 +9,8 @@
 import UIKit
 
 class HomeController: UIViewController {
-    
-    
-    //MARK: - Properties
     weak var delegate: HomeControllerDelegate?
-    // MARK - Init
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(hex: "#FFDE43ff")
@@ -32,7 +28,7 @@ class HomeController: UIViewController {
         navigationController?.navigationBar.barStyle = .black
         
         navigationItem.title = "Drawer Menu"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "logo").withRenderingMode(.alwaysOriginal) , style: .plain, target: self, action: #selector(handleMenu))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "logo").withRenderingMode(.alwaysOriginal) , style: .done, target: self, action: #selector(handleMenu))
     }
     
     
