@@ -20,6 +20,7 @@ enum MenuOption: Int {
     case DriverRegistration // "Реєстрація водія"
     case MapOfGasStation // "Карта заправок"
 }
+//TODO Section view
 
 enum UserCredentials: Int {
     case name
