@@ -9,7 +9,7 @@
 import UIKit
 
 enum MenuOption: Int,CustomStringConvertible {
-
+    
     case Trips // "Мої поїздки"
     case Payment // "Оплата"
     case Help // "Допомога"

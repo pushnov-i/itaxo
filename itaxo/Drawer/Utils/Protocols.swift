@@ -6,6 +6,6 @@
 //  Copyright © 2020 Illia Pushnov. All rights reserved.
 //
 
-protocol HomeControllerDelegate {
+protocol HomeControllerDelegate: class {
     func handleMenu()
 }

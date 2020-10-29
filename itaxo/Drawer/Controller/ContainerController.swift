@@ -28,7 +28,7 @@ class ContainerController: UIViewController {
     
     func configureHomeController() {
         let homeController = HomeController()
-        homeController.delegate = self
+        homeController.delegate = self 
         centerController = UINavigationController(rootViewController: homeController)
         
         view.addSubview(centerController.view)
@@ -45,6 +45,8 @@ class ContainerController: UIViewController {
             menuController.didMove(toParent: self)
         }
     }
+    
+    /// Perform animation for showing and  folding drawer view
     func showMenuController(shouldExpand:Bool) {
         if shouldExpand {
             //show Drawer menu

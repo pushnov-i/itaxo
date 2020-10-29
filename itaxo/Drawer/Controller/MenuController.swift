@@ -12,11 +12,11 @@ private let reuseIdentifier = "MenuOptionCell"
 
 class MenuController: UIViewController {
     
-
-//MARK: - Properties
+    
+    //MARK: - Properties
     var tableView: UITableView!
-// MARK - Init
-
+    // MARK - Init
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
@@ -39,7 +39,7 @@ class MenuController: UIViewController {
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor  ).isActive = true
     }
-
+    
 }
 extension MenuController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

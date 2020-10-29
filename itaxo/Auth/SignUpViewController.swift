@@ -111,7 +111,7 @@ class SignUpViewController: UIViewController, AuthNavigationDelegate, UITableVie
             tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height + 80, right: 0)
             UIView.animate(withDuration: 0.5, animations: { [weak self] in
                 self?.logoUnderwear.layer.opacity = 0
-            }, completion: nil)
+                }, completion: nil)
             keyboardShown = true
             tableView.setContentOffset(CGPoint(x: 0, y: CGFloat.greatestFiniteMagnitude), animated: true)
         }
@@ -122,7 +122,7 @@ class SignUpViewController: UIViewController, AuthNavigationDelegate, UITableVie
         tableView.contentInset = .zero
         UIView.animate(withDuration: 0.5, animations: { [weak self] in
             self?.logoUnderwear.layer.opacity = 1
-        }, completion: nil)
+            }, completion: nil)
     }
     
     func presentVerifyScreen() {
@@ -353,7 +353,7 @@ class PhoneField: UITextField {
     
     @objc private func textDidChange() {
         guard let text = self.text,
-              text.count <= phoneLabels.count else { return }
+            text.count <= phoneLabels.count else { return }
         
         for i in 0 ..< phoneLabels.count {
             let currentLabel = phoneLabels[i]
