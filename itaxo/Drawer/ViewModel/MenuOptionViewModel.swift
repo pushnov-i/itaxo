@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum MenuOption: Int {
+enum menuOption: Int {
     
     
     case Trips // "Мої поїздки"
@@ -22,15 +22,28 @@ enum MenuOption: Int {
 }
 //TODO Section view
 
-enum UserCredentials: Int {
+enum userCredentials: Int {
     case name
     case surname
 }
 
 struct MenuOptionViewModel : MenuOptionRepresentable {
+    var image: String{
+        switch menuOption.self {
+        case .Trips: return  "arrows icon"
+        case .Payment:return "card icon"
+        case .Help: return "help icon"
+        case .AboutService: return "Info icon"
+        case .EcoProjects: return "leaf icon"
+        case .Partners: return "handshake icon"
+        case .DriverRegistration: return "driver icon"
+        case .MapOfGasStation: return "petroil station icon"
+        }
+    }
+    
 
     
-    let menuOption : MenuOption
+    let menuOption : menuOption
     
     var description: String {
         switch menuOption {
@@ -45,20 +58,8 @@ struct MenuOptionViewModel : MenuOptionRepresentable {
         }
     }
 }
-//
-//    var image: UIImage {
-//        switch self {
-//        case .Trips: return UIImage(named: "logo") ?? UIImage()
-//        case .Payment:return UIImage(named: "logo") ?? UIImage()
-//        case .Help: return UIImage(named: "logo") ?? UIImage()
-//        case .AboutService: return UIImage(named: "logo") ?? UIImage()
-//        case .EcoProjects: return UIImage(named: "logo") ?? UIImage()
-//        case .Partners: return UIImage(named: "logo") ?? UIImage()
-//        case .DriverRegistration: return UIImage(named: "logo") ?? UIImage()
-//        case .MapOfGasStation: return UIImage(named: "logo") ?? UIImage()
-//        }
-//    }
-//
+
+
 
 
 

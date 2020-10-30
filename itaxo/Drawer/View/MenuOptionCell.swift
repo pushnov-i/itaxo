@@ -14,7 +14,7 @@ class MenuOptionCell: UITableViewCell {
         let iconView = UIImageView()
         iconView.contentMode = .scaleAspectFit
         iconView.clipsToBounds = true
-        iconView.backgroundColor = .green
+       // iconView.backgroundColor = .green
         return iconView
     }()
     
@@ -47,5 +47,6 @@ class MenuOptionCell: UITableViewCell {
     
     func configure(withViewModel viewModel: MenuOptionRepresentable) {
         descriptionLabel.text = viewModel.description
+        iconImageView.image = UIImage(named:viewModel.image)
     }
 }

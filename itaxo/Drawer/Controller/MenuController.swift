@@ -12,6 +12,9 @@ private let reuseIdentifier = "MenuOptionCell"
 
 class MenuController: UIViewController {
     
+       var customHeaderView: UIView!
+       var customLabel: UILabel!
+    
     //MARK: - Properties
     var tableView: UITableView!
     
@@ -40,6 +43,8 @@ class MenuController: UIViewController {
     }
 }
 extension MenuController: UITableViewDelegate,UITableViewDataSource{
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         8
     }
@@ -48,12 +53,39 @@ extension MenuController: UITableViewDelegate,UITableViewDataSource{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? MenuOptionCell
             else {fatalError("Unexpected Table View Cell")}
         var viewModel : MenuOptionRepresentable?
-        guard let menuOption = MenuOption(rawValue: indexPath.row) else { fatalError("Unexpected Index Path") }
+        guard let menuOption = menuOption(rawValue: indexPath.row) else { fatalError("Unexpected Index Path") }
         viewModel = MenuOptionViewModel(menuOption: menuOption)
         if let viewModel = viewModel {
             cell.configure(withViewModel: viewModel)
-            // cell.iconImageView.image = menuOption?.image
         }
         return cell
+    }
+}
+
+extension UITableView {
+    
+    /// Set table header view & add Auto layout.
+    func setTableHeaderView(headerView: UIView) {
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Set first.
+        self.tableHeaderView = headerView
+        
+        // Then setup AutoLayout.
+        headerView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        headerView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        headerView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+    }
+    
+    /// Update header view's frame.
+    func updateHeaderViewFrame() {
+        guard let headerView = self.tableHeaderView else { return }
+        
+        // Update the size of the header based on its internal content.
+        headerView.layoutIfNeeded()
+        
+        // ***Trigger table view to know that header should be updated.
+        let header = self.tableHeaderView
+        self.tableHeaderView = header
     }
 }

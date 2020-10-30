@@ -13,4 +13,5 @@ protocol HomeControllerDelegate: class {
 
 protocol MenuOptionRepresentable {
     var description: String { get }
+    var image: String { get }
 }
