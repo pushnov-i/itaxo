@@ -42,7 +42,7 @@ class ContainerController: UIViewController {
         if menuController == nil {
             //add our menu controller
             menuController = MenuController()
-            self.menuController.view.frame.origin.y = 150
+            self.menuController.view.frame.origin.y = 30
             view.insertSubview(menuController.view, at: 0)
             addChild(menuController)
             menuController.didMove(toParent: self)

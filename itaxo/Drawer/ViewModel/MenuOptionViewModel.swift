@@ -10,7 +10,6 @@ import UIKit
 
 enum menuOption: Int {
     
-    
     case Trips // "Мої поїздки"
     case Payment // "Оплата"
     case Help // "Допомога"
@@ -19,15 +18,33 @@ enum menuOption: Int {
     case Partners // "Партнери"
     case DriverRegistration // "Реєстрація водія"
     case MapOfGasStation // "Карта заправок"
+    
 }
-//TODO Section view
+// Header view
 
 enum userCredentials: Int {
-    case name
-    case surname
+    
+    case User
+}
+
+struct UserCredentials : MenuOptionRepresentable {
+    let userCredentials : userCredentials
+    var description: String  {
+        switch userCredentials.self {
+        case .User: return "Пассажир Пассажирський"
+        }
+    }
+    
+    var image: String {
+        switch userCredentials.self {
+        case .User: return "avatar"
+        }
+    }
 }
 
 struct MenuOptionViewModel : MenuOptionRepresentable {
+    
+    let menuOption : menuOption
     var image: String{
         switch menuOption.self {
         case .Trips: return  "arrows icon"
@@ -40,10 +57,6 @@ struct MenuOptionViewModel : MenuOptionRepresentable {
         case .MapOfGasStation: return "petroil station icon"
         }
     }
-    
-
-    
-    let menuOption : menuOption
     
     var description: String {
         switch menuOption {

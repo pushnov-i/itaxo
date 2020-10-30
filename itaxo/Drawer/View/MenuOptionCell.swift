@@ -27,26 +27,40 @@ class MenuOptionCell: UITableViewCell {
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         backgroundColor = .white
+        
         addSubview(iconImageView)
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
-        iconImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        iconImageView.leftAnchor.constraint(equalTo: leftAnchor,constant: 12).isActive = true
-        iconImageView.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        iconImageView.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        
+        NSLayoutConstraint.activate([
+        iconImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+        iconImageView.leftAnchor.constraint(equalTo: leftAnchor,constant: 12),
+        iconImageView.heightAnchor.constraint(equalToConstant: 24),
+        iconImageView.widthAnchor.constraint(equalToConstant: 24)
+            ])
+        
         addSubview(descriptionLabel)
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        descriptionLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor,constant: 12).isActive = true
+        
+        NSLayoutConstraint.activate([
+        descriptionLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+        descriptionLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor,constant: 12)
+          ])
     }
     
     required init?(coder: NSCoder) {
+        
         fatalError("init(coder:) has not been implemented")
+        
     }
     
     func configure(withViewModel viewModel: MenuOptionRepresentable) {
+        
         descriptionLabel.text = viewModel.description
         iconImageView.image = UIImage(named:viewModel.image)
+        
     }
 }
