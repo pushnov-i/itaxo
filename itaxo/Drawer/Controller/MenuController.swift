@@ -19,7 +19,9 @@ class MenuController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        configureHeaderTableView()
+        
+        
+       // configureHeaderTableView()
         
     }
     
@@ -31,6 +33,7 @@ class MenuController: UIViewController {
     func updateHeaderViewHeight(for header: UIView?) {
         guard let header = header else { return }
         header.frame.size.height = 150
+       // configureHeaderTableView()
     }
     
     
@@ -57,7 +60,7 @@ class MenuController: UIViewController {
         ])
     }
     
-    func configureHeaderTableView() {
+    func configureHeaderTableView() -> UIView? {
         guard let headerView = HeaderViewComponent(frame: .zero) as? HeaderViewComponent else {fatalError("Unexpected Header")}
         var viewModel : MenuOptionRepresentable?
         guard let userCredentials = userCredentials(rawValue: 0) else { fatalError("Unexpected Index Path") }
@@ -67,7 +70,10 @@ class MenuController: UIViewController {
         }
         tableView.tableHeaderView = headerView
         tableView.tableHeaderView?.backgroundColor = UIColor(hex: "#FFDE43ff")
+        print(headerView)
+        return headerView
     }
+    
 }
 
 extension MenuController: UITableViewDelegate,UITableViewDataSource{
@@ -89,6 +95,12 @@ extension MenuController: UITableViewDelegate,UITableViewDataSource{
             cell.configure(withViewModel: viewModel)
         }
         return cell
+    }
+    
+    func tableView(tableView: UITableView,  tableHeaderView section: Int) -> UIView? {
+        configureHeaderTableView()
+        return
+        
     }
 }
 

@@ -8,20 +8,21 @@
 
 import UIKit
 
-class HeaderViewComponent: UIView {
+class HeaderViewComponent: UITableViewHeaderFooterView {
     
     let userNameLabel : UILabel = {
         let label = UILabel()
         label.textColor = .darkGray
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 18)
         return label
     }()
     
     let avatarImageView: UIImageView = {
         let iconView = UIImageView()
         iconView.contentMode = .scaleAspectFit
-        iconView.layer.cornerRadius = 48
+        iconView.layer.cornerRadius = 80
         iconView.clipsToBounds = true
+        iconView.backgroundColor = .white
         return iconView
     }()
     
@@ -33,9 +34,8 @@ class HeaderViewComponent: UIView {
 //        return container
 //    }()
     
-    override init(frame: CGRect) {
-        
-        super.init(frame: frame)
+    override init(reuseIdentifier: String?) {
+    super.init(reuseIdentifier: reuseIdentifier)
         addSubview(avatarImageView)
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -64,6 +64,7 @@ class HeaderViewComponent: UIView {
         userNameLabel.text = viewModel.description
         avatarImageView.image = UIImage(named:viewModel.image)
         print(viewModel.image)
+        print("!")
         userNameLabel.textColor = .black
     }
 }

@@ -156,8 +156,8 @@
 			children = (
 				8C01047925499D76003E1DA3 /* Utils */,
 				8C01047825499D54003E1DA3 /* ViewModel */,
-				8C01047725499D52003E1DA3 /* View */,
 				8C01047425499D4A003E1DA3 /* Controller */,
+				8C01047725499D52003E1DA3 /* View */,
 			);
 			path = Drawer;
 			sourceTree = "<group>";
