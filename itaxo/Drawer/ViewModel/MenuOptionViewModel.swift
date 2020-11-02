@@ -11,10 +11,6 @@ import UIKit
 
 class DrawerViewModel {
     
-//    var menuOption = MenuOptionViewModel(menuOption: <#menuOption#>)
-//    var userCredentials = UserCredentials()
-
-
 enum menuOption: Int {
     
     case Trips // "Мої поїздки"

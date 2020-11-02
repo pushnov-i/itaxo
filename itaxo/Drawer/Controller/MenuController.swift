@@ -19,8 +19,6 @@ class MenuController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        
-        
         configureHeaderTableView()
         
     }
@@ -63,6 +61,8 @@ class MenuController: UIViewController {
     }
     
     func configureHeaderTableView()  {
+//        self.backgroundView = UIView(frame: self.bounds)
+//        self.backgroundView.backgroundColor = UIColor(hex: "#FFDE43ff")
         guard let headerView = HeaderViewComponent(frame: .zero) as? HeaderViewComponent else {fatalError("Unexpected Header")}
         var viewModel : MenuOptionRepresentable?
         guard let userCredentials = DrawerViewModel.userCredentials(rawValue: 0) else { fatalError("Unexpected Index Path") }
@@ -72,6 +72,7 @@ class MenuController: UIViewController {
         }
         tableView.tableHeaderView = headerView
         headerView.backgroundColor = UIColor(hex: "#FFDE43ff")
+        self.tableView.tableHeaderView = headerView
         print(headerView)
        // return headerView
     }
