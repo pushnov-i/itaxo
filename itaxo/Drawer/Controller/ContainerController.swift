@@ -57,14 +57,14 @@ class ContainerController: UIViewController {
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
                 self.centerController.view.frame.origin.x = self.centerController.view.frame.width - 80
                 self.centerController.view.frame.origin.y = 30
-                print(self.centerController.view.frame.height)
-                print(self.centerController.view.frame.width)
+                self.centerController.view.alpha = 0.8
             }, completion: nil)
         } else {
             //hide Drawer menu
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
                 self.centerController.view.frame.origin.x = 0
                 self.centerController.view.frame.origin.y = 30
+                self.centerController.view.alpha = 1
             }, completion: nil)
         }
     }

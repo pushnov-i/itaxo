@@ -16,7 +16,10 @@ class HeaderViewComponent: UITableViewHeaderFooterView {
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .darkGray
-        label.font = UIFont.systemFont(ofSize: 16)
+        if let font = UIFont(name: "HelveticaNeue",size: 17) {
+            label.font = font
+        }
+       // label.font = UIFont.init(name: "Roboto",size: 17)   ///  Didn't change font type only size try NSAttriButedString
         return label
     }()
     
@@ -25,21 +28,21 @@ class HeaderViewComponent: UITableViewHeaderFooterView {
         iconView.translatesAutoresizingMaskIntoConstraints = false
         iconView.contentMode = .scaleAspectFit
         iconView.layer.cornerRadius = 48
-      //  iconView.clipsToBounds = true
+        //  iconView.clipsToBounds = true
         iconView.backgroundColor = .black
         return iconView
     }()
     
     let roundedContainer : UIView = {
         let container = UIView()
-       // container.clipsToBounds = true
+        // container.clipsToBounds = true
         container.layer.cornerRadius = 48
         container.translatesAutoresizingMaskIntoConstraints = false
         return container
     }()
     
     override init(reuseIdentifier: String?) {
-    super.init(reuseIdentifier: reuseIdentifier)
+        super.init(reuseIdentifier: reuseIdentifier)
         roundedContainer.addSubview(avatarImageView)
         addSubview(roundedContainer)
         addSubview(userNameLabel)
@@ -54,22 +57,25 @@ class HeaderViewComponent: UITableViewHeaderFooterView {
         userNameLabel.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(80)
             make.width.equalTo(160)
+            make.center.equalToSuperview()
+            // make.top.equalTo(self.contentView.snp.top)
+            //  make.leading.equalTo(avatarImageView).inset(20)
+            // make.center.equalTo(contentView)
+            // make.left.equalTo
         }
-        
-
-//        NSLayoutConstraint.activate([
-//            roundedContainer.centerYAnchor.constraint(equalTo: centerYAnchor),
-//            roundedContainer.leftAnchor.constraint(equalTo: leftAnchor,constant: 12),
-//            roundedContainer.heightAnchor.constraint(equalToConstant: 80),
-//            roundedContainer.widthAnchor.constraint(equalToConstant: 80)
-//        ])
+        //        NSLayoutConstraint.activate([
+        //            roundedContainer.centerYAnchor.constraint(equalTo: centerYAnchor),
+        //            roundedContainer.leftAnchor.constraint(equalTo: leftAnchor,constant: 12),
+        //            roundedContainer.heightAnchor.constraint(equalToConstant: 80),
+        //            roundedContainer.widthAnchor.constraint(equalToConstant: 80)
+        //        ])
         
         
-      
-        NSLayoutConstraint.activate([
-            userNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            userNameLabel.leftAnchor.constraint(equalTo: avatarImageView.rightAnchor,constant: 12)
-        ])
+        
+        //        NSLayoutConstraint.activate([
+        //            userNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+        //            userNameLabel.leftAnchor.constraint(equalTo: avatarImageView.rightAnchor,constant: 12)
+        //        ])
     }
     
     required init?(coder: NSCoder) {
