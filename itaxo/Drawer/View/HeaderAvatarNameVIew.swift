@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import SnapKit
 
 class HeaderViewComponent: UITableViewHeaderFooterView {
     
     let userNameLabel : UILabel = {
         let label = UILabel()
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .darkGray
         label.font = UIFont.systemFont(ofSize: 16)
@@ -23,14 +25,14 @@ class HeaderViewComponent: UITableViewHeaderFooterView {
         iconView.translatesAutoresizingMaskIntoConstraints = false
         iconView.contentMode = .scaleAspectFit
         iconView.layer.cornerRadius = 48
-        iconView.clipsToBounds = true
+      //  iconView.clipsToBounds = true
         iconView.backgroundColor = .black
         return iconView
     }()
     
     let roundedContainer : UIView = {
         let container = UIView()
-        container.clipsToBounds = true
+       // container.clipsToBounds = true
         container.layer.cornerRadius = 48
         container.translatesAutoresizingMaskIntoConstraints = false
         return container
@@ -40,15 +42,29 @@ class HeaderViewComponent: UITableViewHeaderFooterView {
     super.init(reuseIdentifier: reuseIdentifier)
         roundedContainer.addSubview(avatarImageView)
         addSubview(roundedContainer)
-
-        NSLayoutConstraint.activate([
-            roundedContainer.centerYAnchor.constraint(equalTo: centerYAnchor),
-            roundedContainer.leftAnchor.constraint(equalTo: leftAnchor,constant: 12),
-            roundedContainer.heightAnchor.constraint(equalToConstant: 80),
-            roundedContainer.widthAnchor.constraint(equalToConstant: 80)
-        ])
-        
         addSubview(userNameLabel)
+        roundedContainer.snp.makeConstraints{(make) -> Void in
+            make.width.height.equalTo(80)
+            make.left.equalTo(12)
+            make.center.equalTo(self)
+        }
+        avatarImageView.snp.makeConstraints{(make) -> Void in
+            make.width.height.equalTo(80)
+        }
+        userNameLabel.snp.makeConstraints{(make) -> Void in
+            make.height.equalTo(80)
+            make.width.equalTo(160)
+        }
+        
+
+//        NSLayoutConstraint.activate([
+//            roundedContainer.centerYAnchor.constraint(equalTo: centerYAnchor),
+//            roundedContainer.leftAnchor.constraint(equalTo: leftAnchor,constant: 12),
+//            roundedContainer.heightAnchor.constraint(equalToConstant: 80),
+//            roundedContainer.widthAnchor.constraint(equalToConstant: 80)
+//        ])
+        
+        
       
         NSLayoutConstraint.activate([
             userNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),

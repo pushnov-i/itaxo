@@ -14,7 +14,6 @@ class MenuOptionCell: UITableViewCell {
         let iconView = UIImageView()
         iconView.contentMode = .scaleAspectFit
         iconView.clipsToBounds = true
-       // iconView.backgroundColor = .green
         return iconView
     }()
     

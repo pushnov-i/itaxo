@@ -34,7 +34,7 @@ struct UserCredentials : MenuOptionRepresentable {
     let userCredentials : userCredentials
     var description: String  {
         switch userCredentials.self {
-        case .User: return "Пассажир \n Пассажирський"
+        case .User: return "Пассажир Пассажирський"
         }
     }
     
