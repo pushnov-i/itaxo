@@ -14,14 +14,14 @@ class MenuController: UIViewController {
     
     //MARK: - Properties
     var tableView : UITableView!
-    
+ 
     // MARK - Init
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
         
         
-       // configureHeaderTableView()
+        configureHeaderTableView()
         
     }
     
@@ -33,6 +33,7 @@ class MenuController: UIViewController {
     func updateHeaderViewHeight(for header: UIView?) {
         guard let header = header else { return }
         header.frame.size.height = 150
+        header.backgroundColor = UIColor(hex: "#FFDE43ff")
        // configureHeaderTableView()
     }
     
@@ -46,8 +47,9 @@ class MenuController: UIViewController {
         tableView.register(MenuOptionCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
-        tableView.rowHeight = 40
+        tableView.rowHeight = 50
         tableView.isScrollEnabled = false
+
         
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -60,18 +62,18 @@ class MenuController: UIViewController {
         ])
     }
     
-    func configureHeaderTableView() -> UIView? {
+    func configureHeaderTableView()  {
         guard let headerView = HeaderViewComponent(frame: .zero) as? HeaderViewComponent else {fatalError("Unexpected Header")}
         var viewModel : MenuOptionRepresentable?
-        guard let userCredentials = userCredentials(rawValue: 0) else { fatalError("Unexpected Index Path") }
-        viewModel = UserCredentials(userCredentials: userCredentials) 
+        guard let userCredentials = DrawerViewModel.userCredentials(rawValue: 0) else { fatalError("Unexpected Index Path") }
+        viewModel = DrawerViewModel.UserCredentials(userCredentials: userCredentials)
         if let viewModel = viewModel {
             headerView.configure(withViewModel: viewModel)
         }
         tableView.tableHeaderView = headerView
-        tableView.tableHeaderView?.backgroundColor = UIColor(hex: "#FFDE43ff")
+        headerView.backgroundColor = UIColor(hex: "#FFDE43ff")
         print(headerView)
-        return headerView
+       // return headerView
     }
     
 }
@@ -89,18 +91,21 @@ extension MenuController: UITableViewDelegate,UITableViewDataSource{
         
         var viewModel : MenuOptionRepresentable?
         
-        guard let menuOption = menuOption(rawValue: indexPath.row) else { fatalError("Unexpected Index Path") }
-        viewModel = MenuOptionViewModel(menuOption: menuOption)
+        guard let menuOption = DrawerViewModel.menuOption(rawValue: indexPath.row) else { fatalError("Unexpected Index Path") }
+        viewModel = DrawerViewModel.MenuOptionViewModel(menuOption: menuOption)
         if let viewModel = viewModel {
             cell.configure(withViewModel: viewModel)
         }
         return cell
     }
     
-    func tableView(tableView: UITableView,  tableHeaderView section: Int) -> UIView? {
-        configureHeaderTableView()
-        return
-        
-    }
+//    func tableView(tableView: UITableView,  tableHeaderView section: Int) -> UIView? {
+//        if  tableView == tableView.self{
+//        return tableView.tableHeaderView
+//        } else {
+//            return fatalError("Unexpected table viwew self") as! UIView
+//        }
+//        
+//    }
 }
 

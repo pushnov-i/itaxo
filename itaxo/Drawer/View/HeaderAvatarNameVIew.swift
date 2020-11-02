@@ -12,44 +12,44 @@ class HeaderViewComponent: UITableViewHeaderFooterView {
     
     let userNameLabel : UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .darkGray
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
     
     let avatarImageView: UIImageView = {
         let iconView = UIImageView()
+        iconView.translatesAutoresizingMaskIntoConstraints = false
         iconView.contentMode = .scaleAspectFit
-        iconView.layer.cornerRadius = 80
+        iconView.layer.cornerRadius = 48
         iconView.clipsToBounds = true
-        iconView.backgroundColor = .white
+        iconView.backgroundColor = .black
         return iconView
     }()
     
-//    let roundedContainer : UIView = {
-//        let container = UIView()
-//        container.clipsToBounds = true
-//        container.layer.cornerRadius = 48
-//        container.translatesAutoresizingMaskIntoConstraints = false
-//        return container
-//    }()
+    let roundedContainer : UIView = {
+        let container = UIView()
+        container.clipsToBounds = true
+        container.layer.cornerRadius = 48
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return container
+    }()
     
     override init(reuseIdentifier: String?) {
     super.init(reuseIdentifier: reuseIdentifier)
-        addSubview(avatarImageView)
-        avatarImageView.translatesAutoresizingMaskIntoConstraints = false
-        
+        roundedContainer.addSubview(avatarImageView)
+        addSubview(roundedContainer)
+
         NSLayoutConstraint.activate([
-            avatarImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            avatarImageView.leftAnchor.constraint(equalTo: leftAnchor,constant: 12),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 24),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 24)
+            roundedContainer.centerYAnchor.constraint(equalTo: centerYAnchor),
+            roundedContainer.leftAnchor.constraint(equalTo: leftAnchor,constant: 12),
+            roundedContainer.heightAnchor.constraint(equalToConstant: 80),
+            roundedContainer.widthAnchor.constraint(equalToConstant: 80)
         ])
         
         addSubview(userNameLabel)
-        userNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        userNameLabel.numberOfLines = 0
-        
+      
         NSLayoutConstraint.activate([
             userNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             userNameLabel.leftAnchor.constraint(equalTo: avatarImageView.rightAnchor,constant: 12)
@@ -62,7 +62,7 @@ class HeaderViewComponent: UITableViewHeaderFooterView {
     
     func configure(withViewModel viewModel: MenuOptionRepresentable) {
         userNameLabel.text = viewModel.description
-        avatarImageView.image = UIImage(named:viewModel.image)
+        avatarImageView.image = UIImage(named:viewModel.image)!
         print(viewModel.image)
         print("!")
         userNameLabel.textColor = .black
