@@ -57,9 +57,14 @@ class MenuOptionCell: UITableViewCell {
     }
     
     func configure(withViewModel viewModel: MenuOptionRepresentable) {
+        switch viewModel.state {
+        case true : descriptionLabel.textColor = .black
+        case false : descriptionLabel.textColor = UIColor(hex: "#939393ff")
+        }
         
         descriptionLabel.text = viewModel.description
         iconImageView.image = UIImage(named:viewModel.image)
         
     }
 }
+

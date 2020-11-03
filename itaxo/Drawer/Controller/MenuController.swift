@@ -31,8 +31,6 @@ class MenuController: UIViewController {
     func updateHeaderViewHeight(for header: UIView?) {
         guard let header = header else { return }
         header.frame.size.height = 150
-        header.backgroundColor = UIColor(hex: "#FFDE43ff")
-        // configureHeaderTableView()
     }
     
     
@@ -98,6 +96,7 @@ extension MenuController: UITableViewDelegate,UITableViewDataSource{
         
         if let viewModel = viewModel {
             cell.configure(withViewModel: viewModel)
+            cell.selectionStyle = .none
         }
         return cell
     }

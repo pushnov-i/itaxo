@@ -30,8 +30,10 @@ enum userCredentials: Int {
     case User
 }
 
-struct UserCredentials : MenuOptionRepresentable {
+    struct UserCredentials : MenuOptionRepresentable {
+        
     let userCredentials : userCredentials
+    
     var description: String  {
         switch userCredentials.self {
         case .User: return "Пассажир Пассажирський"
@@ -43,6 +45,11 @@ struct UserCredentials : MenuOptionRepresentable {
         case .User: return "avatar"
         }
     }
+        var state: Bool{
+            switch userCredentials.self {
+            case .User: return true
+            }
+        }
 }
 
 struct MenuOptionViewModel : MenuOptionRepresentable {
@@ -71,6 +78,18 @@ struct MenuOptionViewModel : MenuOptionRepresentable {
         case .Partners: return "Партнери"
         case .DriverRegistration: return "Реєстрація водія"
         case .MapOfGasStation: return "Карта заправок"
+        }
+    }
+    var state : Bool {
+        switch menuOption {
+        case .Trips: return true
+            case .Payment: return true
+            case .Help: return true
+            case .AboutService: return false
+            case .EcoProjects: return true
+            case .Partners: return true
+            case .DriverRegistration: return false
+            case .MapOfGasStation: return false
         }
     }
 }
