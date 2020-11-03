@@ -37,6 +37,7 @@ class ContainerController: UIViewController {
         
 //      centerController = UINavigationController(rootViewController: homeController)
         
+        
         homeController.view.frame.origin.y = 30
         addChild(homeController)
         homeController.didMove(toParent: self)

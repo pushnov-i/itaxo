@@ -53,7 +53,9 @@ class HeaderViewComponent: UITableViewHeaderFooterView {
         }
         avatarImageView.snp.makeConstraints{(make) -> Void in
             make.width.height.equalTo(80)
+            make.centerY.equalTo(self.roundedContainer)
         }
+        
         userNameLabel.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(80)
             make.width.equalTo(160)
