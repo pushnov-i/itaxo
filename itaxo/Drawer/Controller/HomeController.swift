@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import SnapKit
 
 class HomeController: UIViewController {
     weak var delegate: HomeControllerDelegate?
-    var mapView = UIView()
+    var mapView: UIView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,21 @@ class HomeController: UIViewController {
         view.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleMenu))
         view.addGestureRecognizer(tap)
-        view.addSubview(mapView)
+        let mapViewController = MapViewController()
+        
+        // добавляем на подложку мап вью контроллер
+        
+        mapView = mapViewController.view
+        if let mapView = mapViewController.view {
+            addChild(mapViewController)
+            view.addSubview(mapViewController.view)
+            mapView.didMoveToWindow()
+            
+            mapView.snp.makeConstraints { maker in
+                maker.edges.equalTo(view)
+            }
+        }
+        
         
     }
 }
