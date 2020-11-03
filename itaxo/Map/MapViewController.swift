@@ -10,7 +10,7 @@ import UIKit
 import GoogleMaps
 import SnapKit
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, GMSMapViewDelegate {
     
     
     let menuButton : UIButton = {
@@ -26,6 +26,7 @@ class MapViewController: UIViewController {
         // coordinate -33.86,151.20 at zoom level 6.
         let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
         let mapView = GMSMapView.map(withFrame: self.view.frame, camera: camera)
+        mapView.delegate = self
         self.view.addSubview(mapView)
 
         // Creates a marker in the center of the map.
@@ -45,6 +46,12 @@ class MapViewController: UIViewController {
             
         }
         
+    
+        
   }
+    
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        print("asdasd")
+    }
     
 }

@@ -42,14 +42,13 @@ class ContainerController: UIViewController {
         addChild(homeController)
         homeController.didMove(toParent: self)
         view.addSubview(homeController.view)
-        
-        
+
         guard let menuController = menuController else { return }
-        
+
         addChild(menuController)
         view.addSubview(menuController.view)
         menuController.didMove(toParent: self)
-        
+
         menuController.view.snp.makeConstraints { maker in
             maker.width.equalTo(view).multipliedBy(0.8)
             maker.edges.equalTo(view)

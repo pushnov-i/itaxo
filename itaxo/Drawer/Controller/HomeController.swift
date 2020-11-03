@@ -37,11 +37,11 @@ class HomeController: UIViewController {
         // guard я использую восновном чтобы делать анврап и, что _очень важно_ избегать глубокой вложенности (нужно везде стараться это делать). тут если  использовать if то получается + 1 уровень вложенности кода, сравни с предыдущим коммитом. если можно избежать лишней вложенности - лучше избегать. тут понятно, что если вью из контроллера не получили, не нефиг дергатся, тоесть это не случится грубо говоря никогда
         
         guard let mapView = mapViewController.view else { return }
-        
+
         addChild(mapViewController)
         view.addSubview(mapViewController.view)
         mapView.didMoveToWindow()
-        
+
         mapView.snp.makeConstraints { maker in
             maker.edges.equalTo(view)
         }
@@ -50,7 +50,7 @@ class HomeController: UIViewController {
         // добавляем хендлер тапа теперь уже на мап вью, тк он сверху, под меню, но и над контейнером (переменной view в данном случае)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleMenu))
-        mapView.addGestureRecognizer(tap)
+        view.addGestureRecognizer(tap)
         
         
     }
