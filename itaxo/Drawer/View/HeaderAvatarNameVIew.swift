@@ -12,14 +12,23 @@ import SnapKit
 class HeaderViewComponent: UITableViewHeaderFooterView {
     
     let userNameLabel : UILabel = {
+        
         let label = UILabel()
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .darkGray
-        if let font = UIFont(name: "HelveticaNeue",size: 17) {
-            label.font = font
+        
+        let font = UIFont(name: "Roboto",size: 17)
+        guard let customFont = UIFont(name: "Roboto-Regular", size: 17) else {
+            fatalError("""
+                Failed to load the "Roboto-Regular" font.
+                Make sure the font file is included in the project and the font name is spelled correctly.
+                """
+            )
         }
-       // label.font = UIFont.init(name: "Roboto",size: 17)   ///  Didn't change font type only size try NSAttriButedString
+        label.font = UIFontMetrics.default.scaledFont(for: customFont)
+        label.adjustsFontForContentSizeCategory = true
+        
         return label
     }()
     
@@ -58,24 +67,7 @@ class HeaderViewComponent: UITableViewHeaderFooterView {
             make.height.equalTo(80)
             make.width.equalTo(160)
             make.center.equalToSuperview()
-            // make.top.equalTo(self.contentView.snp.top)
-            //  make.leading.equalTo(avatarImageView).inset(20)
-            // make.center.equalTo(contentView)
-            // make.left.equalTo
         }
-        //        NSLayoutConstraint.activate([
-        //            roundedContainer.centerYAnchor.constraint(equalTo: centerYAnchor),
-        //            roundedContainer.leftAnchor.constraint(equalTo: leftAnchor,constant: 12),
-        //            roundedContainer.heightAnchor.constraint(equalToConstant: 80),
-        //            roundedContainer.widthAnchor.constraint(equalToConstant: 80)
-        //        ])
-        
-        
-        
-        //        NSLayoutConstraint.activate([
-        //            userNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-        //            userNameLabel.leftAnchor.constraint(equalTo: avatarImageView.rightAnchor,constant: 12)
-        //        ])
     }
     
     required init?(coder: NSCoder) {

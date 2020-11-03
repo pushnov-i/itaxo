@@ -72,7 +72,7 @@ class ContainerController: UIViewController {
 
 extension ContainerController: HomeControllerDelegate {
     
-    //handlemenu is responseble for state 
+    //handle menu is responsible for state 
     func handleMenu() {
         if !isExpanded {
             configureMenuController()
