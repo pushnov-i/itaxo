@@ -56,10 +56,9 @@ class HeaderViewComponent: UITableViewHeaderFooterView {
         addSubview(userNameLabel)
         avatarImageView.snp.makeConstraints{(make) -> Void in
             make.width.height.equalTo(80)
-            make.left.equalTo(12)
-            make.centerY.equalToSuperview()
+            make.centerY.equalTo(self.roundedContainer)
         }
-
+        
         userNameLabel.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(80)
             make.width.equalTo(160)

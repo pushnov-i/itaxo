@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ContainerController: UIViewController {
     
@@ -30,12 +31,30 @@ class ContainerController: UIViewController {
     
     func configureHomeController() {
         let homeController = HomeController()
-        homeController.delegate = self 
-        centerController = UINavigationController(rootViewController: homeController)
-        self.centerController.view.frame.origin.y = 30
-        view.addSubview(centerController.view)
-        //addChild(centerController)
-        centerController.didMove(toParent: self)
+        homeController.delegate = self
+        
+        // тут нам навигация не нужна, потому что появляется таббар сверху, и мы пока не собираемся делать никакие кастомные кнопки в верхней панели
+        
+//      centerController = UINavigationController(rootViewController: homeController)
+        
+        
+        homeController.view.frame.origin.y = 30
+        addChild(homeController)
+        homeController.didMove(toParent: self)
+        view.addSubview(homeController.view)
+
+        guard let menuController = menuController else { return }
+
+        addChild(menuController)
+        view.addSubview(menuController.view)
+        menuController.didMove(toParent: self)
+
+        menuController.view.snp.makeConstraints { maker in
+            maker.width.equalTo(view).multipliedBy(0.8)
+            maker.edges.equalTo(view)
+        }
+        
+        
     }
     
     func configureMenuController() {
