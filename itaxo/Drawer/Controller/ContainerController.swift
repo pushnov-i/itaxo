@@ -48,11 +48,12 @@ class ContainerController: UIViewController {
         addChild(menuController)
         view.addSubview(menuController.view)
         menuController.didMove(toParent: self)
+        menuController.view.frame.origin.x = -375
 
-        menuController.view.snp.makeConstraints { maker in
-            maker.width.equalTo(view).multipliedBy(0.8)
-            maker.edges.equalTo(view)
-        }
+//        menuController.view.snp.makeConstraints { maker in
+//            maker.width.equalTo(view).multipliedBy(0.8)
+//            maker.edges.equalTo(view)
+//        }
         
         
     }
@@ -61,7 +62,7 @@ class ContainerController: UIViewController {
         if menuController == nil {
             //add our menu controller
             menuController = MenuController()
-            self.menuController.view.frame.origin.y = 30
+            menuController.view.frame.origin.x = -375
             view.insertSubview(menuController.view, at: 0)
             addChild(menuController)
             menuController.didMove(toParent: self)
@@ -74,15 +75,15 @@ class ContainerController: UIViewController {
             //show Drawer menu
            // configureHomeController()
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
-                self.centerController.view.frame.origin.x = self.centerController.view.frame.width - 80
-                self.centerController.view.frame.origin.y = 30
+                self.menuController.view.frame.origin.x = 0
+                self.menuController.view.frame.origin.y = 30
                 self.centerController.view.alpha = 0.8
             }, completion: nil)
         } else {
             //hide Drawer menu
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-                self.centerController.view.frame.origin.x = 0
-                self.centerController.view.frame.origin.y = 30
+                self.menuController.view.frame.origin.x = 0
+                self.menuController.view.frame.origin.y = 30
                 self.centerController.view.alpha = 1
             }, completion: nil)
         }
