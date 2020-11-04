@@ -51,7 +51,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
   }
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        print("asdasd")
+        print("did Tap At coordinate")
     }
     
 }

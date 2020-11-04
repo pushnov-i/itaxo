@@ -37,32 +37,28 @@ class HeaderViewComponent: UITableViewHeaderFooterView {
         iconView.translatesAutoresizingMaskIntoConstraints = false
         iconView.contentMode = .scaleAspectFit
         iconView.layer.cornerRadius = 48
-        //  iconView.clipsToBounds = true
+     //   iconView.clipsToBounds = true
         return iconView
     }()
     
-//    let roundedContainer : UIView = {
-//        let container = UIView()
-//        // container.clipsToBounds = true
-//        container.layer.cornerRadius = 48
-//        container.translatesAutoresizingMaskIntoConstraints = false
-//        return container
-//    }()
-    
+
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-       // roundedContainer.addSubview(avatarImageView)
+
         addSubview(avatarImageView)
         addSubview(userNameLabel)
+        
         avatarImageView.snp.makeConstraints{(make) -> Void in
             make.width.height.equalTo(80)
-            make.centerY.equalTo(self.roundedContainer)
+            make.left.equalTo(12)
+            make.centerY.equalTo(self)
         }
         
         userNameLabel.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(80)
             make.width.equalTo(160)
-            make.center.equalToSuperview()
+            make.leading.equalTo(avatarImageView.snp.trailing).offset(20)
+            make.centerY.equalToSuperview()
         }
     }
     
