@@ -12,18 +12,20 @@ import SnapKit
 class HomeController: UIViewController {
     weak var delegate: HomeControllerDelegate?
     var mapView: UIView?
+    var menuController: UIViewController!
+    var isExpanded = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configureMenuController()
         configureHomeController()
     }
     
     // MARK - Handlers
-    @objc func handleMenu() {
-        delegate?.handleMenu()
-        print("MenuTap")
-    }
+//    @objc func handleMenu(_ recognizer: UITapGestureRecognizer) {
+//        delegate?.handleMenu()
+//        print("MenuTap")
+//    }
     
     func configureHomeController() {
 
@@ -50,8 +52,64 @@ class HomeController: UIViewController {
         // добавляем хендлер тапа теперь уже на мап вью, тк он сверху, под меню, но и над контейнером (переменной view в данном случае)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleMenu))
+       // mapView.addGestureRecognizer(tap)
         view.addGestureRecognizer(tap)
         
+        //editing menuview controller
+        
+        guard let menuController = menuController else { return }
+
+              addChild(menuController)
+              view.addSubview(menuController.view)
+              menuController.didMove(toParent: self)
+              menuController.view.frame.origin.x = -175
         
     }
+    
+    func configureMenuController() {
+        if menuController == nil {
+            //add our menu controller
+            menuController = MenuController()
+            menuController.view.frame.origin.x = 0
+            view.insertSubview(menuController.view, at: 0)
+            addChild(menuController)
+            menuController.didMove(toParent: self)
+            print("configure MenuController")
+        }
+    }
+    
+    /// Perform animation for showing and  folding drawer view
+    func showMenuController(shouldExpand:Bool) {
+        if shouldExpand {
+            //show Drawer menu
+           // configureHomeController()
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+                self.menuController.view.frame.origin.x = 0
+                self.menuController.view.frame.origin.y = 30
+                self.view.alpha = 0.8
+            }, completion: nil)
+        } else {
+            //hide Drawer menu
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+                self.menuController.view.frame.origin.x = 0
+                self.menuController.view.frame.origin.y = 30
+                self.view.alpha = 1
+            }, completion: nil)
+        }
+    }
+}
+
+extension HomeController: HomeControllerDelegate {
+    
+    //handle menu is responsible for state
+    @objc func handleMenu() {
+        if !isExpanded {
+            configureMenuController()
+        }
+        
+        isExpanded = !isExpanded
+        showMenuController(shouldExpand: isExpanded)
+    }
+    
+    
 }
