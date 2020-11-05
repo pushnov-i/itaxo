@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import RxSwift
 import GoogleMaps
+import RxGoogleMaps
 import SnapKit
 
 class MapViewController: UIViewController, GMSMapViewDelegate {
-    
+
+    let disposeBag = DisposeBag()
     
     let menuButton : UIButton = {
         let view = UIButton(type: .custom)
@@ -28,6 +31,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         let mapView = GMSMapView.map(withFrame: self.view.frame, camera: camera)
         mapView.delegate = self
         self.view.addSubview(mapView)
+        view.isUserInteractionEnabled = true
 
         // Creates a marker in the center of the map.
         let marker = GMSMarker()
@@ -45,13 +49,17 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
             make.width.equalTo(45)
             
         }
-        
-    
-        
+        mapView.rx.didTapAt.asDriver()
+                 .drive(onNext: { print("Did tap at coordinate: \($0)") })
+                 .disposed(by: disposeBag)
   }
     
-    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        print("did Tap At coordinate")
-    }
+    
+    
+//     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+//        //handleMenu()
+//       
+//        print("did Tap At coordinate")
+//    }
     
 }
