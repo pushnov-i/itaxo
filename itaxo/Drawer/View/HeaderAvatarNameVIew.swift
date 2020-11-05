@@ -37,14 +37,14 @@ class HeaderViewComponent: UITableViewHeaderFooterView {
         iconView.translatesAutoresizingMaskIntoConstraints = false
         iconView.contentMode = .scaleAspectFit
         iconView.layer.cornerRadius = 48
-     //   iconView.clipsToBounds = true
+        //   iconView.clipsToBounds = true
         return iconView
     }()
     
-
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-
+        
         addSubview(avatarImageView)
         addSubview(userNameLabel)
         

@@ -54,12 +54,4 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                  .disposed(by: disposeBag)
   }
     
-    
-    
-//     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-//        //handleMenu()
-//       
-//        print("did Tap At coordinate")
-//    }
-    
 }

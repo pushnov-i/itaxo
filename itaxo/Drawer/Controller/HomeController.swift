@@ -25,7 +25,7 @@ class HomeController: UIViewController {
     
     func configureHomeController() {
         
-        view.backgroundColor = .darkGray
+        view.backgroundColor = UIColor(hex: "#FFDE43ff")
         view.isUserInteractionEnabled = true
         // добавляем на подложку мап вью контроллер
         
@@ -40,32 +40,31 @@ class HomeController: UIViewController {
         view.addSubview(mapViewController.view)
         mapView.didMoveToWindow()
         mapViewController.didMove(toParent: self)
-        
-        mapView.snp.makeConstraints { maker in
-            maker.edges.equalTo(view)
-        }
+        mapViewController.menuButton.addTarget(self, action: #selector(handleMenu), for: .touchUpInside)
+        //        mapView.snp.makeConstraints { maker in
+        //            maker.edges.equalTo(view)
+        //        }
+        mapView.frame.origin.y = 39
         
         
         // добавляем хендлер тапа теперь уже на мап вью, тк он сверху, под меню, но и над контейнером (переменной view в данном случае)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleMenu))
-        
-         mapView.addGestureRecognizer(tap)
-         view.addGestureRecognizer(tap)
-        
+       // mapView.addGestureRecognizer(tap)
+        view.addGestureRecognizer(tap)
         tap.rx.event.bind(onNext: { recognizer in
-            print("touches: \(recognizer.numberOfTouches)") //or whatever you like
+            print("touches: \(recognizer.numberOfTouches)") 
         }).disposed(by: disposeBag)
+
         
         //adding menu view controller
         
         guard let menuController = menuController else { return }
-        
         addChild(menuController)
         view.addSubview(menuController.view)
         menuController.didMove(toParent: self)
-        menuController.view.frame.origin.x = -175
-        
+        menuController.view.frame.origin.x = -375
+     
     }
     
     func configureMenuController() {
@@ -77,6 +76,7 @@ class HomeController: UIViewController {
             addChild(menuController)
             menuController.didMove(toParent: self)
             print("configure MenuController")
+
         }
     }
     
@@ -84,17 +84,20 @@ class HomeController: UIViewController {
     func showMenuController(shouldExpand:Bool) {
         if shouldExpand {
             //show Drawer menu
-            // configureHomeController()
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
                 self.menuController.view.frame.origin.x = -20
-               // self.menuController.view.frame.origin.y = 30
-                self.mapView?.alpha = 0.5
+                // self.menuController.view.frame.origin.y = 30
+                // TODO        //    self.mapView?.alpha = 0.5
+                self.menuController.view.snp.makeConstraints { maker in
+                                   maker.width.equalTo(self.view).multipliedBy(0.8)
+                                   maker.edges.equalTo(self.view)
+                               }
             }, completion: nil)
         } else {
             //hide Drawer menu
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-                self.menuController.view.frame.origin.x = -175
-               // self.menuController.view.frame.origin.y = 30
+                self.menuController.view.frame.origin.x = -375
+                // self.menuController.view.frame.origin.y = 30
                 self.mapView? .alpha = 1
             }, completion: nil)
         }
