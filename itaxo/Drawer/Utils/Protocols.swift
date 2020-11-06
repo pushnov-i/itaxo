@@ -18,6 +18,7 @@ protocol MenuOptionRepresentable {
 }
 
 protocol SettingsAccountMenuDelegate {
-     
+     var placeholder: String { get }
+     var image: String? { get }
 }
 

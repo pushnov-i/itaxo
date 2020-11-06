@@ -6,4 +6,6 @@
 //  Copyright © 2020 Illia Pushnov. All rights reserved.
 //
 
-import Foundation
+class AccountProgrammeSettingsCell {
+    
+}

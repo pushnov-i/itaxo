@@ -11,35 +11,43 @@ import Foundation
 class SettingsViewModel {
     
     enum accountSettings: Int {
-        
-        case Header // "Налаштування аккаунту "
+    //    case Header // "Налаштування аккаунту "
         case UserName // "Ваше ім’я"
         case UserPhoneNumber // "Номер телефону"
         case UserEmail // "Ваш е-мейл"
         case UserPassword // "Введіть пароль"
-        
     }
     
     enum programmeSettings: Int {
-        case Header   //"Налаштування програми"
+     //   case Header   //"Налаштування програми"
         case UserCity // "Місто"
         case City //"Київ"
         case UserLangauge // "Мова"
         case Langauge // "Українська"
-        
     }
     
-    
-    
-    struct AccountSettings {
+    struct AccountSettings: SettingsAccountMenuDelegate {
+        let accountSettings : accountSettings
         
-      //  let accountSettings
-        var header:String
-        var userName:String
-        var userPhoneNumber:String
-        var userEmail:String
-        var userPassword:String
-        
+        var placeholder: String {
+            switch accountSettings {
+     //       case .Header: return "Налаштування аккаунту "
+            case .UserName : return "Ваше ім’я"
+            case .UserPhoneNumber : return "Номер телефону"
+            case .UserEmail: return "Ваш е-мейл"
+            case .UserPassword : return "Введіть пароль"
+            }
+        }
+
+        var image: String? {
+            switch accountSettings {
+       //               case .Header: return "avatar icon"
+                      case .UserName : return "avatar icon"
+                      case .UserPhoneNumber : return "tel icon"
+                      case .UserEmail: return "mail"
+                      case .UserPassword : return "key"
+                      }
+        }
     }
     
     struct ProgrammeSettings {
