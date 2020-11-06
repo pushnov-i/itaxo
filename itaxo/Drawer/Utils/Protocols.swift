@@ -16,3 +16,8 @@ protocol MenuOptionRepresentable {
     var image: String { get }
     var state: Bool {get}
 }
+
+protocol SettingsAccountMenuDelegate {
+     
+}
+

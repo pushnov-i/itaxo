@@ -46,16 +46,13 @@ class MenuController: UIViewController {
         tableView.rowHeight = 50
         tableView.isScrollEnabled = false
         
-        
         view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.rightAnchor.constraint(equalTo: view.rightAnchor  )
-        ])
+        tableView.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.top.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
     }
     
     func configureHeaderTableView()  {

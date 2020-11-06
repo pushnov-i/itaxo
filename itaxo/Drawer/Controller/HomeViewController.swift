@@ -47,8 +47,7 @@ class HomeController: UIViewController {
         mapView.frame.origin.y = 39
         
         
-        // добавляем хендлер тапа теперь уже на мап вью, тк он сверху, под меню, но и над контейнером (переменной view в данном случае)
-        
+        // добавляем хендлер тапа
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleMenu))
        // mapView.addGestureRecognizer(tap)
         view.addGestureRecognizer(tap)
