@@ -9,7 +9,8 @@
 import UIKit
 
 private let reuseIdentifierAccountCell = "AccountSettingsCell"
-private let reuseIdentifierProgrammeCell = "AccountProgrammeSettingsCell"
+private let reuseIdentifierProgrammeCityCell = "AccountProgrammeCitySettingsCell"
+private let reuseIdentifierProgrammeLanguageCell = "AccountProgrammeLanguageSettingsCell"
 
 class SettingsViewController: UIViewController {
     
@@ -42,7 +43,8 @@ class SettingsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(AccountSettingsCell.self, forCellReuseIdentifier: reuseIdentifierAccountCell)
-        tableView.register(AccountProgrammeSettingsCell.self, forCellReuseIdentifier: reuseIdentifierProgrammeCell)
+        tableView.register(AccountProgrammeCitySettingsCell.self, forCellReuseIdentifier: reuseIdentifierProgrammeCityCell)
+        tableView.register(AccountProgrammeLanguageSettingsCell.self, forCellReuseIdentifier: reuseIdentifierProgrammeLanguageCell)
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
         tableView.rowHeight = 50
@@ -76,14 +78,16 @@ class SettingsViewController: UIViewController {
 extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        2
+        3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 4
+        } else if section == 1 {
+            return 1
         } else {
-            return 2
+            return 1
         }
     }
     
@@ -104,10 +108,10 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
                 cell.selectionStyle = .none
             }
             return cell
-        } else //if indexPath.section == 1
+        } else if indexPath.section == 1
         {
             var viewModel : SettingsProgrammeMenuDelegate?
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierProgrammeCell, for: indexPath) as? AccountProgrammeSettingsCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierProgrammeCityCell, for: indexPath) as? AccountProgrammeCitySettingsCell else {
                 fatalError("Unexpected Table View Cell")
             }
             guard let programmeSettings = SettingsViewModel.programmeSettings(rawValue: indexPath.row) else { fatalError("Unexpected Index Path") }
@@ -118,6 +122,20 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
                 cell.selectionStyle = .none
             }
             return cell
+        } else {
+            var viewModel : SettingsProgrammeMenuDelegate?
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierProgrammeLanguageCell, for: indexPath) as? AccountProgrammeLanguageSettingsCell else {
+                fatalError("Unexpected Table View Cell")
+            }
+            guard let programmeSettings = SettingsViewModel.programmeSettings(rawValue: indexPath.row) else { fatalError("Unexpected Index Path") }
+            viewModel = SettingsViewModel.ProgrammeSettings(programmeSettings: programmeSettings)
+            
+            if let viewModel = viewModel {
+                cell.configure(withViewModel: viewModel)
+                cell.selectionStyle = .none
+            }
+            return cell
+            
         }
     }
 }
