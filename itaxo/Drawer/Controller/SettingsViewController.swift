@@ -51,6 +51,7 @@ class SettingsViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.rowHeight = 50
         tableView.isScrollEnabled = false
+        tableView.tableHeaderView = configureTopHeaderTableView()
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints{(make) -> Void in
@@ -58,7 +59,7 @@ class SettingsViewController: UIViewController {
         }
     }
     
-    func configureHeaderTableView() -> UIView?  {
+    func configureTopHeaderTableView() -> UIView?  {
         
         var viewModel : SettingsHeaderTopDelegate?
         
@@ -71,6 +72,36 @@ class SettingsViewController: UIViewController {
         }
         return headerView
     }
+    
+    func configureAccountHeaderTableView() -> UIView?  {
+          
+          var viewModel : SettingsHeaderAccountDelegate?
+          
+          guard let headerView = SettingsAccountHeaderViewComponent(frame: .zero) as? SettingsAccountHeaderViewComponent else {
+              fatalError("Unexpected Header")
+          }
+          viewModel = SettingsViewModel.HeaderSettings()
+          if let viewModel = viewModel {
+              headerView.configure(withViewModel: viewModel as! SettingsHeaderAccountDelegate)
+          }
+          return headerView
+      }
+    
+    func configureProgrammeHeaderTableView() -> UIView?  {
+          
+          var viewModel : SettingsHeaderProgrammeDelegate?
+          
+          guard let headerView = SettingsProgrammeHeaderViewComponent(frame: .zero) as? SettingsProgrammeHeaderViewComponent else {
+              fatalError("Unexpected Header")
+          }
+          viewModel = SettingsViewModel.HeaderSettings()
+          if let viewModel = viewModel {
+              headerView.configure(withViewModel: viewModel as! SettingsHeaderProgrammeDelegate)
+          }
+          return headerView
+      }
+    
+    
 }
 
 extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
@@ -94,12 +125,12 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         switch (section)  {
-        case 0 : return configureHeaderTableView()
-        case 1 :return configureHeaderTableView()
-        case 2 :return configureHeaderTableView()
+        case 0 : return configureAccountHeaderTableView()
+        case 1 :return configureProgrammeHeaderTableView()
+        case 2 :return nil
             
         default:
-            return configureHeaderTableView()
+            return nil
         }
     }
     
