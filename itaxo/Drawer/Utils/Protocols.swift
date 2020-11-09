@@ -27,3 +27,20 @@ protocol SettingsProgrammeMenuDelegate{
     var userLanguage: [String:String] { get }
 }
 
+protocol SettingsHeaderTopDelegate{
+    var topHeader : String {get}
+
+}
+protocol SettingsHeaderAccountDelegate{
+   var accountSettingsHeader : String {get}
+}
+
+protocol SettingsHeaderProgrammeDelegate{
+   var programmeSettingsHeader : String {get}
+
+}
+
+
+
+
+

@@ -31,7 +31,6 @@ class SettingsViewModel {
         
         var placeholder: String {
             switch accountSettings {
-     //       case .Header: return "Налаштування аккаунту "
             case .UserName : return "Ваше ім’я"
             case .UserPhoneNumber : return "Номер телефону"
             case .UserEmail: return "Ваш е-мейл"
@@ -41,7 +40,6 @@ class SettingsViewModel {
 
         var image: String? {
             switch accountSettings {
-       //               case .Header: return "avatar icon"
                       case .UserName : return "avatar icon"
                       case .UserPhoneNumber : return "tel icon"
                       case .UserEmail: return "mail"
@@ -54,5 +52,11 @@ class SettingsViewModel {
         let programmeSettings : programmeSettings
         var userCity : [String:String] = ["city":"Місто","cityText":"Київ"]
         var userLanguage = ["language":"Мова","languageText":"Українська"]
+    }
+    
+    struct HeaderSettings:SettingsHeaderTopDelegate,SettingsHeaderAccountDelegate,SettingsHeaderProgrammeDelegate {
+        var topHeader: String = "Налаштування"
+        var accountSettingsHeader: String = "Налаштування аккаунту"
+        var programmeSettingsHeader: String = "Налаштування програми "
     }
 }

@@ -14,6 +14,8 @@ private let reuseIdentifierProgrammeLanguageCell = "AccountProgrammeLanguageSett
 
 class SettingsViewController: UIViewController {
     
+    
+    
     //MARK: - Properties
     var tableView : UITableView!
     
@@ -56,38 +58,48 @@ class SettingsViewController: UIViewController {
         }
     }
     
-    //    func configureHeaderTableView()  {
-    //
-    //        var viewModel : MenuOptionRepresentable?
-    //
-    //        guard let headerView = HeaderViewComponent(frame: .zero) as? HeaderViewComponent else {
-    //            fatalError("Unexpected Header")
-    //        }
-    //        guard let userCredentials = DrawerViewModel.userCredentials(rawValue: 0) else {
-    //            fatalError("Unexpected Index Path")
-    //
-    //        }
-    //        viewModel = DrawerViewModel.UserCredentials(userCredentials: userCredentials)
-    //        if let viewModel = viewModel {
-    //            headerView.configure(withViewModel: viewModel)
-    //        }
-    //        tableView.tableHeaderView = headerView
-    //    }
+    func configureHeaderTableView() -> UIView?  {
+        
+        var viewModel : SettingsHeaderTopDelegate?
+        
+        guard let headerView = SettingsHeaderViewComponent(frame: .zero) as? SettingsHeaderViewComponent else {
+            fatalError("Unexpected Header")
+        }
+        viewModel = SettingsViewModel.HeaderSettings()
+        if let viewModel = viewModel {
+            headerView.configure(withViewModel: viewModel as! SettingsHeaderTopDelegate)
+        }
+        return headerView
+    }
 }
 
 extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 4
-        } else if section == 1 {
+        switch (section)  {
+        case 0 : return 4
+        case 1 :return 1
+        case 2 :return 1
+            
+        default:
             return 1
-        } else {
-            return 1
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        switch (section)  {
+        case 0 : return configureHeaderTableView()
+        case 1 :return configureHeaderTableView()
+        case 2 :return configureHeaderTableView()
+            
+        default:
+            return configureHeaderTableView()
         }
     }
     
