@@ -42,7 +42,7 @@ class SettingsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(AccountSettingsCell.self, forCellReuseIdentifier: reuseIdentifierAccountCell)
-        //tableView.register(AccountSettingsCell.self, forCellReuseIdentifier: reuseIdentifierAccountCell)
+        tableView.register(AccountProgrammeSettingsCell.self, forCellReuseIdentifier: reuseIdentifierProgrammeCell)
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
         tableView.rowHeight = 50
@@ -89,35 +89,36 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var viewModel : SettingsAccountMenuDelegate?
         
-        //        if indexPath.section == 0 {
-        //
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as? AccountSettingsCell else {
-            fatalError("Unexpected Table View Cell")
-        }
-        guard let accountSettings = SettingsViewModel.accountSettings(rawValue: indexPath.row) else { fatalError("Unexpected Index Path") }
-        viewModel = SettingsViewModel.AccountSettings(accountSettings: accountSettings)
         
-        if let viewModel = viewModel {
-            cell.configure(withViewModel: viewModel)
-            cell.selectionStyle = .none
+        if indexPath.section == 0 {
+            var viewModel : SettingsAccountMenuDelegate?
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as? AccountSettingsCell else {
+                fatalError("Unexpected Table View Cell")
+            }
+            guard let accountSettings = SettingsViewModel.accountSettings(rawValue: indexPath.row) else { fatalError("Unexpected Index Path") }
+            viewModel = SettingsViewModel.AccountSettings(accountSettings: accountSettings)
+            
+            if let viewModel = viewModel {
+                cell.configure(withViewModel: viewModel)
+                cell.selectionStyle = .none
+            }
+            return cell
+        } else //if indexPath.section == 1
+        {
+            var viewModel : SettingsProgrammeMenuDelegate?
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierProgrammeCell, for: indexPath) as? AccountProgrammeSettingsCell else {
+                fatalError("Unexpected Table View Cell")
+            }
+            guard let programmeSettings = SettingsViewModel.programmeSettings(rawValue: indexPath.row) else { fatalError("Unexpected Index Path") }
+            viewModel = SettingsViewModel.ProgrammeSettings(programmeSettings: programmeSettings)
+            
+            if let viewModel = viewModel {
+                cell.configure(withViewModel: viewModel)
+                cell.selectionStyle = .none
+            }
+            return cell
         }
-        //        } else
-        //        {
-        //
-        //            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as? AccountSettingsCell else {
-        //                fatalError("Unexpected Table View Cell")
-        //            }
-        //            guard let programmeSettings = SettingsViewModel.programmeSettings(rawValue: indexPath.row) else { fatalError("Unexpected Index Path") }
-        //            viewModel = SettingsViewModel.ProgrammeSettings(programmeSettings: programmeSettings)
-        //
-        //            if let viewModel = viewModel {
-        //                //            cell.configure(withViewModel: viewModel)
-        //                //            cell.selectionStyle = .none
-        //            }
-        //        }
-        return cell
     }
 }
 

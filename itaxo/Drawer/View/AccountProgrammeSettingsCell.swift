@@ -8,10 +8,7 @@
 import UIKit
 
 
-class AccountProgrammeSettingsCell {
-//    let cityLabel : UILabel = {
-//        
-//    }
+class AccountProgrammeSettingsCell:UITableViewCell {
     
     let cityLabel: UILabel = {
         let iconView = UILabel()
@@ -20,19 +17,11 @@ class AccountProgrammeSettingsCell {
         return iconView
     }()
     
-    let cityCellTextField: UITextField =
-    {
-        let cellTextField = UITextField()
-        cellTextField.autocapitalizationType = .none
-        cellTextField.layer.cornerRadius = 16.0
-        cellTextField.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor
-        cellTextField.layer.borderWidth = 1.0
-        cellTextField.textContentType = .emailAddress
-        cellTextField.layer.masksToBounds = true
-        cellTextField.font = .systemFont(ofSize: 16.0, weight: .regular)
-        cellTextField.placeholder = "Ваш е-мейл"
-        cellTextField.textContentType = .emailAddress
-        return cellTextField
+    let cityTextLabel: UILabel = {
+        let iconView = UILabel()
+        iconView.contentMode = .scaleAspectFit
+        iconView.clipsToBounds = true
+        return iconView
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -40,7 +29,7 @@ class AccountProgrammeSettingsCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         backgroundColor = .black
-        addSubview(iconImageView)
+        addSubview(cityLabel)
         cityLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.left.equalTo(12)
@@ -49,8 +38,8 @@ class AccountProgrammeSettingsCell {
             
         }
         
-        addSubview(cellTextField)
-        cityCellTextField.snp.makeConstraints { make in
+        addSubview(cityTextLabel)
+        cityTextLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.left.equalTo(12)
             make.height.equalTo(18)
@@ -62,11 +51,10 @@ class AccountProgrammeSettingsCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(withViewModel viewModel: SettingsAccountMenuDelegate) {
-       
+    func configure(withViewModel viewModel: SettingsProgrammeMenuDelegate) {
         
-        cityCellTextField.placeholder = viewModel.placeholder
-        cityLabel.image = UIImage(named:viewModel.image!)
+        let cityHead = viewModel.userCity.keys.description
+        cityLabel.text = cityHead
         
         
     }

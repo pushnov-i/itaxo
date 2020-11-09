@@ -22,3 +22,8 @@ protocol SettingsAccountMenuDelegate {
      var image: String? { get }
 }
 
+protocol SettingsProgrammeMenuDelegate{
+    var userCity: [String:String] { get }
+    var userLanguage: [String:String] { get }
+}
+

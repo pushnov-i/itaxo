@@ -57,7 +57,7 @@ class AccountSettingsCell: UITableViewCell {
     }
     
     func configure(withViewModel viewModel: SettingsAccountMenuDelegate) {
-       
+        
         
         accountCellTextField.placeholder = viewModel.placeholder
         iconImageView.image = UIImage(named:viewModel.image!)

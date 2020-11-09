@@ -50,8 +50,9 @@ class SettingsViewModel {
         }
     }
     
-    struct ProgrammeSettings {
-        var userCity: String
-        var userLangauge: String
+    struct ProgrammeSettings:SettingsProgrammeMenuDelegate {
+        let programmeSettings : programmeSettings
+        var userCity : [String:String] = ["Місто":"Київ"]
+        var userLanguage = ["Мова":"Українська"]
     }
 }
