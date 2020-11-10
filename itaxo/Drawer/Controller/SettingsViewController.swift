@@ -119,6 +119,10 @@ class SettingsViewController: UIViewController {
             return button
         }()
         
+//        let buttonLabel: UILabel = {
+//
+//        }
+        
         footerView.addSubview(button)
         button.snp.makeConstraints{(make) -> Void in
             make.left.right.bottom.top.equalToSuperview()

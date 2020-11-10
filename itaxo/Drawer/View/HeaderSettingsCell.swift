@@ -31,6 +31,14 @@ class SettingsHeaderViewComponent: UITableViewHeaderFooterView {
         
         return label
     }()
+    
+    let button : UIButton = {
+        let buttonView = UIButton()
+        buttonView.backgroundColor = .clear
+        buttonView.layer.cornerRadius = 20
+        buttonView.setImage(UIImage(named: "cancel icon"), for: .normal)
+        return buttonView
+    }()
       
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -43,6 +51,15 @@ class SettingsHeaderViewComponent: UITableViewHeaderFooterView {
             make.left.equalTo(12)
            // make.leading.equalTo(view.snp.trailing).offset(20)
             make.centerY.equalToSuperview()
+        }
+        addSubview(button)
+        button.snp.makeConstraints{(make) -> Void in
+            make.height.equalTo(40)
+            make.width.equalTo(40)
+            make.left.equalTo(20)
+           // make.top.equalToSuperview()
+           // make.leading.equalTo(view.snp.trailing).offset(20)
+           // make.centerY.equalToSuperview()
         }
     }
     
