@@ -222,8 +222,5 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
             
         }
     }
-    
-    
-    
 }
 

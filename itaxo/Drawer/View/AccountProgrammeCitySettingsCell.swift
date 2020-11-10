@@ -27,7 +27,7 @@ class AccountProgrammeCitySettingsCell:UITableViewCell {
     lazy var stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.spacing = 20.0
+        stack.spacing = 5.0
         stack.alignment = .fill
         stack.distribution = .fillEqually
         stack.contentMode = .scaleAspectFit
@@ -97,7 +97,7 @@ class AccountProgrammeLanguageSettingsCell: UITableViewCell {
     lazy var stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.spacing = 20.0
+        stack.spacing = 5.0
         stack.alignment = .fill
         stack.distribution = .fillEqually
         stack.contentMode = .scaleAspectFit

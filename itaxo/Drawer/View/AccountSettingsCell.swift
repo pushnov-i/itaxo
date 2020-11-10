@@ -22,11 +22,10 @@ class AccountSettingsCell: UITableViewCell {
         let cellTextField = UITextField()
         cellTextField.autocapitalizationType = .none
         cellTextField.layer.cornerRadius = 16.0
-       // cellTextField.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor
-      //  cellTextField.layer.borderWidth = 1.0
         cellTextField.textContentType = .emailAddress
         cellTextField.layer.masksToBounds = false
         cellTextField.font = .systemFont(ofSize: 17.0, weight: .regular)
+        cellTextField.textColor = .black
         cellTextField.textContentType = .emailAddress
         return cellTextField
     }()
@@ -56,12 +55,12 @@ class AccountSettingsCell: UITableViewCell {
     }
     
     func configure(withViewModel viewModel: SettingsAccountMenuDelegate) {
-        
-        
-        accountCellTextField.placeholder = viewModel.placeholder
+        accountCellTextField.attributedPlaceholder = NSAttributedString(
+            string: viewModel.placeholder,
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,
+                           NSAttributedString.Key.font:  UIFont(name: "Roboto-Regular", size: 17)!
+        ])
         iconImageView.image = UIImage(named:viewModel.image!)
-        
-        
     }
 }
 

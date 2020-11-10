@@ -46,8 +46,8 @@ class SettingsHeaderViewComponent: UITableViewHeaderFooterView {
         addSubview(headerSettingsLabel)
         
         headerSettingsLabel.snp.makeConstraints{(make) -> Void in
-            make.height.equalTo(80)
-            make.width.equalTo(160)
+            make.height.equalTo(50)
+            make.width.equalTo(250)
             make.left.equalTo(12)
            // make.leading.equalTo(view.snp.trailing).offset(20)
             make.centerY.equalToSuperview()
@@ -102,8 +102,8 @@ class SettingsAccountHeaderViewComponent: UITableViewHeaderFooterView {
         addSubview(headerSettingsLabel)
         
         headerSettingsLabel.snp.makeConstraints{(make) -> Void in
-            make.height.equalTo(80)
-            make.width.equalTo(160)
+            make.height.equalTo(50)
+            make.width.equalTo(250)
             make.left.equalTo(12)
            // make.leading.equalTo(view.snp.trailing).offset(20)
             make.centerY.equalToSuperview()
@@ -150,8 +150,8 @@ class SettingsProgrammeHeaderViewComponent: UITableViewHeaderFooterView {
         addSubview(headerSettingsLabel)
         
         headerSettingsLabel.snp.makeConstraints{(make) -> Void in
-            make.height.equalTo(80)
-            make.width.equalTo(160)
+            make.height.equalTo(50)
+            make.width.equalTo(250)
             make.left.equalTo(12)
            // make.leading.equalTo(view.snp.trailing).offset(20)
             make.centerY.equalToSuperview()
