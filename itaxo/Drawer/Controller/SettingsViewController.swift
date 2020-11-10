@@ -71,7 +71,7 @@ class SettingsViewController: UIViewController {
         }
         viewModel = SettingsViewModel.HeaderSettings()
         if let viewModel = viewModel {
-            headerView.configure(withViewModel: viewModel as! SettingsHeaderTopDelegate)
+            headerView.configure(withViewModel: viewModel )
         }
         return headerView
     }
@@ -85,7 +85,7 @@ class SettingsViewController: UIViewController {
         }
         viewModel = SettingsViewModel.HeaderSettings()
         if let viewModel = viewModel {
-            headerView.configure(withViewModel: viewModel as! SettingsHeaderAccountDelegate)
+            headerView.configure(withViewModel: viewModel)
         }
         return headerView
     }
@@ -99,7 +99,7 @@ class SettingsViewController: UIViewController {
         }
         viewModel = SettingsViewModel.HeaderSettings()
         if let viewModel = viewModel {
-            headerView.configure(withViewModel: viewModel as! SettingsHeaderProgrammeDelegate)
+            headerView.configure(withViewModel: viewModel )
         }
         return headerView
     }
@@ -134,8 +134,6 @@ class SettingsViewController: UIViewController {
         //           }
         
     }
-    
-    
 }
 
 extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
@@ -177,9 +175,7 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
             return 50
         }
     }
-    
-    
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
@@ -226,5 +222,8 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
             
         }
     }
+    
+    
+    
 }
 

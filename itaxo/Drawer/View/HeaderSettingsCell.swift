@@ -118,6 +118,7 @@ class SettingsAccountHeaderViewComponent: UITableViewHeaderFooterView {
         headerSettingsLabel.text = viewModel.accountSettingsHeader
         print("2!")
         headerSettingsLabel.textColor = .black
+        contentView.backgroundColor = .white
     }
 }
 
@@ -128,7 +129,6 @@ class SettingsProgrammeHeaderViewComponent: UITableViewHeaderFooterView {
         let label = UILabel()
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .green
         
         let font = UIFont(name: "Roboto",size: 17)
         guard let customFont = UIFont(name: "Roboto-Regular", size: 17) else {
@@ -166,17 +166,6 @@ class SettingsProgrammeHeaderViewComponent: UITableViewHeaderFooterView {
         headerSettingsLabel.text = viewModel.programmeSettingsHeader
         print("3!")
         headerSettingsLabel.textColor = .black
+        contentView.backgroundColor = .white
     }
-}
-
-class SettingsProgrammeFooterViewComponent: UITableViewHeaderFooterView {
-//    
-//    let footerView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
-//    footerView.backgroundColor = UIColor.red
-//    
-
-//    
-//    func settupFooter() {
-//        
-//    }
 }
