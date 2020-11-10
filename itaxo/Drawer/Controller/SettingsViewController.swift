@@ -158,13 +158,23 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
+        
         switch (section)  {
         case 0 : return configureAccountHeaderTableView()
         case 1 :return configureProgrammeHeaderTableView()
-        case 2 :return nil
+       
             
         default:
             return nil
+        }
+    }
+    
+     func tableView(_ tableView: UITableView,
+                            heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 2 {
+            return 0
+        } else {
+            return 50
         }
     }
     
