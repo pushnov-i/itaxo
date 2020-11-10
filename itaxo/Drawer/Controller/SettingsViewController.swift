@@ -52,12 +52,15 @@ class SettingsViewController: UIViewController {
         tableView.rowHeight = 50
         tableView.isScrollEnabled = false
         tableView.tableHeaderView = configureTopHeaderTableView()
+        tableView.tableFooterView = configureFooterViewButtonExit()
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints{(make) -> Void in
             make.left.right.bottom.top.equalToSuperview()
         }
     }
+    
+    
     
     func configureTopHeaderTableView() -> UIView?  {
         
@@ -74,32 +77,59 @@ class SettingsViewController: UIViewController {
     }
     
     func configureAccountHeaderTableView() -> UIView?  {
-          
-          var viewModel : SettingsHeaderAccountDelegate?
-          
-          guard let headerView = SettingsAccountHeaderViewComponent(frame: .zero) as? SettingsAccountHeaderViewComponent else {
-              fatalError("Unexpected Header")
-          }
-          viewModel = SettingsViewModel.HeaderSettings()
-          if let viewModel = viewModel {
-              headerView.configure(withViewModel: viewModel as! SettingsHeaderAccountDelegate)
-          }
-          return headerView
-      }
+        
+        var viewModel : SettingsHeaderAccountDelegate?
+        
+        guard let headerView = SettingsAccountHeaderViewComponent(frame: .zero) as? SettingsAccountHeaderViewComponent else {
+            fatalError("Unexpected Header")
+        }
+        viewModel = SettingsViewModel.HeaderSettings()
+        if let viewModel = viewModel {
+            headerView.configure(withViewModel: viewModel as! SettingsHeaderAccountDelegate)
+        }
+        return headerView
+    }
     
     func configureProgrammeHeaderTableView() -> UIView?  {
-          
-          var viewModel : SettingsHeaderProgrammeDelegate?
-          
-          guard let headerView = SettingsProgrammeHeaderViewComponent(frame: .zero) as? SettingsProgrammeHeaderViewComponent else {
-              fatalError("Unexpected Header")
-          }
-          viewModel = SettingsViewModel.HeaderSettings()
-          if let viewModel = viewModel {
-              headerView.configure(withViewModel: viewModel as! SettingsHeaderProgrammeDelegate)
-          }
-          return headerView
-      }
+        
+        var viewModel : SettingsHeaderProgrammeDelegate?
+        
+        guard let headerView = SettingsProgrammeHeaderViewComponent(frame: .zero) as? SettingsProgrammeHeaderViewComponent else {
+            fatalError("Unexpected Header")
+        }
+        viewModel = SettingsViewModel.HeaderSettings()
+        if let viewModel = viewModel {
+            headerView.configure(withViewModel: viewModel as! SettingsHeaderProgrammeDelegate)
+        }
+        return headerView
+    }
+    
+    func configureFooterViewButtonExit() -> UIView? {
+        
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
+        let button: UIButton = {
+            let button = UIButton(type: .custom)
+            button.setTitle("Вийти", for: .normal)
+            button.setTitleColor(.white, for: .normal)
+            button.backgroundColor = UIColor(hex: "#FFDE43ff")
+            button.titleEdgeInsets = UIEdgeInsets(top: 40, left: -20, bottom: 40, right: -20)
+            button.layer.cornerRadius = 25
+            button.isEnabled = true
+            button.isUserInteractionEnabled = true
+            return button
+        }()
+        
+        footerView.addSubview(button)
+        button.snp.makeConstraints{(make) -> Void in
+            make.left.right.bottom.top.equalToSuperview()
+        }
+        return footerView;
+        //
+        //        func myAction(_ sender : AnyObject) {
+        //
+        //           }
+        
+    }
     
     
 }
@@ -133,6 +163,7 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
             return nil
         }
     }
+    
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

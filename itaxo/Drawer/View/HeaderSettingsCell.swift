@@ -52,7 +52,7 @@ class SettingsHeaderViewComponent: UITableViewHeaderFooterView {
     
     func configure(withViewModel viewModel: SettingsHeaderTopDelegate) {
         headerSettingsLabel.text = viewModel.topHeader
-        print("!")
+        print("1!")
         headerSettingsLabel.textColor = .black
     }
 }
@@ -99,7 +99,7 @@ class SettingsAccountHeaderViewComponent: UITableViewHeaderFooterView {
     
     func configure(withViewModel viewModel: SettingsHeaderAccountDelegate) {
         headerSettingsLabel.text = viewModel.accountSettingsHeader
-        print("!")
+        print("2!")
         headerSettingsLabel.textColor = .black
     }
 }
@@ -147,7 +147,19 @@ class SettingsProgrammeHeaderViewComponent: UITableViewHeaderFooterView {
     
     func configure(withViewModel viewModel: SettingsHeaderProgrammeDelegate) {
         headerSettingsLabel.text = viewModel.programmeSettingsHeader
-        print("!")
+        print("3!")
         headerSettingsLabel.textColor = .black
     }
+}
+
+class SettingsProgrammeFooterViewComponent: UITableViewHeaderFooterView {
+//    
+//    let footerView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+//    footerView.backgroundColor = UIColor.red
+//    
+
+//    
+//    func settupFooter() {
+//        
+//    }
 }
