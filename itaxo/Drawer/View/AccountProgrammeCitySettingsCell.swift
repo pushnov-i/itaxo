@@ -32,7 +32,7 @@ class AccountProgrammeCitySettingsCell:UITableViewCell {
         stack.distribution = .fillEqually
         stack.contentMode = .scaleAspectFit
         [self.cityLabel,
-            self.cityTextLabel,
+         self.cityTextLabel,
             ].forEach { stack.addArrangedSubview($0) }
         return stack
     }()
@@ -44,22 +44,22 @@ class AccountProgrammeCitySettingsCell:UITableViewCell {
         backgroundColor = .white
         addSubview(stackView)
         stackView.snp.makeConstraints { make in
-          //  make.centerY.equalToSuperview()
-//            make.left.equalTo(12)
-//            make.height.equalTo(18)
-//            make.width.equalTo(41)
-//            make.top.equalToSuperview()
-//
+            //  make.centerY.equalToSuperview()
+                        make.left.equalTo(12)
+            //            make.height.equalTo(18)
+            //            make.width.equalTo(41)
+            //            make.top.equalToSuperview()
+            //
         }
         
-//        addSubview(cityTextLabel)
-//        cityTextLabel.snp.makeConstraints { make in
-//           // make.centerY.equalToSuperview()
-//            make.left.equalTo(12)
-//            make.height.equalTo(18)
-//            make.width.equalTo(41)
-//           // make.top.e
-//        }
+        //        addSubview(cityTextLabel)
+        //        cityTextLabel.snp.makeConstraints { make in
+        //           // make.centerY.equalToSuperview()
+       // make.left.equalTo(12)
+        //            make.height.equalTo(18)
+        //            make.width.equalTo(41)
+        //           // make.top.e
+        //        }
     }
     
     required init?(coder: NSCoder) {
@@ -67,7 +67,7 @@ class AccountProgrammeCitySettingsCell:UITableViewCell {
     }
     
     func configure(withViewModel viewModel: SettingsProgrammeMenuDelegate) {
-
+        
         let city = viewModel.userCity["city"]
         cityLabel.text = city
         cityLabel.textColor = UIColor(hex: "#939393ff")
@@ -102,7 +102,7 @@ class AccountProgrammeLanguageSettingsCell: UITableViewCell {
         stack.distribution = .fillEqually
         stack.contentMode = .scaleAspectFit
         [self.languageLabel,
-            self.languageTextLabel,
+         self.languageTextLabel,
             ].forEach { stack.addArrangedSubview($0) }
         return stack
     }()
@@ -114,22 +114,22 @@ class AccountProgrammeLanguageSettingsCell: UITableViewCell {
         backgroundColor = .white
         addSubview(stackView)
         stackView.snp.makeConstraints { make in
-//            make.centerY.equalToSuperview()
-//            make.left.equalTo(12)
-//            make.height.equalTo(18)
-//            make.width.equalTo(41)
-
+            //            make.centerY.equalToSuperview()
+            make.left.equalTo(12)
+            //            make.height.equalTo(18)
+            //            make.width.equalTo(41)
+            
         }
-//
-//        addSubview(languageTextLabel)
-//        languageTextLabel.snp.makeConstraints { make in
-//            make.centerY.equalToSuperview()
-//            make.left.equalTo(12)
-//            make.height.equalTo(18)
-//            make.width.equalTo(41)
-//        }
+        //
+        //        addSubview(languageTextLabel)
+        //        languageTextLabel.snp.makeConstraints { make in
+        //            make.centerY.equalToSuperview()
+        //            make.left.equalTo(12)
+        //            make.height.equalTo(18)
+        //            make.width.equalTo(41)
+        //        }
     }
-
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

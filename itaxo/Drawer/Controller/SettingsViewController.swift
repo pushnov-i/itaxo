@@ -53,10 +53,32 @@ class SettingsViewController: UIViewController {
         tableView.isScrollEnabled = false
         tableView.tableHeaderView = configureTopHeaderTableView()
         tableView.tableFooterView = configureFooterViewButtonExit()
-        
+        view.backgroundColor = UIColor(hex: "#FFDE43ff")
         view.addSubview(tableView)
+    
         tableView.snp.makeConstraints{(make) -> Void in
-            make.left.right.bottom.top.equalToSuperview()
+           // make.left.right.bottom.equalToSuperview()
+          //  make.top.equalToSuperview().offset(20)
+//            make.leading.equalTo(self.view.layoutMarginsGuide.snp.leading)
+//            make.trailing.equalTo(self.view.layoutMarginsGuide.snp.trailing)
+//            make.top.equalTo(self.view.layoutMarginsGuide.snp.top)
+//            make.bottom.equalTo(self.view.layoutMarginsGuide.snp.bottom)
+            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.leftMargin)
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.rightMargin)
+            make.top.equalTo( view.safeAreaLayoutGuide.snp.topMargin).inset(20)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottomMargin).inset(20)
+        }
+        let topLayoutGuideBox = UIView()
+        topLayoutGuideBox.backgroundColor = .green
+        self.view.addSubview(topLayoutGuideBox)
+
+        topLayoutGuideBox.snp.makeConstraints { (make) -> Void in
+
+        }
+
+        
+        tableView.tableFooterView!.snp.makeConstraints{(make) -> Void in
+            make.bottom.equalTo(view.snp.bottom).inset(50)
         }
     }
     
@@ -105,28 +127,37 @@ class SettingsViewController: UIViewController {
     }
     
     func configureFooterViewButtonExit() -> UIView? {
+        let cancelImageView = UIImage(named: "exitLabel")
         
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
         let button: UIButton = {
             let button = UIButton(type: .custom)
+            button.setImage(cancelImageView, for: .normal)
             button.setTitle("Вийти", for: .normal)
-            button.setTitleColor(.white, for: .normal)
+            button.setTitleColor(.black, for: .normal)
             button.backgroundColor = UIColor(hex: "#FFDE43ff")
-            button.titleEdgeInsets = UIEdgeInsets(top: 40, left: -20, bottom: 40, right: -20)
+            
+            button.titleEdgeInsets = UIEdgeInsets(top: 40, left: 20, bottom: 40, right: 10)
             button.layer.cornerRadius = 25
             button.isEnabled = true
             button.isUserInteractionEnabled = true
             return button
         }()
         
-//        let buttonLabel: UILabel = {
-//
-//        }
+        //        let buttonLabel: UILabel = {
+        //
+        //        }
         
         footerView.addSubview(button)
         button.snp.makeConstraints{(make) -> Void in
-            make.left.right.bottom.top.equalToSuperview()
+            make.left.equalTo(25)
+            make.height.equalTo(40)
+            make.width.equalTo(120)
+            make.centerY.equalToSuperview()
+            //   make.top.equalToSuperview().offset(10)
         }
+        // view.addSubview(footerView)
+        
         return footerView;
         //
         //        func myAction(_ sender : AnyObject) {
@@ -160,22 +191,22 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
         switch (section)  {
         case 0 : return configureAccountHeaderTableView()
         case 1 :return configureProgrammeHeaderTableView()
-       
+            
             
         default:
             return nil
         }
     }
     
-     func tableView(_ tableView: UITableView,
-                            heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView,
+                   heightForHeaderInSection section: Int) -> CGFloat {
         if section == 2 {
             return 0
         } else {
             return 50
         }
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         

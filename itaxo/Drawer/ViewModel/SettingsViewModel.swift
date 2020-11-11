@@ -55,7 +55,7 @@ class SettingsViewModel {
     }
     
     struct HeaderSettings:SettingsHeaderTopDelegate,SettingsHeaderAccountDelegate,SettingsHeaderProgrammeDelegate {
-        var topHeader: String = "Налаштування"
+        var topHeader: String = "НАЛАШТУВАННЯ"
         var accountSettingsHeader: String = "Налаштування аккаунту"
         var programmeSettingsHeader: String = "Налаштування програми "
     }

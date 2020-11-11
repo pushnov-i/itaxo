@@ -17,9 +17,7 @@ class SettingsHeaderViewComponent: UITableViewHeaderFooterView {
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .darkGray
-        
-        let font = UIFont(name: "Roboto",size: 17)
-        guard let customFont = UIFont(name: "Roboto-Regular", size: 17) else {
+        guard let customFont = UIFont(name: "Roboto-Regular", size: 15) else {
             fatalError("""
                 Failed to load the "Roboto-Regular" font.
                 Make sure the font file is included in the project and the font name is spelled correctly.
@@ -56,7 +54,7 @@ class SettingsHeaderViewComponent: UITableViewHeaderFooterView {
         button.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(40)
             make.width.equalTo(40)
-            make.left.equalTo(20)
+            make.left.equalToSuperview().offset(12)
            // make.top.equalToSuperview()
            // make.leading.equalTo(view.snp.trailing).offset(20)
            // make.centerY.equalToSuperview()
@@ -83,7 +81,7 @@ class SettingsAccountHeaderViewComponent: UITableViewHeaderFooterView {
         label.textColor = .red
         
         let font = UIFont(name: "Roboto",size: 17)
-        guard let customFont = UIFont(name: "Roboto-Regular", size: 17) else {
+        guard let customFont = UIFont(name: "Roboto-Regular", size: 15) else {
             fatalError("""
                 Failed to load the "Roboto-Regular" font.
                 Make sure the font file is included in the project and the font name is spelled correctly.
@@ -131,7 +129,7 @@ class SettingsProgrammeHeaderViewComponent: UITableViewHeaderFooterView {
         label.translatesAutoresizingMaskIntoConstraints = false
         
         let font = UIFont(name: "Roboto",size: 17)
-        guard let customFont = UIFont(name: "Roboto-Regular", size: 17) else {
+        guard let customFont = UIFont(name: "Roboto-Regular", size: 15) else {
             fatalError("""
                 Failed to load the "Roboto-Regular" font.
                 Make sure the font file is included in the project and the font name is spelled correctly.

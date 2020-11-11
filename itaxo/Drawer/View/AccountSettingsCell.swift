@@ -46,7 +46,7 @@ class AccountSettingsCell: UITableViewCell {
         addSubview(accountCellTextField)
         accountCellTextField.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalTo(12)
+            make.left.equalTo(iconImageView.snp.right).offset(25)
         }
     }
     
@@ -58,7 +58,7 @@ class AccountSettingsCell: UITableViewCell {
         accountCellTextField.attributedPlaceholder = NSAttributedString(
             string: viewModel.placeholder,
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,
-                           NSAttributedString.Key.font:  UIFont(name: "Roboto-Regular", size: 17)!
+                           NSAttributedString.Key.font:  UIFont(name: "Roboto-Regular", size: 15)!
         ])
         iconImageView.image = UIImage(named:viewModel.image!)
     }
