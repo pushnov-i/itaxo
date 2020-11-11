@@ -17,7 +17,7 @@ class SettingsHeaderViewComponent: UITableViewHeaderFooterView {
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .darkGray
-        guard let customFont = UIFont(name: "Roboto-Regular", size: 15) else {
+        guard let customFont = UIFont(name: "Roboto-Regular", size: 17) else {
             fatalError("""
                 Failed to load the "Roboto-Regular" font.
                 Make sure the font file is included in the project and the font name is spelled correctly.
@@ -33,7 +33,7 @@ class SettingsHeaderViewComponent: UITableViewHeaderFooterView {
     let button : UIButton = {
         let buttonView = UIButton()
         buttonView.backgroundColor = .clear
-        buttonView.layer.cornerRadius = 20
+        buttonView.layer.cornerRadius = 25
         buttonView.setImage(UIImage(named: "cancel icon"), for: .normal)
         return buttonView
     }()
@@ -47,6 +47,7 @@ class SettingsHeaderViewComponent: UITableViewHeaderFooterView {
             make.height.equalTo(50)
             make.width.equalTo(250)
             make.left.equalTo(12)
+          //  make.top.equalTo(button.snp.bottom).offset(15)
            // make.leading.equalTo(view.snp.trailing).offset(20)
             make.centerY.equalToSuperview()
         }
@@ -55,10 +56,15 @@ class SettingsHeaderViewComponent: UITableViewHeaderFooterView {
             make.height.equalTo(40)
             make.width.equalTo(40)
             make.left.equalToSuperview().offset(12)
-           // make.top.equalToSuperview()
+            make.top.equalToSuperview().offset(10)
            // make.leading.equalTo(view.snp.trailing).offset(20)
            // make.centerY.equalToSuperview()
         }
+//        contentView.snp.makeConstraints{(make) -> Void in
+//            make.left.right.equalToSuperview()
+//            make.height.equalTo(100)
+//        
+//        }
     }
     
     required init?(coder: NSCoder) {
@@ -114,6 +120,7 @@ class SettingsAccountHeaderViewComponent: UITableViewHeaderFooterView {
     
     func configure(withViewModel viewModel: SettingsHeaderAccountDelegate) {
         headerSettingsLabel.text = viewModel.accountSettingsHeader
+        headerSettingsLabel.underline()
         print("2!")
         headerSettingsLabel.textColor = .black
         contentView.backgroundColor = .white
@@ -138,7 +145,7 @@ class SettingsProgrammeHeaderViewComponent: UITableViewHeaderFooterView {
         }
         label.font = UIFontMetrics.default.scaledFont(for: customFont)
         label.adjustsFontForContentSizeCategory = true
-        
+        label.underline()
         return label
     }()
       
@@ -146,7 +153,6 @@ class SettingsProgrammeHeaderViewComponent: UITableViewHeaderFooterView {
         super.init(reuseIdentifier: reuseIdentifier)
 
         addSubview(headerSettingsLabel)
-        
         headerSettingsLabel.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(50)
             make.width.equalTo(250)
@@ -161,9 +167,23 @@ class SettingsProgrammeHeaderViewComponent: UITableViewHeaderFooterView {
     }
     
     func configure(withViewModel viewModel: SettingsHeaderProgrammeDelegate) {
+        
         headerSettingsLabel.text = viewModel.programmeSettingsHeader
+        headerSettingsLabel.underline()
         print("3!")
         headerSettingsLabel.textColor = .black
         contentView.backgroundColor = .white
+    }
+}
+
+extension UILabel {
+    func underline() {
+        if let textString = self.text {
+          let attributedString = NSMutableAttributedString(string: textString)
+            attributedString.addAttribute(NSAttributedString.Key.underlineStyle,
+                                          value: NSUnderlineStyle.single.rawValue,
+                                          range: NSRange(location: 0, length: attributedString.length))
+          attributedText = attributedString
+        }
     }
 }

@@ -52,6 +52,7 @@ class SettingsViewController: UIViewController {
         tableView.rowHeight = 50
         tableView.isScrollEnabled = false
         tableView.tableHeaderView = configureTopHeaderTableView()
+        
         tableView.tableFooterView = configureFooterViewButtonExit()
         view.backgroundColor = UIColor(hex: "#FFDE43ff")
         view.addSubview(tableView)
