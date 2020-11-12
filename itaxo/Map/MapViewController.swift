@@ -14,6 +14,8 @@ import SnapKit
 
 class MapViewController: UIViewController, GMSMapViewDelegate {
 
+    let isHidden = BehaviorSubject<Bool>(value: false)
+    
     let disposeBag = DisposeBag()
     
     let menuButton : UIButton = {
@@ -21,6 +23,15 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         view.setImage(UIImage(named: "main/drawerbtn"), for: .normal)
         return view
     }()
+    
+    let overlay: UIView = {
+        let view = UIView()
+        view.layer.opacity = 0.8
+        view.backgroundColor = .white
+        view.isHidden = true
+        return view
+    }()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +43,14 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         mapView.delegate = self
         self.view.addSubview(mapView)
         view.isUserInteractionEnabled = true
+        
+        isHidden.subscribe(onNext:  { [weak self] isHidden in
+            guard let strongSelf = self else { return }
+            strongSelf.overlay.isHidden = !isHidden
+        })
+
+        .disposed(by: self.disposeBag)
+
 
         // Creates a marker in the center of the map.
         let marker = GMSMarker()
@@ -49,6 +68,13 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
             make.width.equalTo(45)
             
         }
+        
+        mapView.addSubview(overlay)
+        
+        overlay.snp.makeConstraints { (maker) in
+            maker.edges.equalTo(self.view)
+        }
+        
         mapView.rx.didTapAt.asDriver()
                  .drive(onNext: { print("Did tap at coordinate: \($0)") })
                  .disposed(by: disposeBag)

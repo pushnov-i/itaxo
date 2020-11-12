@@ -17,6 +17,8 @@ class HomeController: UIViewController {
     var menuController: UIViewController!
     var isExpanded = false
     
+    var menuWidth: CGFloat = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureMenuController()
@@ -41,42 +43,54 @@ class HomeController: UIViewController {
         mapView.didMoveToWindow()
         mapViewController.didMove(toParent: self)
         mapViewController.menuButton.addTarget(self, action: #selector(handleMenu), for: .touchUpInside)
-        //        mapView.snp.makeConstraints { maker in
-        //            maker.edges.equalTo(view)
-        //        }
-        mapView.frame.origin.y = 39
+        
+        mapView.snp.makeConstraints { maker in
+            maker.edges.equalTo(view)
+        }
+        
+        
+//        mapView.frame.origin.y = 39
         
         
         // добавляем хендлер тапа
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleMenu))
-       // mapView.addGestureRecognizer(tap)
-        view.addGestureRecognizer(tap)
-        tap.rx.event.bind(onNext: { recognizer in
-            print("touches: \(recognizer.numberOfTouches)") 
-        }).disposed(by: disposeBag)
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(handleMenu))
+//       // mapView.addGestureRecognizer(tap)
+//        view.addGestureRecognizer(tap)
+//        tap.rx.event.bind(onNext: { recognizer in
+//            print("touches: \(recognizer.numberOfTouches)")
+//        }).disposed(by: disposeBag)
 
         
         //adding menu view controller
         
-        guard let menuController = menuController else { return }
+        guard let menuController = menuController,
+              let menuView = menuController.view
+        
+        else { return }
+        
+        self.menuController = menuController
+        
         addChild(menuController)
-        view.addSubview(menuController.view)
+        view.addSubview(menuView)
+        
         menuController.didMove(toParent: self)
-        menuController.view.frame.origin.x = -375
+        let screenWidth = UIScreen.main.bounds.width
+        self.menuWidth = screenWidth * 0.8
+        menuView.frame.size.width = menuWidth
+        
+        menuView.frame.origin.x = menuWidth * -1
+        
      
     }
     
     func configureMenuController() {
-        if menuController == nil {
-            //add our menu controller
-            menuController = MenuController()
-            menuController.view.frame.origin.x = -375
-            view.addSubview(menuController.view)
-            addChild(menuController)
-            menuController.didMove(toParent: self)
-            print("configure MenuController")
-
-        }
+        //add our menu controller
+        menuController = MenuController()
+        menuController.view.frame.origin.x = CGFloat(self.menuWidth * -1)
+        view.addSubview(menuController.view)
+        addChild(menuController)
+        menuController.didMove(toParent: self)
+        print("configure MenuController")
     }
     
     /// Perform animation for showing and  folding drawer view
@@ -84,8 +98,8 @@ class HomeController: UIViewController {
         if shouldExpand {
             //show Drawer menu
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
-                self.menuController.view.frame.origin.x = -20
-                // self.menuController.view.frame.origin.y = 30
+                self.menuController.view.frame.origin.x = 0
+                 self.menuController.view.frame.origin.y = 20
                 // TODO        //    self.mapView?.alpha = 0.5
                 self.menuController.view.snp.makeConstraints { maker in
                                    maker.width.equalTo(self.view).multipliedBy(0.8)
@@ -95,8 +109,8 @@ class HomeController: UIViewController {
         } else {
             //hide Drawer menu
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-                self.menuController.view.frame.origin.x = -375
-                // self.menuController.view.frame.origin.y = 30
+                self.menuController.view.frame.origin.x = self.menuWidth * -1
+                 self.menuController.view.frame.origin.y = 30
                 self.mapView? .alpha = 1
             }, completion: nil)
         }

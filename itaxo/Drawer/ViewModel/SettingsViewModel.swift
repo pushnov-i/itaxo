@@ -10,8 +10,10 @@ import Foundation
 
 class SettingsViewModel {
     
+    
+    
     enum accountSettings: Int {
-    //    case Header // "Налаштування аккаунту "
+        //    case Header // "Налаштування аккаунту "
         case UserName // "Ваше ім’я"
         case UserPhoneNumber // "Номер телефону"
         case UserEmail // "Ваш е-мейл"
@@ -19,7 +21,7 @@ class SettingsViewModel {
     }
     
     enum programmeSettings: Int {
-     //   case Header   //"Налаштування програми"
+        //   case Header   //"Налаштування програми"
         case UserCity // "Місто"
         case City //"Київ"
         case UserLangauge // "Мова"
@@ -37,14 +39,14 @@ class SettingsViewModel {
             case .UserPassword : return "Введіть пароль"
             }
         }
-
+        
         var image: String? {
             switch accountSettings {
-                      case .UserName : return "avatar icon"
-                      case .UserPhoneNumber : return "tel icon"
-                      case .UserEmail: return "mail"
-                      case .UserPassword : return "key"
-                      }
+            case .UserName : return "avatar icon"
+            case .UserPhoneNumber : return "tel icon"
+            case .UserEmail: return "mail"
+            case .UserPassword : return "key"
+            }
         }
     }
     

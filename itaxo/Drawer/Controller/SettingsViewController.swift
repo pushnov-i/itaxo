@@ -182,6 +182,9 @@ class SettingsViewController: UIViewController {
         //           }
         
     }
+    
+    
+    
 }
 
 extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
@@ -229,6 +232,7 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
         
         if indexPath.section == 0 {
             var viewModel : SettingsAccountMenuDelegate?
+            
             guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as? AccountSettingsCell else {
                 fatalError("Unexpected Table View Cell")
             }
@@ -236,7 +240,7 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
             viewModel = SettingsViewModel.AccountSettings(accountSettings: accountSettings)
             
             if let viewModel = viewModel {
-                cell.configure(withViewModel: viewModel)
+                cell.configure(withViewModel: SettingsViewModel(accountCellTextField: UITextView())
                 cell.selectionStyle = .none
             }
             return cell

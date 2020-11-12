@@ -214,5 +214,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "777E9173-E15A-4766-B755-927FE6C80DA9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "itaxo/Drawer/Controller/HomeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "showMenuController(shouldExpand:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "777E9173-E15A-4766-B755-927FE6C80DA9 - a9e108949513d62f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "itaxo.HomeController.showMenuController(shouldExpand: Swift.Bool) -&gt; ()"
+                  moduleName = "itaxo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kold/iOS/itaxo/itaxo/Drawer/Controller/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "344">
+               </Location>
+               <Location
+                  uuid = "777E9173-E15A-4766-B755-927FE6C80DA9 - 48fa019ada059e19"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in itaxo.HomeController.showMenuController(shouldExpand: Swift.Bool) -&gt; ()"
+                  moduleName = "itaxo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kold/iOS/itaxo/itaxo/Drawer/Controller/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "112"
+                  endingLineNumber = "112"
+                  offsetFromSymbolStart = "64">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

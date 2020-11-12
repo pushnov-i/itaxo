@@ -17,19 +17,21 @@ class AccountSettingsCell: UITableViewCell {
         return iconView
     }()
     
-    let accountCellTextField: UITextField =
-    {
-        let cellTextField = UITextField()
-        cellTextField.autocapitalizationType = .none
-        cellTextField.layer.cornerRadius = 16.0
-        cellTextField.textContentType = .emailAddress
-        cellTextField.layer.masksToBounds = false
-        cellTextField.font = .systemFont(ofSize: 17.0, weight: .regular)
-        cellTextField.textColor = .black
-        cellTextField.textContentType = .emailAddress
-        return cellTextField
-    }()
-    
+    weak var accountCellTextField: UITextField?
+//
+//    let accountCellTextField: UITextField =
+//    {
+//        let cellTextField = UITextField()
+//        cellTextField.autocapitalizationType = .none
+//        cellTextField.layer.cornerRadius = 16.0
+//        cellTextField.textContentType = .emailAddress
+//        cellTextField.layer.masksToBounds = false
+//        cellTextField.font = .systemFont(ofSize: 17.0, weight: .regular)
+//        cellTextField.textColor = .black
+//        cellTextField.textContentType = .emailAddress
+//        return cellTextField
+//    }()
+//
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -43,11 +45,7 @@ class AccountSettingsCell: UITableViewCell {
             make.width.equalTo(24)
         }
         
-        addSubview(accountCellTextField)
-        accountCellTextField.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.left.equalTo(iconImageView.snp.right).offset(25)
-        }
+     
     }
     
     required init?(coder: NSCoder) {
@@ -55,6 +53,13 @@ class AccountSettingsCell: UITableViewCell {
     }
     
     func configure(withViewModel viewModel: SettingsAccountMenuDelegate) {
+        guard let accountCellTextField = viewModel.accountCellTextField else { return }
+        addSubview(accountCellTextField)
+        accountCellTextField.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalTo(iconImageView.snp.right).offset(25)
+        }
+        
         accountCellTextField.attributedPlaceholder = NSAttributedString(
             string: viewModel.placeholder,
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,

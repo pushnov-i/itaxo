@@ -80,13 +80,13 @@ class MenuController: UIViewController {
         viewModel = DrawerViewModel.UserCredentials(userCredentials: userCredentials)
         if let viewModel = viewModel {
             headerView.configure(withViewModel: viewModel)
-          
+            
         }
         tableView.tableHeaderView = headerView
     }
 }
 
-extension MenuController: UITableViewDelegate,UITableViewDataSource{
+extension MenuController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         8
@@ -114,8 +114,8 @@ extension MenuController: UITableViewDelegate,UITableViewDataSource{
 extension MenuController {
     
     @objc func handleSettingsMenu() {
-            print("tapped!")
-            let settingsViewController = SettingsViewController()
+        print("tapped!")
+        let settingsViewController = SettingsViewController()
         self.present(settingsViewController, animated:true, completion:nil)
         
     }
