@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 class SettingsHeaderViewComponent: UITableViewHeaderFooterView {
     
@@ -57,15 +58,12 @@ class SettingsHeaderViewComponent: UITableViewHeaderFooterView {
             make.width.equalTo(40)
             make.left.equalToSuperview().offset(12)
             make.top.equalToSuperview().offset(10)
-           // make.leading.equalTo(view.snp.trailing).offset(20)
-           // make.centerY.equalToSuperview()
         }
-//        contentView.snp.makeConstraints{(make) -> Void in
-//            make.left.right.equalToSuperview()
-//            make.height.equalTo(100)
-//        
-//        }
     }
+    
+//    @objc func dismissSettingsMenu(sender : UIButton) {
+//        dismiss(animated: true)
+//      }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -120,7 +118,7 @@ class SettingsAccountHeaderViewComponent: UITableViewHeaderFooterView {
     
     func configure(withViewModel viewModel: SettingsHeaderAccountDelegate) {
         headerSettingsLabel.text = viewModel.accountSettingsHeader
-        headerSettingsLabel.underline()
+       // headerSettingsLabel.useUnderline()
         print("2!")
         headerSettingsLabel.textColor = .black
         contentView.backgroundColor = .white
@@ -145,7 +143,6 @@ class SettingsProgrammeHeaderViewComponent: UITableViewHeaderFooterView {
         }
         label.font = UIFontMetrics.default.scaledFont(for: customFont)
         label.adjustsFontForContentSizeCategory = true
-        label.underline()
         return label
     }()
       
@@ -167,23 +164,59 @@ class SettingsProgrammeHeaderViewComponent: UITableViewHeaderFooterView {
     }
     
     func configure(withViewModel viewModel: SettingsHeaderProgrammeDelegate) {
-        
+       // headerSettingsLabel.translatesAutoresizingMaskIntoConstraints = false
         headerSettingsLabel.text = viewModel.programmeSettingsHeader
-        headerSettingsLabel.underline()
-        print("3!")
+        headerSettingsLabel.layer.addWaghaBorder(edge: .top, color: UIColor.black, thickness: 1)
         headerSettingsLabel.textColor = .black
         contentView.backgroundColor = .white
     }
 }
 
+
 extension UILabel {
-    func underline() {
-        if let textString = self.text {
-          let attributedString = NSMutableAttributedString(string: textString)
-            attributedString.addAttribute(NSAttributedString.Key.underlineStyle,
-                                          value: NSUnderlineStyle.single.rawValue,
-                                          range: NSRange(location: 0, length: attributedString.length))
-          attributedText = attributedString
-        }
+    
+    // Example use: myView.addBorder(toSide: .Left, withColor: UIColor.redColor().CGColor, andThickness: 1.0)
+
+    enum ViewSide {
+        case left, right, top, bottom
     }
+    
+    func addBorder(toSide side: ViewSide, withColor color: CGColor, andThickness thickness: CGFloat) {
+        
+        let border = CALayer()
+        border.backgroundColor = color
+        
+        switch side {
+        case .left: border.frame = CGRect(x: frame.minX, y: frame.minY, width: thickness, height: frame.height)
+        case .right: border.frame = CGRect(x: frame.maxX, y: frame.minY, width: thickness, height: frame.height)
+        case .top: border.frame = CGRect(x: frame.minX, y: frame.minY, width: frame.width, height: thickness)
+        case .bottom: border.frame = CGRect(x: frame.minX, y: frame.maxY, width: frame.width, height: thickness)
+        }
+        
+        layer.addSublayer(border)
+    }
+}
+
+extension CALayer {
+func addWaghaBorder(edge: UIRectEdge, color: UIColor, thickness: CGFloat) {
+let border = CALayer()
+switch edge {
+case UIRectEdge.top:
+border.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: 1)
+break
+case UIRectEdge.bottom:
+border.frame = CGRect(x: 0, y: self.frame.height - 1, width: self.frame.width, height: 1)
+break
+case UIRectEdge.left:
+border.frame = CGRect(x: 0, y: 0, width: 1, height: self.frame.height)
+break
+case UIRectEdge.right:
+border.frame = CGRect(x: self.frame.width - 1, y: 0, width: 1, height: self.frame.height)
+break
+default:
+break
+}
+border.backgroundColor = color.cgColor;
+self.addSublayer(border)
+}
 }

@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import RxSwift
+import SnapKit
 
 private let reuseIdentifier = "MenuOptionCell"
 
 class MenuController: UIViewController {
-    
+    let disposeBag = DisposeBag()
     //MARK: - Properties
     var tableView : UITableView!
     
@@ -21,6 +23,13 @@ class MenuController: UIViewController {
         configureTableView()
         configureHeaderTableView()
         
+        
+        // добавляем хендлер тапа
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleSettingsMenu))
+        tableView.tableHeaderView?.addGestureRecognizer(tap)
+        tap.rx.event.bind(onNext: { recognizer in
+            print("touches: \(recognizer.numberOfTouches)")
+        }).disposed(by: disposeBag)
     }
     
     override func viewWillLayoutSubviews() {
@@ -62,6 +71,8 @@ class MenuController: UIViewController {
         guard let headerView = HeaderViewComponent(frame: .zero) as? HeaderViewComponent else {
             fatalError("Unexpected Header")
         }
+        
+        
         guard let userCredentials = DrawerViewModel.userCredentials(rawValue: 0) else {
             fatalError("Unexpected Index Path")
             
@@ -69,6 +80,7 @@ class MenuController: UIViewController {
         viewModel = DrawerViewModel.UserCredentials(userCredentials: userCredentials)
         if let viewModel = viewModel {
             headerView.configure(withViewModel: viewModel)
+          
         }
         tableView.tableHeaderView = headerView
     }
@@ -98,4 +110,15 @@ extension MenuController: UITableViewDelegate,UITableViewDataSource{
         return cell
     }
 }
+
+extension MenuController {
+    
+    @objc func handleSettingsMenu() {
+            print("tapped!")
+            let settingsViewController = SettingsViewController()
+        self.present(settingsViewController, animated:true, completion:nil)
+        
+    }
+}
+
 

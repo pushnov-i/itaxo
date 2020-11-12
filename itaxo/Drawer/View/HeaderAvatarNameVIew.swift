@@ -8,9 +8,10 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 class HeaderViewComponent: UITableViewHeaderFooterView {
-    
+    let disposeBag = DisposeBag()
     let userNameLabel : UILabel = {
         
         let label = UILabel()
@@ -74,6 +75,8 @@ class HeaderViewComponent: UITableViewHeaderFooterView {
         print(viewModel.image)
         print("!")
         userNameLabel.textColor = .black
+        
     }
+    
 }
 

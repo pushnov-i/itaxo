@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import SnapKit
 
 private let reuseIdentifierAccountCell = "AccountSettingsCell"
 private let reuseIdentifierProgrammeCityCell = "AccountProgrammeCitySettingsCell"
@@ -17,6 +19,7 @@ class SettingsViewController: UIViewController {
     
     
     //MARK: - Properties
+    let disposeBag = DisposeBag()
     var tableView : UITableView!
     
     // MARK - Init
@@ -52,6 +55,7 @@ class SettingsViewController: UIViewController {
         tableView.rowHeight = 50
         tableView.isScrollEnabled = false
         tableView.tableHeaderView = configureTopHeaderTableView()
+        tableView.isUserInteractionEnabled = true
         
         tableView.tableFooterView = configureFooterViewButtonExit()
         view.backgroundColor = UIColor(hex: "#FFDE43ff")
@@ -92,6 +96,13 @@ class SettingsViewController: UIViewController {
         guard let headerView = SettingsHeaderViewComponent(frame: .zero) as? SettingsHeaderViewComponent else {
             fatalError("Unexpected Header")
         }
+        // добавляем хендлер тапа для дисмисф экрана настроек
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissSettingsMenu))
+        headerView.button.addGestureRecognizer(tap)
+        tap.rx.event.bind(onNext: { recognizer in
+            print("touches: \(recognizer.numberOfTouches)")
+        }).disposed(by: disposeBag)
+        
         viewModel = SettingsViewModel.HeaderSettings()
         if let viewModel = viewModel {
             headerView.configure(withViewModel: viewModel )
@@ -131,6 +142,7 @@ class SettingsViewController: UIViewController {
         let cancelImageView = UIImage(named: "exitLabel")
         
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
+        footerView.isUserInteractionEnabled = true
         let button: UIButton = {
             let button = UIButton(type: .custom)
             button.setImage(cancelImageView, for: .normal)
@@ -158,7 +170,11 @@ class SettingsViewController: UIViewController {
             //   make.top.equalToSuperview().offset(10)
         }
         // view.addSubview(footerView)
-        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissSettingsMenu))
+             button.addGestureRecognizer(tap)
+             tap.rx.event.bind(onNext: { recognizer in
+                 print("touches: \(recognizer.numberOfTouches)")
+             }).disposed(by: disposeBag)
         return footerView;
         //
         //        func myAction(_ sender : AnyObject) {
@@ -253,6 +269,10 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
             return cell
             
         }
+    }
+    
+    @objc func dismissSettingsMenu() {
+        dismiss(animated: true, completion: nil)
     }
 }
 
