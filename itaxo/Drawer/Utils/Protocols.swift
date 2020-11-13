@@ -18,9 +18,11 @@ protocol MenuOptionRepresentable {
 }
 
 protocol SettingsAccountMenuDelegate {
+    var textInput : UITextInput?{ get }
      var placeholder: String { get }
      var image: String? { get }
 }
+
 
 protocol SettingsProgrammeMenuDelegate{
     var userCity: [String:String] { get }

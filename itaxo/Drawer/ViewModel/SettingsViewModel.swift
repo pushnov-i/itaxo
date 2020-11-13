@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class SettingsViewModel {
     
@@ -29,8 +30,19 @@ class SettingsViewModel {
     }
     
     struct AccountSettings: SettingsAccountMenuDelegate {
-        let accountSettings : accountSettings
         
+        
+        
+        let accountSettings : accountSettings
+        var textInput: UITextInput? {
+            switch accountSettings {
+            case .UserName : return UITextContentType.givenName as? UITextInput
+                //                 case .UserPhoneNumber : return
+                //                 case .UserEmail: return
+            //                case .UserPassword : return
+            default : return UITextContentType.emailAddress as? UITextInput
+            }
+        }
         var placeholder: String {
             switch accountSettings {
             case .UserName : return "Ваше ім’я"

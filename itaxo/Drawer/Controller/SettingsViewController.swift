@@ -240,7 +240,8 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
             viewModel = SettingsViewModel.AccountSettings(accountSettings: accountSettings)
             
             if let viewModel = viewModel {
-                cell.configure(withViewModel: SettingsViewModel(accountCellTextField: UITextView())
+                cell.configure(withViewModel: viewModel)
+//                cell.configure(withViewModel: SettingsViewModel(accountCellTextField: UITextView())
                 cell.selectionStyle = .none
             }
             return cell
