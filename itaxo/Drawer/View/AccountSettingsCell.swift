@@ -21,12 +21,8 @@ class AccountSettingsCell: UITableViewCell {
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         backgroundColor = .white
-        
-        
     }
     
     required init?(coder: NSCoder) {
@@ -41,23 +37,24 @@ class AccountSettingsCell: UITableViewCell {
         // это можно вынести в в tableview в котором будут обьявлены сами инпуты
         //
         //        textContentType = viewModel.textInput as? UITextContentType
-        //        attributedPlaceholder = NSAttributedString(
-        //            string: viewModel.placeholder,
-        //            attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,
-        //                           NSAttributedString.Key.font:  UIFont(name: "Roboto-Regular", size: 15)!
-        //        ])
-        
-        
+        //                attributedPlaceholder = NSAttributedString(
+        //                    string: viewModel.placeholder,
+        //                    attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,
+        //                                   NSAttributedString.Key.font:  UIFont(name: "Roboto-Regular", size: 15)!
+        //                ])
+        //
+        //
         
         print(viewModel.textInput)
-//        iconImageView.image = UIImage(named:viewModel.image!)
+        //        iconImageView.image = UIImage(named:viewModel.image!)
         
         // добавляем только после того как убедились что поле есть
         
         guard let accountCellTextField = viewModel.textInput,
-              let imageView = viewModel.image
-              else { return }
-//
+            let imageView = viewModel.image
+            else { return }
+        //
+        //  contentView.addSubview(accountCellTextField)
         contentView.addSubview(imageView)
         imageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
@@ -65,25 +62,12 @@ class AccountSettingsCell: UITableViewCell {
             make.height.equalTo(24)
             make.width.equalTo(24)
         }
-
-        
-
-//        (accountCellTextField).snp.makeConstraints { make in
-//            make.centerY.equalToSuperview()
-//            make.edges.leading.equalTo(iconImageView).offset(25)
-////            make.left.equalTo(iconImageView.snp.right).offset(25)
-//        }
-        
-     
-        
     }
     
     
     func addField(testInput: UITextField) {
         guard let viewModel = self.viewModel,
-              let imageView = viewModel.image else { return }
-        
-        testInput.placeholder = "asdasd"
+            let imageView = viewModel.image else { return }
         testInput.layer.zPosition = 1000
         
         contentView.addSubview(testInput)
@@ -96,8 +80,6 @@ class AccountSettingsCell: UITableViewCell {
             testInput.heightAnchor.constraint(equalToConstant: 20),
             testInput.widthAnchor.constraint(equalToConstant: 100),
         ])
-        
-        
     }
 }
 

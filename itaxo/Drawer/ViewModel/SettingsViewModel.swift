@@ -15,12 +15,12 @@ class SettingsViewModel {
     var textInput: UITextField?
     var image: UIImageView?
     
-    init(textInput: UITextField, imageLabel: String) {
+    init(textInput: UITextField?, imageLabel: String?) {
         self.textInput = textInput
-        self.image = UIImageView(image: UIImage(named: imageLabel))
+        self.image = UIImageView(image: UIImage(named: imageLabel!))
         self.image?.contentMode = .scaleAspectFit
     }
-
+    
     
     enum accountSettings: Int {
         //    case Header // "Налаштування аккаунту "
@@ -43,15 +43,15 @@ class SettingsViewModel {
         
         let accountSettings : accountSettings
         var textInput: UITextField?
-        //        {
-        //            switch accountSettings {
-        //            case .UserName : return UITextContentType.givenName as? UITextInput
-        //            //                 case .UserPhoneNumber : return
-        //            //                 case .UserEmail: return
-        //            //                case .UserPassword : return
-        //            default : return UITextContentType.emailAddress as? UITextInput
-        //            }
-        //        }
+ //       {
+//            switch accountSettings {
+//            case .UserName : return
+//                //                 case .UserPhoneNumber : return
+//                //                 case .UserEmail: return
+//            //                case .UserPassword : return
+//            default : return UITextContentType.emailAddress as? UITextInput
+//            }
+   //     }
         var placeholder: String {
             switch accountSettings {
             case .UserName : return "Ваше ім’я"

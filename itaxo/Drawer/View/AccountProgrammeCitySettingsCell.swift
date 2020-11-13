@@ -44,22 +44,8 @@ class AccountProgrammeCitySettingsCell:UITableViewCell {
         backgroundColor = .white
         addSubview(stackView)
         stackView.snp.makeConstraints { make in
-            //  make.centerY.equalToSuperview()
-                        make.left.equalTo(12)
-            //            make.height.equalTo(18)
-            //            make.width.equalTo(41)
-            //            make.top.equalToSuperview()
-            //
+            make.left.leading.equalToSuperview().offset(12)
         }
-        
-        //        addSubview(cityTextLabel)
-        //        cityTextLabel.snp.makeConstraints { make in
-        //           // make.centerY.equalToSuperview()
-       // make.left.equalTo(12)
-        //            make.height.equalTo(18)
-        //            make.width.equalTo(41)
-        //           // make.top.e
-        //        }
     }
     
     required init?(coder: NSCoder) {
@@ -114,20 +100,9 @@ class AccountProgrammeLanguageSettingsCell: UITableViewCell {
         backgroundColor = .white
         addSubview(stackView)
         stackView.snp.makeConstraints { make in
-            //            make.centerY.equalToSuperview()
-            make.left.equalTo(12)
-            //            make.height.equalTo(18)
-            //            make.width.equalTo(41)
-            
+            make.left.leading.equalToSuperview().offset(12)
+            //make.left.equalTo(12)
         }
-        //
-        //        addSubview(languageTextLabel)
-        //        languageTextLabel.snp.makeConstraints { make in
-        //            make.centerY.equalToSuperview()
-        //            make.left.equalTo(12)
-        //            make.height.equalTo(18)
-        //            make.width.equalTo(41)
-        //        }
     }
     
     

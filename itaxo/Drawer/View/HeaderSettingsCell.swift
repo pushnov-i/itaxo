@@ -38,18 +38,18 @@ class SettingsHeaderViewComponent: UITableViewHeaderFooterView {
         buttonView.setImage(UIImage(named: "cancel icon"), for: .normal)
         return buttonView
     }()
-      
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-
+        
         addSubview(headerSettingsLabel)
         
         headerSettingsLabel.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(50)
             make.width.equalTo(250)
             make.left.equalTo(12)
-          //  make.top.equalTo(button.snp.bottom).offset(15)
-           // make.leading.equalTo(view.snp.trailing).offset(20)
+            //  make.top.equalTo(button.snp.bottom).offset(15)
+            // make.leading.equalTo(view.snp.trailing).offset(20)
             make.centerY.equalToSuperview()
         }
         addSubview(button)
@@ -59,11 +59,14 @@ class SettingsHeaderViewComponent: UITableViewHeaderFooterView {
             make.left.equalToSuperview().offset(12)
             make.top.equalToSuperview().offset(10)
         }
+        
+        
+        contentView.snp.makeConstraints{(make) -> Void in
+            make.height.equalTo(5)
+            
+        }
+        
     }
-    
-//    @objc func dismissSettingsMenu(sender : UIButton) {
-//        dismiss(animated: true)
-//      }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -97,17 +100,17 @@ class SettingsAccountHeaderViewComponent: UITableViewHeaderFooterView {
         
         return label
     }()
-      
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-
+        
         addSubview(headerSettingsLabel)
         
         headerSettingsLabel.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(50)
             make.width.equalTo(250)
             make.left.equalTo(12)
-           // make.leading.equalTo(view.snp.trailing).offset(20)
+            // make.leading.equalTo(view.snp.trailing).offset(20)
             make.centerY.equalToSuperview()
         }
     }
@@ -118,7 +121,7 @@ class SettingsAccountHeaderViewComponent: UITableViewHeaderFooterView {
     
     func configure(withViewModel viewModel: SettingsHeaderAccountDelegate) {
         headerSettingsLabel.text = viewModel.accountSettingsHeader
-       // headerSettingsLabel.useUnderline()
+        // headerSettingsLabel.useUnderline()
         print("2!")
         headerSettingsLabel.textColor = .black
         contentView.backgroundColor = .white
@@ -145,16 +148,16 @@ class SettingsProgrammeHeaderViewComponent: UITableViewHeaderFooterView {
         label.adjustsFontForContentSizeCategory = true
         return label
     }()
-      
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-
+        
         addSubview(headerSettingsLabel)
         headerSettingsLabel.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(50)
             make.width.equalTo(250)
             make.left.equalTo(12)
-           // make.leading.equalTo(view.snp.trailing).offset(20)
+            // make.leading.equalTo(view.snp.trailing).offset(20)
             make.centerY.equalToSuperview()
         }
     }
@@ -164,7 +167,7 @@ class SettingsProgrammeHeaderViewComponent: UITableViewHeaderFooterView {
     }
     
     func configure(withViewModel viewModel: SettingsHeaderProgrammeDelegate) {
-       // headerSettingsLabel.translatesAutoresizingMaskIntoConstraints = false
+        // headerSettingsLabel.translatesAutoresizingMaskIntoConstraints = false
         headerSettingsLabel.text = viewModel.programmeSettingsHeader
         headerSettingsLabel.layer.addWaghaBorder(edge: .top, color: UIColor.black, thickness: 1)
         headerSettingsLabel.textColor = .black
@@ -173,10 +176,12 @@ class SettingsProgrammeHeaderViewComponent: UITableViewHeaderFooterView {
 }
 
 
+//дополнения для нижней черты на секциях (notWork!)
+
 extension UILabel {
     
     // Example use: myView.addBorder(toSide: .Left, withColor: UIColor.redColor().CGColor, andThickness: 1.0)
-
+    
     enum ViewSide {
         case left, right, top, bottom
     }
@@ -197,26 +202,28 @@ extension UILabel {
     }
 }
 
+
+
 extension CALayer {
-func addWaghaBorder(edge: UIRectEdge, color: UIColor, thickness: CGFloat) {
-let border = CALayer()
-switch edge {
-case UIRectEdge.top:
-border.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: 1)
-break
-case UIRectEdge.bottom:
-border.frame = CGRect(x: 0, y: self.frame.height - 1, width: self.frame.width, height: 1)
-break
-case UIRectEdge.left:
-border.frame = CGRect(x: 0, y: 0, width: 1, height: self.frame.height)
-break
-case UIRectEdge.right:
-border.frame = CGRect(x: self.frame.width - 1, y: 0, width: 1, height: self.frame.height)
-break
-default:
-break
-}
-border.backgroundColor = color.cgColor;
-self.addSublayer(border)
-}
+    func addWaghaBorder(edge: UIRectEdge, color: UIColor, thickness: CGFloat) {
+        let border = CALayer()
+        switch edge {
+        case UIRectEdge.top:
+            border.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: 1)
+            break
+        case UIRectEdge.bottom:
+            border.frame = CGRect(x: 0, y: self.frame.height - 1, width: self.frame.width, height: 1)
+            break
+        case UIRectEdge.left:
+            border.frame = CGRect(x: 0, y: 0, width: 1, height: self.frame.height)
+            break
+        case UIRectEdge.right:
+            border.frame = CGRect(x: self.frame.width - 1, y: 0, width: 1, height: self.frame.height)
+            break
+        default:
+            break
+        }
+        border.backgroundColor = color.cgColor;
+        self.addSublayer(border)
+    }
 }
