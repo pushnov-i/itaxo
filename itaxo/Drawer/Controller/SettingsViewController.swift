@@ -22,6 +22,36 @@ class SettingsViewController: UIViewController {
     let disposeBag = DisposeBag()
     var tableView : UITableView!
     
+    
+    lazy var firstname: UITextField = {
+        let field = UITextField()
+        field.textContentType = .name
+        field.delegate = self
+        return field
+    }()
+    
+    lazy var firstname2: UITextField = {
+        let field = UITextField()
+        field.textContentType = .name
+        return field
+    }()
+    
+    lazy var firstname3: UITextField = {
+        let field = UITextField()
+        field.textContentType = .name
+        return field
+    }()
+    
+    lazy var firstname4: UITextField = {
+        let field = UITextField()
+        field.textContentType = .name
+        return field
+    }()
+    
+    
+    
+    
+    
     // MARK - Init
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +71,7 @@ class SettingsViewController: UIViewController {
     }
     
     
+    
     // MARK - Handlers
     func configureTableView() {
         
@@ -56,6 +87,7 @@ class SettingsViewController: UIViewController {
         tableView.isScrollEnabled = false
         tableView.tableHeaderView = configureTopHeaderTableView()
         tableView.isUserInteractionEnabled = true
+        tableView.allowsSelection = false
         
         tableView.tableFooterView = configureFooterViewButtonExit()
         view.backgroundColor = UIColor(hex: "#FFDE43ff")
@@ -93,7 +125,8 @@ class SettingsViewController: UIViewController {
         
         var viewModel : SettingsHeaderTopDelegate?
         
-        guard let headerView = SettingsHeaderViewComponent(frame: .zero) as? SettingsHeaderViewComponent else {
+        guard let headerView = SettingsHeaderViewComponent(frame: .zero)
+                as? SettingsHeaderViewComponent else {
             fatalError("Unexpected Header")
         }
         // добавляем хендлер тапа для дисмисф экрана настроек
@@ -114,7 +147,8 @@ class SettingsViewController: UIViewController {
         
         var viewModel : SettingsHeaderAccountDelegate?
         
-        guard let headerView = SettingsAccountHeaderViewComponent(frame: .zero) as? SettingsAccountHeaderViewComponent else {
+        guard let headerView = SettingsAccountHeaderViewComponent(frame: .zero)
+                as? SettingsAccountHeaderViewComponent else {
             fatalError("Unexpected Header")
         }
         viewModel = SettingsViewModel.HeaderSettings()
@@ -128,7 +162,8 @@ class SettingsViewController: UIViewController {
         
         var viewModel : SettingsHeaderProgrammeDelegate?
         
-        guard let headerView = SettingsProgrammeHeaderViewComponent(frame: .zero) as? SettingsProgrammeHeaderViewComponent else {
+        guard let headerView = SettingsProgrammeHeaderViewComponent(frame: .zero)
+                as? SettingsProgrammeHeaderViewComponent else {
             fatalError("Unexpected Header")
         }
         viewModel = SettingsViewModel.HeaderSettings()
@@ -195,13 +230,14 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         switch (section)  {
         case 0 : return 4
         case 1 :return 1
         case 2 :return 1
             
         default:
-            return 1
+            fatalError()
         }
     }
     
@@ -229,51 +265,80 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        switch (indexPath.section, indexPath.row) {
         
-        if indexPath.section == 0 {
-            var viewModel : SettingsAccountMenuDelegate?
+        case (0, 0):
+            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as! AccountSettingsCell
             
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as? AccountSettingsCell else {
-                fatalError("Unexpected Table View Cell")
-            }
-            guard let accountSettings = SettingsViewModel.accountSettings(rawValue: indexPath.row) else { fatalError("Unexpected Index Path") }
-            viewModel = SettingsViewModel.AccountSettings(accountSettings: accountSettings)
+            cell.configure(withViewModel: SettingsViewModel(textInput: firstname, imageLabel: "mail"))
+            cell.addField(testInput: firstname)
             
-            if let viewModel = viewModel {
-                cell.configure(withViewModel: viewModel)
-//                cell.configure(withViewModel: SettingsViewModel(accountCellTextField: UITextView())
-                cell.selectionStyle = .none
-            }
             return cell
-        } else if indexPath.section == 1
-        {
-            var viewModel : SettingsProgrammeMenuDelegate?
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierProgrammeCityCell, for: indexPath) as? AccountProgrammeCitySettingsCell else {
-                fatalError("Unexpected Table View Cell")
-            }
-            guard let programmeSettings = SettingsViewModel.programmeSettings(rawValue: indexPath.row) else { fatalError("Unexpected Index Path") }
-            viewModel = SettingsViewModel.ProgrammeSettings(programmeSettings: programmeSettings)
-            
-            if let viewModel = viewModel {
-                cell.configure(withViewModel: viewModel)
-                cell.selectionStyle = .none
-            }
+        case (0, 1):
+            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as! AccountSettingsCell
+            cell.configure(withViewModel: SettingsViewModel(textInput: firstname2, imageLabel: "mail"))
             return cell
-        } else {
-            var viewModel : SettingsProgrammeMenuDelegate?
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierProgrammeLanguageCell, for: indexPath) as? AccountProgrammeLanguageSettingsCell else {
-                fatalError("Unexpected Table View Cell")
-            }
-            guard let programmeSettings = SettingsViewModel.programmeSettings(rawValue: indexPath.row) else { fatalError("Unexpected Index Path") }
-            viewModel = SettingsViewModel.ProgrammeSettings(programmeSettings: programmeSettings)
-            
-            if let viewModel = viewModel {
-                cell.configure(withViewModel: viewModel)
-                cell.selectionStyle = .none
-            }
+        case (0, 2):
+            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as! AccountSettingsCell
+            cell.configure(withViewModel: SettingsViewModel(textInput: firstname3, imageLabel: "mail"))
+            return cell
+        case (0, 3):
+            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as! AccountSettingsCell
+            cell.configure(withViewModel: SettingsViewModel(textInput: firstname4, imageLabel: "mail"))
             return cell
             
+            
+        case (1, 0):
+            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as! AccountSettingsCell
+            cell.configure(withViewModel: SettingsViewModel(textInput: firstname, imageLabel: "mail"))
+            return cell
+            
+            
+        case (2, 0):
+            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as! AccountSettingsCell
+            cell.configure(withViewModel: SettingsViewModel(textInput: firstname, imageLabel: "mail"))
+            return cell
+
+            
+        default:
+            fatalError("wtf")
         }
+        
+//
+//        if indexPath.section == 0 {
+//
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as? AccountSettingsCell else {
+//                fatalError("Unexpected Table View Cell")
+//            }
+//            guard let accountSettings = SettingsViewModel.accountSettings(rawValue: indexPath.row) else { fatalError("Unexpected Index Path") }
+//            cell.configure(withViewModel: SettingsViewModel(textInput: firstname))
+//
+//            return cell
+//
+//        } else if indexPath.section == 1
+//        {
+//            var viewModel : SettingsProgrammeMenuDelegate?
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierProgrammeCityCell, for: indexPath) as? AccountProgrammeCitySettingsCell else {
+//                fatalError("Unexpected Table View Cell")
+//            }
+//            guard let programmeSettings = SettingsViewModel.programmeSettings(rawValue: indexPath.row) else { fatalError("Unexpected Index Path") }
+//            viewModel = SettingsViewModel.ProgrammeSettings(programmeSettings: programmeSettings)
+//            return cell
+//        } else {
+//            var viewModel : SettingsProgrammeMenuDelegate?
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierProgrammeLanguageCell, for: indexPath) as? AccountProgrammeLanguageSettingsCell else {
+//                fatalError("Unexpected Table View Cell")
+//            }
+//            guard let programmeSettings = SettingsViewModel.programmeSettings(rawValue: indexPath.row) else { fatalError("Unexpected Index Path") }
+//            viewModel = SettingsViewModel.ProgrammeSettings(programmeSettings: programmeSettings)
+//
+//            if let viewModel = viewModel {
+//                cell.configure(withViewModel: viewModel)
+//                cell.selectionStyle = .none
+//            }
+//            return cell
+//
+//        }
     }
     
     @objc func dismissSettingsMenu() {
@@ -281,3 +346,13 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
     }
 }
 
+
+extension SettingsViewController: UITextFieldDelegate {
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // if asdasdsd
+        
+        firstname2.becomeFirstResponder()
+    }
+}

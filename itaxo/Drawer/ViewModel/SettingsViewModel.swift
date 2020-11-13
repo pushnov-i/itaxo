@@ -9,9 +9,18 @@
 import Foundation
 import UIKit
 
+// протокол можно было бы тут обьявить потому что он не большой и в принципе удобнее для навгиации
 class SettingsViewModel {
     
+    var textInput: UITextField?
+    var image: UIImageView?
     
+    init(textInput: UITextField, imageLabel: String) {
+        self.textInput = textInput
+        self.image = UIImageView(image: UIImage(named: imageLabel))
+        self.image?.contentMode = .scaleAspectFit
+    }
+
     
     enum accountSettings: Int {
         //    case Header // "Налаштування аккаунту "
@@ -32,17 +41,17 @@ class SettingsViewModel {
     struct AccountSettings: SettingsAccountMenuDelegate {
         
         
-        
         let accountSettings : accountSettings
-        var textInput: UITextInput? {
-            switch accountSettings {
-            case .UserName : return UITextContentType.givenName as? UITextInput
-                //                 case .UserPhoneNumber : return
-                //                 case .UserEmail: return
-            //                case .UserPassword : return
-            default : return UITextContentType.emailAddress as? UITextInput
-            }
-        }
+        var textInput: UITextField?
+        //        {
+        //            switch accountSettings {
+        //            case .UserName : return UITextContentType.givenName as? UITextInput
+        //            //                 case .UserPhoneNumber : return
+        //            //                 case .UserEmail: return
+        //            //                case .UserPassword : return
+        //            default : return UITextContentType.emailAddress as? UITextInput
+        //            }
+        //        }
         var placeholder: String {
             switch accountSettings {
             case .UserName : return "Ваше ім’я"
@@ -68,7 +77,7 @@ class SettingsViewModel {
         var userLanguage = ["language":"Мова","languageText":"Українська"]
     }
     
-    struct HeaderSettings:SettingsHeaderTopDelegate,SettingsHeaderAccountDelegate,SettingsHeaderProgrammeDelegate {
+    struct HeaderSettings: SettingsHeaderTopDelegate, SettingsHeaderAccountDelegate, SettingsHeaderProgrammeDelegate {
         var topHeader: String = "НАЛАШТУВАННЯ"
         var accountSettingsHeader: String = "Налаштування аккаунту                                                               "
         var programmeSettingsHeader: String = "Налаштування програми                                                              "

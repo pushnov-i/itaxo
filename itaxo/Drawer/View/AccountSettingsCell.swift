@@ -11,6 +11,8 @@ import SnapKit
 
 class AccountSettingsCell: UITableViewCell {
     
+    var viewModel: SettingsViewModel?
+    
     let iconImageView: UIImageView = {
         let iconView = UIImageView()
         iconView.contentMode = .scaleAspectFit
@@ -18,54 +20,84 @@ class AccountSettingsCell: UITableViewCell {
         return iconView
     }()
     
-    weak var accountCellTextField: UITextField? =
-    {
-        let cellTextField = UITextField()
-        cellTextField.autocapitalizationType = .none
-        cellTextField.layer.cornerRadius = 16.0
-        cellTextField.layer.masksToBounds = false
-        cellTextField.font = .systemFont(ofSize: 17.0, weight: .regular)
-        cellTextField.textColor = .black
-        cellTextField.textContentType = .emailAddress
-        return cellTextField
-    }()
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         backgroundColor = .white
-        addSubview(iconImageView)
-        iconImageView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.left.equalTo(12)
-            make.height.equalTo(24)
-            make.width.equalTo(24)
-        }
-        addSubview(accountCellTextField!)
-               (accountCellTextField!).snp.makeConstraints { make in
-                   make.centerY.equalToSuperview()
-                   make.left.equalTo(iconImageView.snp.right).offset(25)
-               }
         
-     
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(withViewModel viewModel: SettingsAccountMenuDelegate) {
-       // guard let accountCellTextInput = viewModel.textInput else { return }
+    func configure(withViewModel viewModel: SettingsViewModel) {
+        self.viewModel = viewModel
         
-        accountCellTextField?.textContentType = viewModel.textInput as? UITextContentType
-        accountCellTextField?.attributedPlaceholder = NSAttributedString(
-            string: viewModel.placeholder,
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,
-                           NSAttributedString.Key.font:  UIFont(name: "Roboto-Regular", size: 15)!
-        ])
+        // guard let accountCellTextInput = viewModel.textInput else { return }
+        
+        // это можно вынести в в tableview в котором будут обьявлены сами инпуты
+        //
+        //        textContentType = viewModel.textInput as? UITextContentType
+        //        attributedPlaceholder = NSAttributedString(
+        //            string: viewModel.placeholder,
+        //            attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,
+        //                           NSAttributedString.Key.font:  UIFont(name: "Roboto-Regular", size: 15)!
+        //        ])
+        
+        
+        
         print(viewModel.textInput)
-        iconImageView.image = UIImage(named:viewModel.image!)
+//        iconImageView.image = UIImage(named:viewModel.image!)
+        
+        // добавляем только после того как убедились что поле есть
+        
+        guard let accountCellTextField = viewModel.textInput,
+              let imageView = viewModel.image
+              else { return }
+//
+        contentView.addSubview(imageView)
+        imageView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalTo(12)
+            make.height.equalTo(24)
+            make.width.equalTo(24)
+        }
+
+        
+
+//        (accountCellTextField).snp.makeConstraints { make in
+//            make.centerY.equalToSuperview()
+//            make.edges.leading.equalTo(iconImageView).offset(25)
+////            make.left.equalTo(iconImageView.snp.right).offset(25)
+//        }
+        
+     
+        
+    }
+    
+    
+    func addField(testInput: UITextField) {
+        guard let viewModel = self.viewModel,
+              let imageView = viewModel.image else { return }
+        
+        testInput.placeholder = "asdasd"
+        testInput.layer.zPosition = 1000
+        
+        contentView.addSubview(testInput)
+        
+        testInput.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            testInput.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 25),
+            testInput.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            testInput.heightAnchor.constraint(equalToConstant: 20),
+            testInput.widthAnchor.constraint(equalToConstant: 100),
+        ])
+        
+        
     }
 }
 
