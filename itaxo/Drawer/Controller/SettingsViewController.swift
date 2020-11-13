@@ -14,7 +14,7 @@ private let reuseIdentifierAccountCell = "AccountSettingsCell"
 private let reuseIdentifierProgrammeCityCell = "AccountProgrammeCitySettingsCell"
 private let reuseIdentifierProgrammeLanguageCell = "AccountProgrammeLanguageSettingsCell"
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController{
     
     let disposeBag = DisposeBag()
     var tableView : UITableView!
@@ -69,6 +69,10 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+         self.userName.delegate = self
+         self.userPassword.delegate = self
+         self.userEmail.delegate = self
+         self.userPhone.delegate = self
         //  configureHeaderTableView()
         
     }
@@ -189,7 +193,6 @@ class SettingsViewController: UIViewController {
             button.setTitle("Вийти", for: .normal)
             button.setTitleColor(.black, for: .normal)
             button.backgroundColor = UIColor(hex: "#FFDE43ff")
-            
             button.titleEdgeInsets = UIEdgeInsets(top: 40, left: 20, bottom: 40, right: 10)
             button.layer.cornerRadius = 25
             button.isEnabled = true
@@ -247,6 +250,7 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView,heightForHeaderInSection section: Int) -> CGFloat {
+        
         if section == 2 {
             return 0
         } else {
@@ -265,20 +269,29 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
             cell.addField(testInput: userName)
             
             return cell
+            
         case (0, 1):
             let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as! AccountSettingsCell
+            
             cell.configure(withViewModel: SettingsViewModel(textInput: userPhone, imageLabel: "tel icon"))
             cell.addField(testInput: userPhone)
+            
             return cell
+            
         case (0, 2):
             let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as! AccountSettingsCell
+            
             cell.configure(withViewModel: SettingsViewModel(textInput: userEmail, imageLabel: "mail"))
             cell.addField(testInput: userEmail)
+            
             return cell
+            
         case (0, 3):
             let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as! AccountSettingsCell
+            
             cell.configure(withViewModel: SettingsViewModel(textInput: userPassword, imageLabel: "key"))
             cell.addField(testInput: userPassword)
+            
             return cell
             
             //Настройки программы
@@ -310,6 +323,7 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
 
 //NEXT keyboard
 extension SettingsViewController: UITextFieldDelegate {
+   
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
