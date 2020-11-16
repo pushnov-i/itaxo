@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import RxSwift
 
 // протокол можно было бы тут обьявить потому что он не большой и в принципе удобнее для навгиации
 class SettingsViewModel {
@@ -40,18 +41,21 @@ class SettingsViewModel {
     
     struct AccountSettings: SettingsAccountMenuDelegate {
         
+        let username = PublishSubject<String>()
+        let password = PublishSubject<String>()
+        let phone =  PublishSubject<String>()
+        let email = PublishSubject<String>()
+        
+        func confirmButtonValid(username: Observable<String>, password: Observable<String>) -> Observable<Bool> {
+            print("valid!")
+            return Observable.combineLatest(username, password)
+            { (username, password) in
+                return username.count > 0
+                    && password.count > 0
+            }
+        }
         
         let accountSettings : accountSettings
-        var textInput: UITextField?
- //       {
-//            switch accountSettings {
-//            case .UserName : return
-//                //                 case .UserPhoneNumber : return
-//                //                 case .UserEmail: return
-//            //                case .UserPassword : return
-//            default : return UITextContentType.emailAddress as? UITextInput
-//            }
-   //     }
         var placeholder: String {
             switch accountSettings {
             case .UserName : return "Ваше ім’я"

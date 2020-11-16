@@ -65,6 +65,9 @@ class SettingsViewController: UIViewController{
         return field
     }()
     
+    
+    
+    
     // MARK - Init
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +87,7 @@ class SettingsViewController: UIViewController{
     
     func updateHeaderViewHeight(for header: UIView?) {
         guard let header = header else { return }
-        header.frame.size.height = 150
+        header.frame.size.height = 100
     }
     
     // MARK - Handlers
@@ -115,16 +118,6 @@ class SettingsViewController: UIViewController{
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottomMargin).inset(20)
         }
         
-//        let topLayoutGuideBox = UIView()
-//        topLayoutGuideBox.backgroundColor = .green
-//        self.view.addSubview(topLayoutGuideBox)
-//
-//        topLayoutGuideBox.snp.makeConstraints { (make) -> Void in
-//        }
-
-        tableView.tableFooterView!.snp.makeConstraints{(make) -> Void in
-            make.bottom.equalTo(view.snp.bottom).inset(50)
-        }
     }
     
     
@@ -133,7 +126,7 @@ class SettingsViewController: UIViewController{
         
         var viewModel : SettingsHeaderTopDelegate?
         
-        guard let headerView = SettingsHeaderViewComponent(frame: .zero) as? SettingsHeaderViewComponent else {
+        guard let headerView = SettingsTopHeaderViewComponent(frame: .zero) as? SettingsTopHeaderViewComponent else {
                 fatalError("Unexpected Header")
         }
         
@@ -141,7 +134,7 @@ class SettingsViewController: UIViewController{
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissSettingsMenu))
         headerView.button.addGestureRecognizer(tap)
         tap.rx.event.bind(onNext: { recognizer in
-            print("touches: \(recognizer.numberOfTouches)")
+            print("cancel button")
         }).disposed(by: disposeBag)
         
         viewModel = SettingsViewModel.HeaderSettings()
@@ -202,14 +195,14 @@ class SettingsViewController: UIViewController{
 
         footerView.addSubview(button)
         button.snp.makeConstraints{(make) -> Void in
-            make.left.equalTo(25)
+            make.left.equalTo(12)
             make.height.equalTo(40)
             make.width.equalTo(120)
-            make.centerY.equalToSuperview()
+            make.centerY.equalToSuperview().offset(15)
             //   make.top.equalToSuperview().offset(10)
         }
-        // view.addSubview(footerView)
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissSettingsMenu))
+         view.addSubview(footerView)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(exitFromAccountSettings))
         button.addGestureRecognizer(tap)
         tap.rx.event.bind(onNext: { recognizer in
             print("touches: \(recognizer.numberOfTouches)")
@@ -316,9 +309,13 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
         }
     }
     
-    @objc func dismissSettingsMenu() {
+    @objc func dismissSettingsMenu(sender: UIButton!) {
         dismiss(animated: true, completion: nil)
     }
+    @objc func exitFromAccountSettings(sender: UIButton!) {
+        print("tapped")
+      }
+    
 }
 
 //NEXT keyboard

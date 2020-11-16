@@ -10,7 +10,8 @@ import UIKit
 import SnapKit
 import RxSwift
 
-class SettingsHeaderViewComponent: UITableViewHeaderFooterView {
+class SettingsTopHeaderViewComponent: UITableViewHeaderFooterView {
+    
     
     let headerSettingsLabel : UILabel = {
         
@@ -47,10 +48,10 @@ class SettingsHeaderViewComponent: UITableViewHeaderFooterView {
         headerSettingsLabel.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(50)
             make.width.equalTo(250)
-            make.left.equalTo(12)
-            //  make.top.equalTo(button.snp.bottom).offset(15)
-            // make.leading.equalTo(view.snp.trailing).offset(20)
-            make.centerY.equalToSuperview()
+       //       make.top.equalTo(button.snp.bottom).offset(15)
+//            make.leading.equalTo(contentView.snp.left).offset(20)
+            make.left.equalToSuperview().offset(12)
+            make.centerY.equalToSuperview().offset(25)
         }
         addSubview(button)
         button.snp.makeConstraints{(make) -> Void in
@@ -59,13 +60,6 @@ class SettingsHeaderViewComponent: UITableViewHeaderFooterView {
             make.left.equalToSuperview().offset(12)
             make.top.equalToSuperview().offset(10)
         }
-        
-        
-        contentView.snp.makeConstraints{(make) -> Void in
-            make.height.equalTo(5)
-            
-        }
-        
     }
     
     required init?(coder: NSCoder) {
@@ -76,6 +70,7 @@ class SettingsHeaderViewComponent: UITableViewHeaderFooterView {
         headerSettingsLabel.text = viewModel.topHeader
         print("1!")
         headerSettingsLabel.textColor = .black
+        
     }
 }
 class SettingsAccountHeaderViewComponent: UITableViewHeaderFooterView {

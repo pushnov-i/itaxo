@@ -18,7 +18,7 @@ protocol MenuOptionRepresentable {
 }
 
 protocol SettingsAccountMenuDelegate {
-    var textInput : UITextField? { get }
+
      var placeholder: String { get }
      var image: String? { get }
 }

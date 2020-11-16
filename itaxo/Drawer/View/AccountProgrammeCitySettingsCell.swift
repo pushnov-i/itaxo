@@ -101,7 +101,6 @@ class AccountProgrammeLanguageSettingsCell: UITableViewCell {
         addSubview(stackView)
         stackView.snp.makeConstraints { make in
             make.left.leading.equalToSuperview().offset(12)
-            //make.left.equalTo(12)
         }
     }
     
