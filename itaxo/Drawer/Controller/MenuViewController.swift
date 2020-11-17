@@ -114,7 +114,6 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource{
 extension MenuController {
     
     @objc func handleSettingsMenu() {
-        print("tapped!")
         let settingsViewController = SettingsViewController()
         self.present(settingsViewController, animated:true, completion:nil)
         

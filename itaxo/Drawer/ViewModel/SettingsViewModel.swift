@@ -39,21 +39,39 @@ class SettingsViewModel {
         case Langauge // "Українська"
     }
     
-    struct AccountSettings: SettingsAccountMenuDelegate {
+    struct TextFieldViewModel {
         
-        let username = PublishSubject<String>()
-        let password = PublishSubject<String>()
-        let phone =  PublishSubject<String>()
-        let email = PublishSubject<String>()
+        let userDefaults = UserDefaults.standard
+        private let bag = DisposeBag()
         
-        func confirmButtonValid(username: Observable<String>, password: Observable<String>) -> Observable<Bool> {
-            print("valid!")
-            return Observable.combineLatest(username, password)
-            { (username, password) in
+        
+        
+        
+        func confirmButtonValid(username: Observable<String>, password: Observable<String> ,
+                                phone: Observable<String> , email: Observable<String> ) -> Observable<Bool> {
+            username.observeOn(MainScheduler.instance)
+                .subscribe(onNext:{userDefaults in
+                 self.userDefaults.set(username,forKey: "Name")
+            }).disposed(by: bag)
+
+            self.userDefaults.set(username,forKey: "Name")
+            self.userDefaults.set(password,forKey: "Password")
+            self.userDefaults.set(email,forKey: "Email")
+            self.userDefaults.set(phone,forKey: "Phone")
+           // print(self.userDefaults.set(username,forKey: "Name"))
+            return Observable.combineLatest(username, password, email, phone)
+            { (username, password, email, phone) in
                 return username.count > 0
-                    && password.count > 0
+                    || password.count > 0
+                    || email.count > 0
+                    || phone.count > 0
+
             }
         }
+    }
+    
+    struct AccountSettings: SettingsAccountMenuDelegate {
+        
         
         let accountSettings : accountSettings
         var placeholder: String {

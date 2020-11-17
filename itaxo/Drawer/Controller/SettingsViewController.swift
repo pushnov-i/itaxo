@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 import SnapKit
 
 private let reuseIdentifierAccountCell = "AccountSettingsCell"
@@ -18,10 +19,13 @@ class SettingsViewController: UIViewController{
     
     let disposeBag = DisposeBag()
     var tableView : UITableView!
+    var exitButton : UIButton!
+    let textFiledsViewModel = SettingsViewModel.TextFieldViewModel()
     
     
     lazy var userName: UITextField = {
         let field = UITextField()
+        field.textColor = .black
         field.attributedPlaceholder = NSAttributedString(
             string: "Ваше ім’я",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,
@@ -34,6 +38,7 @@ class SettingsViewController: UIViewController{
     
     lazy var userPhone: UITextField = {
         let field = UITextField()
+        field.textColor = .black
         field.attributedPlaceholder = NSAttributedString(
             string: "Номер телефону",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,
@@ -45,6 +50,7 @@ class SettingsViewController: UIViewController{
     
     lazy var userEmail: UITextField = {
         let field = UITextField()
+        field.textColor = .black
         field.attributedPlaceholder = NSAttributedString(
             string: "Ваш е-мейл",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,
@@ -56,6 +62,7 @@ class SettingsViewController: UIViewController{
     
     lazy var userPassword: UITextField = {
         let field = UITextField()
+        field.textColor = .black
         field.attributedPlaceholder = NSAttributedString(
             string: "Введіть пароль",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,
@@ -66,17 +73,25 @@ class SettingsViewController: UIViewController{
     }()
     
     
-    
-    
     // MARK - Init
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-         self.userName.delegate = self
-         self.userPassword.delegate = self
-         self.userEmail.delegate = self
-         self.userPhone.delegate = self
-        //  configureHeaderTableView()
+        self.userName.delegate = self
+        self.userPassword.delegate = self
+        self.userEmail.delegate = self
+        self.userPhone.delegate = self
+        
+        let username = self.userName.rx.text.orEmpty.asObservable().subscribe(onNext : { text in
+       // print(text)
+        })
+        let password = self.userPassword.rx.text.orEmpty.asObservable()
+        let email = self.userEmail.rx.text.orEmpty.asObservable()
+        let phone = self.userPhone.rx.text.orEmpty.asObservable()
+        
+//                textFiledsViewModel.confirmButtonValid(username: username, password: password, phone: phone, email: email)
+//                    .bind(to: exitButton.rx.isEnabled)
+//                    .disposed(by: disposeBag)
         
     }
     
@@ -117,7 +132,8 @@ class SettingsViewController: UIViewController{
             make.top.equalTo( view.safeAreaLayoutGuide.snp.topMargin).inset(20)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottomMargin).inset(20)
         }
-        
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
     }
     
     
@@ -127,7 +143,7 @@ class SettingsViewController: UIViewController{
         var viewModel : SettingsHeaderTopDelegate?
         
         guard let headerView = SettingsTopHeaderViewComponent(frame: .zero) as? SettingsTopHeaderViewComponent else {
-                fatalError("Unexpected Header")
+            fatalError("Unexpected Header")
         }
         
         // добавляем хендлер тапа для дисмиса экрана настроек
@@ -141,7 +157,7 @@ class SettingsViewController: UIViewController{
         if let viewModel = viewModel {
             headerView.configure(withViewModel: viewModel )
         }
-
+        
         return headerView
     }
     
@@ -180,7 +196,7 @@ class SettingsViewController: UIViewController{
         
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
         footerView.isUserInteractionEnabled = true
-        let button: UIButton = {
+        exitButton = {
             let button = UIButton(type: .custom)
             button.setImage(cancelImageView, for: .normal)
             button.setTitle("Вийти", for: .normal)
@@ -192,20 +208,20 @@ class SettingsViewController: UIViewController{
             button.isUserInteractionEnabled = true
             return button
         }()
-
-        footerView.addSubview(button)
-        button.snp.makeConstraints{(make) -> Void in
+        
+        footerView.addSubview(exitButton)
+        exitButton.snp.makeConstraints{(make) -> Void in
             make.left.equalTo(12)
             make.height.equalTo(40)
             make.width.equalTo(120)
             make.centerY.equalToSuperview().offset(15)
             //   make.top.equalToSuperview().offset(10)
         }
-         view.addSubview(footerView)
+        view.addSubview(footerView)
         let tap = UITapGestureRecognizer(target: self, action: #selector(exitFromAccountSettings))
-        button.addGestureRecognizer(tap)
+        exitButton.addGestureRecognizer(tap)
         tap.rx.event.bind(onNext: { recognizer in
-            print("touches: \(recognizer.numberOfTouches)")
+            print("Exit")
         }).disposed(by: disposeBag)
         return footerView;
     }
@@ -256,7 +272,8 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
         switch (indexPath.section, indexPath.row) {
         //Настройки аккаунта
         case (0, 0):
-            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as! AccountSettingsCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as!
+            AccountSettingsCell
             
             cell.configure(withViewModel: SettingsViewModel(textInput: userName, imageLabel: "avatar icon"))
             cell.addField(testInput: userName)
@@ -264,7 +281,8 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
             return cell
             
         case (0, 1):
-            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as! AccountSettingsCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as!
+            AccountSettingsCell
             
             cell.configure(withViewModel: SettingsViewModel(textInput: userPhone, imageLabel: "tel icon"))
             cell.addField(testInput: userPhone)
@@ -272,7 +290,8 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
             return cell
             
         case (0, 2):
-            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as! AccountSettingsCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as!
+            AccountSettingsCell
             
             cell.configure(withViewModel: SettingsViewModel(textInput: userEmail, imageLabel: "mail"))
             cell.addField(testInput: userEmail)
@@ -280,7 +299,8 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
             return cell
             
         case (0, 3):
-            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as! AccountSettingsCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as!
+            AccountSettingsCell
             
             cell.configure(withViewModel: SettingsViewModel(textInput: userPassword, imageLabel: "key"))
             cell.addField(testInput: userPassword)
@@ -290,9 +310,11 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
             //Настройки программы
             
         case (1, 0):
-            guard let programmeSettings = SettingsViewModel.programmeSettings(rawValue: indexPath.row) else { fatalError("Unexpected Index Path") }
+            guard let programmeSettings = SettingsViewModel.programmeSettings(rawValue: indexPath.row) else
+            { fatalError("Unexpected Index Path") }
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierProgrammeCityCell, for: indexPath) as! AccountProgrammeCitySettingsCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierProgrammeCityCell, for: indexPath) as!
+            AccountProgrammeCitySettingsCell
             cell.configure(withViewModel:SettingsViewModel.ProgrammeSettings(programmeSettings: programmeSettings))
             
             return cell
@@ -313,14 +335,16 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
         dismiss(animated: true, completion: nil)
     }
     @objc func exitFromAccountSettings(sender: UIButton!) {
-        print("tapped")
-      }
+        print("exit func ")
+        let userDefaults = UserDefaults.standard
+        print(userDefaults.object(forKey: "Email")!)
+    }
     
 }
 
 //NEXT keyboard
 extension SettingsViewController: UITextFieldDelegate {
-   
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
