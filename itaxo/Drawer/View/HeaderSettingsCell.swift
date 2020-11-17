@@ -48,8 +48,8 @@ class SettingsTopHeaderViewComponent: UITableViewHeaderFooterView {
         headerSettingsLabel.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(50)
             make.width.equalTo(250)
-       //       make.top.equalTo(button.snp.bottom).offset(15)
-//            make.leading.equalTo(contentView.snp.left).offset(20)
+            //       make.top.equalTo(button.snp.bottom).offset(15)
+            //            make.leading.equalTo(contentView.snp.left).offset(20)
             make.left.equalToSuperview().offset(12)
             make.centerY.equalToSuperview().offset(25)
         }
@@ -100,10 +100,10 @@ class SettingsAccountHeaderViewComponent: UITableViewHeaderFooterView {
         super.init(reuseIdentifier: reuseIdentifier)
         
         addSubview(headerSettingsLabel)
-        
+        headerSettingsLabel.addViewBackedBorder(side: .bottom, thickness: 1, color: borderColor!)
         headerSettingsLabel.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(50)
-            make.width.equalTo(250)
+            make.width.equalTo(325)
             make.left.equalTo(12)
             // make.leading.equalTo(view.snp.trailing).offset(20)
             make.centerY.equalToSuperview()
@@ -116,11 +116,11 @@ class SettingsAccountHeaderViewComponent: UITableViewHeaderFooterView {
     
     func configure(withViewModel viewModel: SettingsHeaderAccountDelegate) {
         headerSettingsLabel.text = viewModel.accountSettingsHeader
-        // headerSettingsLabel.useUnderline()
         print("2!")
         headerSettingsLabel.textColor = .black
         contentView.backgroundColor = .white
     }
+    
 }
 
 class SettingsProgrammeHeaderViewComponent: UITableViewHeaderFooterView {
@@ -148,13 +148,14 @@ class SettingsProgrammeHeaderViewComponent: UITableViewHeaderFooterView {
         super.init(reuseIdentifier: reuseIdentifier)
         
         addSubview(headerSettingsLabel)
+        headerSettingsLabel.addViewBackedBorder(side: .bottom, thickness: 0.5, color: borderColor!)
         headerSettingsLabel.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(50)
-            make.width.equalTo(250)
+            make.width.equalTo(325)
             make.left.equalTo(12)
-            // make.leading.equalTo(view.snp.trailing).offset(20)
             make.centerY.equalToSuperview()
         }
+        
     }
     
     required init?(coder: NSCoder) {
@@ -162,63 +163,9 @@ class SettingsProgrammeHeaderViewComponent: UITableViewHeaderFooterView {
     }
     
     func configure(withViewModel viewModel: SettingsHeaderProgrammeDelegate) {
-        // headerSettingsLabel.translatesAutoresizingMaskIntoConstraints = false
         headerSettingsLabel.text = viewModel.programmeSettingsHeader
-        headerSettingsLabel.layer.addWaghaBorder(edge: .top, color: UIColor.black, thickness: 1)
         headerSettingsLabel.textColor = .black
         contentView.backgroundColor = .white
     }
 }
 
-
-//дополнения для нижней черты на секциях (notWork!)
-
-extension UILabel {
-    
-    // Example use: myView.addBorder(toSide: .Left, withColor: UIColor.redColor().CGColor, andThickness: 1.0)
-    
-    enum ViewSide {
-        case left, right, top, bottom
-    }
-    
-    func addBorder(toSide side: ViewSide, withColor color: CGColor, andThickness thickness: CGFloat) {
-        
-        let border = CALayer()
-        border.backgroundColor = color
-        
-        switch side {
-        case .left: border.frame = CGRect(x: frame.minX, y: frame.minY, width: thickness, height: frame.height)
-        case .right: border.frame = CGRect(x: frame.maxX, y: frame.minY, width: thickness, height: frame.height)
-        case .top: border.frame = CGRect(x: frame.minX, y: frame.minY, width: frame.width, height: thickness)
-        case .bottom: border.frame = CGRect(x: frame.minX, y: frame.maxY, width: frame.width, height: thickness)
-        }
-        
-        layer.addSublayer(border)
-    }
-}
-
-
-
-extension CALayer {
-    func addWaghaBorder(edge: UIRectEdge, color: UIColor, thickness: CGFloat) {
-        let border = CALayer()
-        switch edge {
-        case UIRectEdge.top:
-            border.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: 1)
-            break
-        case UIRectEdge.bottom:
-            border.frame = CGRect(x: 0, y: self.frame.height - 1, width: self.frame.width, height: 1)
-            break
-        case UIRectEdge.left:
-            border.frame = CGRect(x: 0, y: 0, width: 1, height: self.frame.height)
-            break
-        case UIRectEdge.right:
-            border.frame = CGRect(x: self.frame.width - 1, y: 0, width: 1, height: self.frame.height)
-            break
-        default:
-            break
-        }
-        border.backgroundColor = color.cgColor;
-        self.addSublayer(border)
-    }
-}

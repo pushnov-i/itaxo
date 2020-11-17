@@ -45,6 +45,7 @@
 		8C8BBDF32550DDBE00FB0AEC /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BBDE62550DDBD00FB0AEC /* Roboto-Bold.ttf */; };
 		8C8BBDF42550DDBE00FB0AEC /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BBDE72550DDBD00FB0AEC /* Roboto-BoldItalic.ttf */; };
 		8CB43FB4254C6B3200A1A065 /* HeaderAvatarNameVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB43FB3254C6B3200A1A065 /* HeaderAvatarNameVIew.swift */; };
+		8CF63E1425642F4D00643CEE /* UIView+Borders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF63E1325642F4D00643CEE /* UIView+Borders.swift */; };
 		9FB22AD6DB0CE764A77E747B /* Pods_itaxo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 723718595FDD7E863FC4992A /* Pods_itaxo.framework */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +92,7 @@
 		8C8BBDE62550DDBD00FB0AEC /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Bold.ttf"; path = "Roboto/Roboto-Bold.ttf"; sourceTree = SOURCE_ROOT; };
 		8C8BBDE72550DDBD00FB0AEC /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-BoldItalic.ttf"; path = "Roboto/Roboto-BoldItalic.ttf"; sourceTree = SOURCE_ROOT; };
 		8CB43FB3254C6B3200A1A065 /* HeaderAvatarNameVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderAvatarNameVIew.swift; sourceTree = "<group>"; };
+		8CF63E1325642F4D00643CEE /* UIView+Borders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Borders.swift"; sourceTree = "<group>"; };
 		F54780FB957BCFB0159E60E4 /* Pods-itaxo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-itaxo.debug.xcconfig"; path = "Target Support Files/Pods-itaxo/Pods-itaxo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,6 +179,7 @@
 				66C0A9D925209B7100AD1809 /* AttributedStringHelper.swift */,
 				66C0A9DC25209B8900AD1809 /* TextAttributes.swift */,
 				8C89CCCE255E655100CA42DC /* ColorsFonts.swift */,
+				8CF63E1325642F4D00643CEE /* UIView+Borders.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CF63E1425642F4D00643CEE /* UIView+Borders.swift in Sources */,
 				8C47C4302554644700DC3B68 /* SettingsViewController.swift in Sources */,
 				8C89CCCF255E655100CA42DC /* ColorsFonts.swift in Sources */,
 				8C0104812549B114003E1DA3 /* Protocols.swift in Sources */,

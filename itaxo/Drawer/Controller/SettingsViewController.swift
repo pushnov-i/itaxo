@@ -108,6 +108,7 @@ class SettingsViewController: UIViewController{
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         updateHeaderViewHeight(for: tableView.tableHeaderView)
+        
     }
     
     func updateHeaderViewHeight(for header: UIView?) {
@@ -151,11 +152,7 @@ class SettingsViewController: UIViewController{
     func configureTopHeaderTableView() -> UIView?  {
         
         var viewModel : SettingsHeaderTopDelegate?
-        
-        guard let headerView = SettingsTopHeaderViewComponent(frame: .zero) as? SettingsTopHeaderViewComponent else {
-            fatalError("Unexpected Header")
-        }
-        
+        let headerView = SettingsTopHeaderViewComponent(frame: .zero)        
         // добавляем хендлер тапа для дисмиса экрана настроек
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissSettingsMenu))
         headerView.button.addGestureRecognizer(tap)
@@ -174,26 +171,19 @@ class SettingsViewController: UIViewController{
     func configureAccountHeaderTableView() -> UIView?  {
         
         var viewModel : SettingsHeaderAccountDelegate?
-        
-        guard let headerView = SettingsAccountHeaderViewComponent(frame: .zero)
-            as? SettingsAccountHeaderViewComponent else {
-                fatalError("Unexpected Header")
-        }
+        let headerView = SettingsAccountHeaderViewComponent(frame: .zero)
         viewModel = SettingsViewModel.HeaderSettings()
         if let viewModel = viewModel {
             headerView.configure(withViewModel: viewModel)
         }
+          headerView.addBorder( side: .bottom, thickness: 10, color: UIColor.black)
         return headerView
     }
     
     func configureProgrammeHeaderTableView() -> UIView?  {
         
         var viewModel : SettingsHeaderProgrammeDelegate?
-        
-        guard let headerView = SettingsProgrammeHeaderViewComponent(frame: .zero)
-            as? SettingsProgrammeHeaderViewComponent else {
-                fatalError("Unexpected Header")
-        }
+        let headerView = SettingsProgrammeHeaderViewComponent(frame: .zero)
         viewModel = SettingsViewModel.HeaderSettings()
         if let viewModel = viewModel {
             headerView.configure(withViewModel: viewModel )
