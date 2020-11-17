@@ -82,16 +82,26 @@ class SettingsViewController: UIViewController{
         self.userEmail.delegate = self
         self.userPhone.delegate = self
         
-        let username = self.userName.rx.text.orEmpty.asObservable().subscribe(onNext : { text in
-       // print(text)
-        })
+        let username = self.userName.rx.text.orEmpty.asObservable()
+//            .subscribe(onNext : { text in
+//       // print(text)
+//        })
         let password = self.userPassword.rx.text.orEmpty.asObservable()
         let email = self.userEmail.rx.text.orEmpty.asObservable()
         let phone = self.userPhone.rx.text.orEmpty.asObservable()
         
-//                textFiledsViewModel.confirmButtonValid(username: username, password: password, phone: phone, email: email)
-//                    .bind(to: exitButton.rx.isEnabled)
-//                    .disposed(by: disposeBag)
+        
+        
+//        Observable.combineLatest(userName.rx.text, userEmail.rx.text).subscribeOn(MainScheduler.instance)
+//            .map { () -> Result in
+//                [String: Any]
+//            }
+       
+            
+
+        textFiledsViewModel.confirmButtonValid(username: username, password: password, phone: phone, email: email)
+//            .bind(to: exitButton.rx.isEnabled)
+//            .disposed(by: disposeBag)
         
     }
     

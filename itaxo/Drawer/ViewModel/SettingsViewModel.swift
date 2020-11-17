@@ -48,25 +48,31 @@ class SettingsViewModel {
         
         
         func confirmButtonValid(username: Observable<String>, password: Observable<String> ,
-                                phone: Observable<String> , email: Observable<String> ) -> Observable<Bool> {
-            username.observeOn(MainScheduler.instance)
-                .subscribe(onNext:{userDefaults in
-                 self.userDefaults.set(username,forKey: "Name")
-            }).disposed(by: bag)
-
-            self.userDefaults.set(username,forKey: "Name")
-            self.userDefaults.set(password,forKey: "Password")
-            self.userDefaults.set(email,forKey: "Email")
-            self.userDefaults.set(phone,forKey: "Phone")
-           // print(self.userDefaults.set(username,forKey: "Name"))
-            return Observable.combineLatest(username, password, email, phone)
-            { (username, password, email, phone) in
-                return username.count > 0
-                    || password.count > 0
-                    || email.count > 0
-                    || phone.count > 0
-
-            }
+                                phone: Observable<String> , email: Observable<String> ) -> Void { //}}-> Observable<Bool> {
+            Observable.combineLatest(username, password, phone, email).observeOn(MainScheduler.instance)
+                .map { (username, password, phone, email) -> Void in
+                    print (" ---> \(username), \(password), \(phone), \(email)")
+                        self.userDefaults.set(username, forKey: "Name")
+                }
+                .subscribe()
+//            username.observeOn(MainScheduler.instance)
+//                .subscribe(onNext:{userDefaults in
+//                 self.userDefaults.set(username,forKey: "Name")
+//            }).disposed(by: bag)
+//
+//            self.userDefaults.set(username,forKey: "Name")
+//            self.userDefaults.set(password,forKey: "Password")
+//            self.userDefaults.set(email,forKey: "Email")
+//            self.userDefaults.set(phone,forKey: "Phone")
+//           // print(self.userDefaults.set(username,forKey: "Name"))
+//            return Observable.combineLatest(username, password, email, phone)
+//            { (username, password, email, phone) in
+//                return username.count > 0
+//                    || password.count > 0
+//                    || email.count > 0
+//                    || phone.count > 0
+//
+//            }
         }
     }
     
