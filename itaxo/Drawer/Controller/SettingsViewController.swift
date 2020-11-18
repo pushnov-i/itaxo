@@ -73,6 +73,7 @@ class SettingsViewController: UIViewController{
     }()
     
     
+    
     // MARK - Init
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -219,6 +220,7 @@ class SettingsViewController: UIViewController{
         }
         view.addSubview(footerView)
         let tap = UITapGestureRecognizer(target: self, action: #selector(exitFromAccountSettings))
+       // let validTap = UIGestureRecognizer(target: self, action: #selector(dismissSettingsMenu))
         exitButton.addGestureRecognizer(tap)
         tap.rx.event.bind(onNext: { recognizer in
             print("Exit")
@@ -336,10 +338,15 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
     }
     @objc func exitFromAccountSettings(sender: UIButton!) {
         print("exit func ")
+        
         let userDefaults = UserDefaults.standard
         print(userDefaults.object(forKey: "Email")!)
+        if userDefaults.object(forKey: "Email")! as! String == "masalitin" {
+           dismiss(animated: true, completion: nil)
+        } else {
+            print("Введите поле Email корректно ")
+        }
     }
-    
 }
 
 //NEXT keyboard

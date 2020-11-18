@@ -25,6 +25,7 @@
 		8C0104812549B114003E1DA3 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0104802549B114003E1DA3 /* Protocols.swift */; };
 		8C0104832549B7BE003E1DA3 /* MenuOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0104822549B7BE003E1DA3 /* MenuOptionCell.swift */; };
 		8C0104852549C5E5003E1DA3 /* MenuOptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0104842549C5E5003E1DA3 /* MenuOptionViewModel.swift */; };
+		8C47920E25655B3C007F61E6 /* ItaxoTrip.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8C47920C25655B3C007F61E6 /* ItaxoTrip.xcdatamodeld */; };
 		8C47C42E25544D7200DC3B68 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C47C42D25544D7200DC3B68 /* SettingsViewModel.swift */; };
 		8C47C4302554644700DC3B68 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C47C42F2554644700DC3B68 /* SettingsViewController.swift */; };
 		8C53E5182554BA5000913EE9 /* AccountSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C53E5172554BA5000913EE9 /* AccountSettingsCell.swift */; };
@@ -72,6 +73,7 @@
 		8C0104802549B114003E1DA3 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		8C0104822549B7BE003E1DA3 /* MenuOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionCell.swift; sourceTree = "<group>"; };
 		8C0104842549C5E5003E1DA3 /* MenuOptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionViewModel.swift; sourceTree = "<group>"; };
+		8C47920D25655B3C007F61E6 /* ItaxoTrip.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ItaxoTrip.xcdatamodel; sourceTree = "<group>"; };
 		8C47C42D25544D7200DC3B68 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		8C47C42F2554644700DC3B68 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		8C53E5172554BA5000913EE9 /* AccountSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsCell.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			children = (
 				6694D6A9251CC33300575904 /* itaxo */,
 				6694D6A8251CC33300575904 /* Products */,
+				8C47920B25655ABA007F61E6 /* CoreData */,
 				081D80F38F9422F6F8D27FFE /* Pods */,
 				6244EE43EFB4561EA5A1B037 /* Frameworks */,
 			);
@@ -240,6 +243,14 @@
 				8C0104802549B114003E1DA3 /* Protocols.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		8C47920B25655ABA007F61E6 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				8C47920C25655B3C007F61E6 /* ItaxoTrip.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		8C8BBDDA2550DD7F00FB0AEC /* font */ = {
@@ -426,6 +437,7 @@
 				8C01047D25499DB0003E1DA3 /* HomeViewController.swift in Sources */,
 				66F5C9E7251D533D000E22D8 /* VerifyPhoneViewController.swift in Sources */,
 				8C01047F25499DD6003E1DA3 /* MenuViewController.swift in Sources */,
+				8C47920E25655B3C007F61E6 /* ItaxoTrip.xcdatamodeld in Sources */,
 				8C53E5182554BA5000913EE9 /* AccountSettingsCell.swift in Sources */,
 				66C0A9E1252139BA00AD1809 /* AppCoordinator.swift in Sources */,
 				66C0A9DA25209B7100AD1809 /* AttributedStringHelper.swift in Sources */,
@@ -632,6 +644,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8C47920C25655B3C007F61E6 /* ItaxoTrip.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8C47920D25655B3C007F61E6 /* ItaxoTrip.xcdatamodel */,
+			);
+			currentVersion = 8C47920D25655B3C007F61E6 /* ItaxoTrip.xcdatamodel */;
+			path = ItaxoTrip.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6694D69F251CC33300575904 /* Project object */;
 }

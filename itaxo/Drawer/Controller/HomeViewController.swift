@@ -53,33 +53,33 @@ class HomeController: UIViewController {
         
         
         // добавляем хендлер тапа
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(handleMenu))
-//       // mapView.addGestureRecognizer(tap)
-//        view.addGestureRecognizer(tap)
-//        tap.rx.event.bind(onNext: { recognizer in
-//            print("touches: \(recognizer.numberOfTouches)")
-//        }).disposed(by: disposeBag)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleMenu))
+       // mapView.addGestureRecognizer(tap)
+        view.addGestureRecognizer(tap)
+        tap.rx.event.bind(onNext: { recognizer in
+            print("touches: \(recognizer.numberOfTouches)")
+        }).disposed(by: disposeBag)
 
         
         //adding menu view controller
         
         guard let menuController = menuController,
               let menuView = menuController.view
-        
+
         else { return }
-        
+
         self.menuController = menuController
-        
+
         addChild(menuController)
         view.addSubview(menuView)
-        
+
         menuController.didMove(toParent: self)
         let screenWidth = UIScreen.main.bounds.width
         self.menuWidth = screenWidth * 0.8
         menuView.frame.size.width = menuWidth
         
         menuView.frame.origin.x = menuWidth * -1
-        
+
      
     }
     
@@ -88,7 +88,6 @@ class HomeController: UIViewController {
         menuController = MenuController()
         menuController.view.frame.origin.x = CGFloat(self.menuWidth * -1)
         view.addSubview(menuController.view)
-        addChild(menuController)
         menuController.didMove(toParent: self)
         print("configure MenuController")
     }
