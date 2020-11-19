@@ -12,14 +12,18 @@
         <attribute name="status" optional="YES" attributeType="Transformable"/>
         <attribute name="to" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="user_id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="newRelationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="newRelationship" inverseEntity="Payment"/>
+        <relationship name="newRelationship1" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GeoPoint" inverseName="newRelationship" inverseEntity="GeoPoint"/>
+        <relationship name="newRelationship2" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="newRelationship1" inverseEntity="Payment"/>
     </entity>
-    <entity name="GeoPoint" representedClassName="GeoPoint" syncable="YES" codeGenerationType="class">
+    <entity name="GeoPoint" representedClassName="GeoPoint" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="lon" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="newRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Drive" inverseName="newRelationship1" inverseEntity="Drive"/>
     </entity>
-    <entity name="Payment" representedClassName="Payment" syncable="YES" codeGenerationType="class">
+    <entity name="Payment" representedClassName="Payment" syncable="YES">
         <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="created_at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -27,10 +31,12 @@
         <attribute name="token" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
         <attribute name="updated_at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="newRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Drive" inverseName="newRelationship" inverseEntity="Drive"/>
+        <relationship name="newRelationship1" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Drive" inverseName="newRelationship2" inverseEntity="Drive"/>
     </entity>
     <elements>
-        <element name="Drive" positionX="-63" positionY="-18" width="128" height="208"/>
-        <element name="Payment" positionX="170.19921875" positionY="159.37890625" width="128" height="148"/>
-        <element name="GeoPoint" positionX="216.93359375" positionY="-35.09765625" width="128" height="103"/>
+        <element name="Drive" positionX="123.32421875" positionY="15.97265625" width="128" height="253"/>
+        <element name="GeoPoint" positionX="337.33203125" positionY="52.94140625" width="128" height="118"/>
+        <element name="Payment" positionX="-108.234375" positionY="86.60546875" width="128" height="178"/>
     </elements>
 </model>
