@@ -1,5 +1,5 @@
 //
-//  Payment+CoreDataClass.swift
+//  User+CoreDataClass.swift
 //  itaxo
 //
 //  Created by Genuine on 19.11.2020.
@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(Payment)
-public class Payment: NSManagedObject {
+@objc(User)
+public class User: NSManagedObject {
 
 }

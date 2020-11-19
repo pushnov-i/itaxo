@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Drive" representedClassName="Drive" syncable="YES">
+    <entity name="Drive" representedClassName="Drive" syncable="YES" codeGenerationType="class">
         <attribute name="car_id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="distance" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -9,21 +9,21 @@
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="paiment_id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="polyline" optional="YES" attributeType="String"/>
-        <attribute name="status" optional="YES" attributeType="Transformable"/>
+        <attribute name="status" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="to" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="user_id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="newRelationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="newRelationship" inverseEntity="Payment"/>
         <relationship name="newRelationship1" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GeoPoint" inverseName="newRelationship" inverseEntity="GeoPoint"/>
         <relationship name="newRelationship2" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="newRelationship1" inverseEntity="Payment"/>
     </entity>
-    <entity name="GeoPoint" representedClassName="GeoPoint" syncable="YES">
+    <entity name="GeoPoint" representedClassName="GeoPoint" syncable="YES" codeGenerationType="class">
         <attribute name="address" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="lon" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="newRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Drive" inverseName="newRelationship1" inverseEntity="Drive"/>
     </entity>
-    <entity name="Payment" representedClassName="Payment" syncable="YES">
+    <entity name="Payment" representedClassName="Payment" syncable="YES" codeGenerationType="class">
         <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="created_at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -34,9 +34,17 @@
         <relationship name="newRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Drive" inverseName="newRelationship" inverseEntity="Drive"/>
         <relationship name="newRelationship1" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Drive" inverseName="newRelationship2" inverseEntity="Drive"/>
     </entity>
+    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="password" optional="YES" attributeType="String"/>
+        <attribute name="phone" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <elements>
-        <element name="Drive" positionX="123.32421875" positionY="15.97265625" width="128" height="253"/>
+        <element name="Drive" positionX="127.046875" positionY="20.19921875" width="128" height="253"/>
         <element name="GeoPoint" positionX="337.33203125" positionY="52.94140625" width="128" height="118"/>
         <element name="Payment" positionX="-108.234375" positionY="86.60546875" width="128" height="178"/>
+        <element name="User" positionX="-68.9296875" positionY="-151.25390625" width="128" height="118"/>
     </elements>
 </model>

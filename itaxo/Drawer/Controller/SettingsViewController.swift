@@ -10,13 +10,15 @@ import UIKit
 import RxSwift
 import RxCocoa
 import SnapKit
+import CoreData
 
 private let reuseIdentifierAccountCell = "AccountSettingsCell"
 private let reuseIdentifierProgrammeCityCell = "AccountProgrammeCitySettingsCell"
 private let reuseIdentifierProgrammeLanguageCell = "AccountProgrammeLanguageSettingsCell"
 
 class SettingsViewController: UIViewController{
-    
+     
+    var users: [NSManagedObject] = []
     let disposeBag = DisposeBag()
     var tableView : UITableView!
     var exitButton : UIButton!
@@ -31,9 +33,15 @@ class SettingsViewController: UIViewController{
             attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,
                          NSAttributedString.Key.font:  UIFont(name: "Roboto-Regular", size: 15)!
         ])
+        if self.users.count > 0 {
+        let userName = self.users[0]
+        field.text = userName.value(forKey: "name") as? String
+            return field
+        }else {
         field.textContentType = .name
         field.delegate = self
         return field
+        }
     }()
     
     lazy var userPhone: UITextField = {
@@ -338,7 +346,8 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
     }
     @objc func exitFromAccountSettings(sender: UIButton!) {
         print("exit func ")
-        
+        self.save(name: userName.text!, email: userName.text!)
+        //self.tableView.reloadData()
         let userDefaults = UserDefaults.standard
         print(userDefaults.object(forKey: "Email")!)
         if userDefaults.object(forKey: "Email")! as! String == "masalitin" {
@@ -366,4 +375,17 @@ extension SettingsViewController: UITextFieldDelegate {
         }
         return true
     }
+}
+
+extension SettingsViewController {
+    func save(name: String, email : String) {
+      //1
+      let user = CoreDataManager.sharedManager.insertUser(name: name, email: email)
+      //2
+      if user != nil {
+        users.append(user!)//3
+        tableView.reloadData()//4
+      }
+    }
+
 }
