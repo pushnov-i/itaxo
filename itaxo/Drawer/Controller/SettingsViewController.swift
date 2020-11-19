@@ -36,8 +36,11 @@ class SettingsViewController: UIViewController{
         if self.users.count > 0 {
         let userName = self.users[0]
         field.text = userName.value(forKey: "name") as? String
+            field.delegate = self
+            print(userName)
             return field
         }else {
+            
         field.textContentType = .name
         field.delegate = self
         return field
@@ -347,9 +350,8 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
     @objc func exitFromAccountSettings(sender: UIButton!) {
         print("exit func ")
         self.save(name: userName.text!, email: userName.text!)
-        //self.tableView.reloadData()
+        self.tableView.reloadData()
         let userDefaults = UserDefaults.standard
-        print(userDefaults.object(forKey: "Email")!)
         if userDefaults.object(forKey: "Email")! as! String == "masalitin" {
            dismiss(animated: true, completion: nil)
         } else {
