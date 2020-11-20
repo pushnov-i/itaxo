@@ -48,11 +48,12 @@ class SettingsViewModel {
                                 phone: Observable<String> , email: Observable<String> ) -> Void {
             Observable.combineLatest(username, password, phone, email).observeOn(MainScheduler.instance)
                 .map { (username, password, phone, email) -> Void in
+                    
                     self.userDefaults.set(username,forKey: "Name")
                     self.userDefaults.set(password,forKey: "Password")
                     self.userDefaults.set(email,forKey: "Email")
                     self.userDefaults.set(phone,forKey: "Phone")
-                    print (" ---> \(String(describing: self.userDefaults.object(forKey: "Name"))), \(self.userDefaults.object(forKey: "Password")), \(self.userDefaults.object(forKey: "Email")), \(self.userDefaults.object(forKey: "Name"))")
+                //    print (" ---> \(String(describing: self.userDefaults.object(forKey: "Name"))), \(self.userDefaults.object(forKey: "Password")), \(self.userDefaults.object(forKey: "Email")), \(self.userDefaults.object(forKey: "Name"))")
                     self.userDefaults.set(username, forKey: "Name")
             }
             .subscribe()
@@ -94,3 +95,5 @@ class SettingsViewModel {
         var programmeSettingsHeader: String = "Налаштування програми                                                              "
     }
 }
+
+

@@ -17,7 +17,7 @@ private let reuseIdentifierProgrammeCityCell = "AccountProgrammeCitySettingsCell
 private let reuseIdentifierProgrammeLanguageCell = "AccountProgrammeLanguageSettingsCell"
 
 class SettingsViewController: UIViewController{
-     
+    
     var users: [NSManagedObject] = []
     let disposeBag = DisposeBag()
     var tableView : UITableView!
@@ -34,16 +34,16 @@ class SettingsViewController: UIViewController{
                          NSAttributedString.Key.font:  UIFont(name: "Roboto-Regular", size: 15)!
         ])
         if self.users.count > 0 {
-        let userName = self.users[0]
-        field.text = userName.value(forKey: "name") as? String
+            let userName = self.users[0]
+            field.text = userName.value(forKey: "name") as? String
             field.delegate = self
             print(userName)
             return field
         }else {
             
-        field.textContentType = .name
-        field.delegate = self
-        return field
+            field.textContentType = .name
+            field.delegate = self
+            return field
         }
     }()
     
@@ -95,25 +95,12 @@ class SettingsViewController: UIViewController{
         self.userPhone.delegate = self
         
         let username = self.userName.rx.text.orEmpty.asObservable()
-//            .subscribe(onNext : { text in
-//       // print(text)
-//        })
         let password = self.userPassword.rx.text.orEmpty.asObservable()
         let email = self.userEmail.rx.text.orEmpty.asObservable()
         let phone = self.userPhone.rx.text.orEmpty.asObservable()
         
-        
-        
-//        Observable.combineLatest(userName.rx.text, userEmail.rx.text).subscribeOn(MainScheduler.instance)
-//            .map { () -> Result in
-//                [String: Any]
-//            }
-       
-            
-
+        print(users)
         textFiledsViewModel.confirmButtonValid(username: username, password: password, phone: phone, email: email)
-//            .bind(to: exitButton.rx.isEnabled)
-//            .disposed(by: disposeBag)
         
     }
     
@@ -188,7 +175,7 @@ class SettingsViewController: UIViewController{
         if let viewModel = viewModel {
             headerView.configure(withViewModel: viewModel)
         }
-          headerView.addBorder( side: .bottom, thickness: 10, color: UIColor.black)
+        headerView.addBorder( side: .bottom, thickness: 10, color: UIColor.black)
         return headerView
     }
     
@@ -231,7 +218,7 @@ class SettingsViewController: UIViewController{
         }
         view.addSubview(footerView)
         let tap = UITapGestureRecognizer(target: self, action: #selector(exitFromAccountSettings))
-       // let validTap = UIGestureRecognizer(target: self, action: #selector(dismissSettingsMenu))
+        // let validTap = UIGestureRecognizer(target: self, action: #selector(dismissSettingsMenu))
         exitButton.addGestureRecognizer(tap)
         tap.rx.event.bind(onNext: { recognizer in
             print("Exit")
@@ -349,13 +336,14 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
     }
     @objc func exitFromAccountSettings(sender: UIButton!) {
         print("exit func ")
+        
         self.save(name: userName.text!, email: userName.text!)
-        self.tableView.reloadData()
+        
         let userDefaults = UserDefaults.standard
-        if userDefaults.object(forKey: "Email")! as! String == "masalitin" {
-           dismiss(animated: true, completion: nil)
+        if userDefaults.object(forKey: "Email")! as! String == "1" {
+            dismiss(animated: true, completion: nil)
         } else {
-            print("Введите поле Email корректно ")
+            print("Введите поле Email корректно 1w ")
         }
     }
 }
@@ -381,13 +369,14 @@ extension SettingsViewController: UITextFieldDelegate {
 
 extension SettingsViewController {
     func save(name: String, email : String) {
-      //1
-      let user = CoreDataManager.sharedManager.insertUser(name: name, email: email)
-      //2
-      if user != nil {
-        users.append(user!)//3
-        tableView.reloadData()//4
-      }
+        //1
+        let user = CoreDataManager.sharedManager.insertUser(name: name, email: email)
+        //2'
+        
+        if user != nil {
+            users.append(user!)//3
+            tableView.reloadData()//4
+        }
     }
-
+    
 }

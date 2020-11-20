@@ -68,7 +68,6 @@ class SettingsTopHeaderViewComponent: UITableViewHeaderFooterView {
     
     func configure(withViewModel viewModel: SettingsHeaderTopDelegate) {
         headerSettingsLabel.text = viewModel.topHeader
-        print("1!")
         headerSettingsLabel.textColor = .black
         
     }
@@ -116,7 +115,6 @@ class SettingsAccountHeaderViewComponent: UITableViewHeaderFooterView {
     
     func configure(withViewModel viewModel: SettingsHeaderAccountDelegate) {
         headerSettingsLabel.text = viewModel.accountSettingsHeader
-        print("2!")
         headerSettingsLabel.textColor = .black
         contentView.backgroundColor = .white
     }

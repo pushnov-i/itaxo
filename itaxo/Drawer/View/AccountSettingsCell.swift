@@ -32,7 +32,6 @@ class AccountSettingsCell: UITableViewCell {
     func configure(withViewModel viewModel: SettingsViewModel) {
         
         self.viewModel = viewModel
-        print(viewModel.textInput as Any)
         guard let _ = viewModel.textInput,
             let imageView = viewModel.image
             else { return }
