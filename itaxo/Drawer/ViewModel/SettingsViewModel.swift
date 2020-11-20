@@ -22,7 +22,7 @@ class SettingsViewModel {
         self.image?.contentMode = .scaleAspectFit
         
         let currentUser = CoreDataManager.sharedManager.fetchUser()
-        print(currentUser)
+        // print(currentUser?.value(forKey: "name")!)
     }
     
     
@@ -43,7 +43,7 @@ class SettingsViewModel {
     }
     
     struct TextFieldViewModel {
-        
+        let currentUser = CoreDataManager.sharedManager.fetchUser()
         let userDefaults = UserDefaults.standard
         private let bag = DisposeBag()
         
@@ -56,8 +56,8 @@ class SettingsViewModel {
                     self.userDefaults.set(password,forKey: "Password")
                     self.userDefaults.set(email,forKey: "Email")
                     self.userDefaults.set(phone,forKey: "Phone")
-                //    print (" ---> \(String(describing: self.userDefaults.object(forKey: "Name"))), \(self.userDefaults.object(forKey: "Password")), \(self.userDefaults.object(forKey: "Email")), \(self.userDefaults.object(forKey: "Name"))")
-                    self.userDefaults.set(username, forKey: "Name")
+                    //    print (" ---> \(String(describing: self.userDefaults.object(forKey: "Name"))), \(self.userDefaults.object(forKey: "Password")), \(self.userDefaults.object(forKey: "Email")), \(self.userDefaults.object(forKey: "Name"))")
+                    
             }
             .subscribe()
         }

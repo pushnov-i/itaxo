@@ -42,13 +42,14 @@ class CoreDataManager {
     }
     
     
-    func insertUser(name: String, email : String) -> User? {
+    func insertUser(name: String, email : String , password: String,phone : String) -> User? {
         
         let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
         let user: User =  NSEntityDescription.insertNewObject(forEntityName: "User", into: managedContext) as! User
         user.name = name
         user.email = email
-        
+        user.password = password
+        user.phone = phone
         do {
             try managedContext.save()
             return user
@@ -68,11 +69,6 @@ class CoreDataManager {
             return nil
         }
     }
-    
-    
-    
-    
-    
     
     //  func update(name:String, ssn : Int16, user : User) {
     //

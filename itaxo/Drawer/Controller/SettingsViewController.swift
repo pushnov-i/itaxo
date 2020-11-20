@@ -15,10 +15,10 @@ import CoreData
 private let reuseIdentifierAccountCell = "AccountSettingsCell"
 private let reuseIdentifierProgrammeCityCell = "AccountProgrammeCitySettingsCell"
 private let reuseIdentifierProgrammeLanguageCell = "AccountProgrammeLanguageSettingsCell"
+var users: [NSManagedObject] = []
 
 class SettingsViewController: UIViewController{
     
-    var users: [NSManagedObject] = []
     let disposeBag = DisposeBag()
     var tableView : UITableView!
     var exitButton : UIButton!
@@ -27,21 +27,21 @@ class SettingsViewController: UIViewController{
     
     lazy var userName: UITextField = {
         let field = UITextField()
+        field.textContentType = .name
         field.textColor = .black
-        field.attributedPlaceholder = NSAttributedString(
-            string: "Ваше ім’я",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,
-                         NSAttributedString.Key.font:  UIFont(name: "Roboto-Regular", size: 15)!
-        ])
-        if self.users.count > 0 {
-            let userName = self.users[0]
-            field.text = userName.value(forKey: "name") as? String
+        switch users.count {
+        case 0 :
+            field.attributedPlaceholder = NSAttributedString(
+                string: "Ваше ім’я",
+                attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,
+                             NSAttributedString.Key.font:  UIFont(name: "Roboto-Regular", size: 15)!
+            ])
             field.delegate = self
-            print(userName)
             return field
-        }else {
+        default :
             
-            field.textContentType = .name
+            let userName = users[0].value(forKey: "name") as? String
+            field.text = userName
             field.delegate = self
             return field
         }
@@ -49,38 +49,70 @@ class SettingsViewController: UIViewController{
     
     lazy var userPhone: UITextField = {
         let field = UITextField()
-        field.textColor = .black
-        field.attributedPlaceholder = NSAttributedString(
-            string: "Номер телефону",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,
-                         NSAttributedString.Key.font:  UIFont(name: "Roboto-Regular", size: 15)!
-        ])
         field.textContentType = .telephoneNumber
-        return field
+        field.textColor = .black
+        switch users.count {
+        case 0 :
+            field.attributedPlaceholder = NSAttributedString(
+                string: "Номер телефону",
+                attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,
+                             NSAttributedString.Key.font:  UIFont(name: "Roboto-Regular", size: 15)!
+            ])
+            field.delegate = self
+            return field
+        default :
+            
+            let userName = users[0].value(forKey: "phone") as? String
+            field.text = userName
+            field.delegate = self
+            return field
+        }
     }()
+    
     
     lazy var userEmail: UITextField = {
         let field = UITextField()
-        field.textColor = .black
-        field.attributedPlaceholder = NSAttributedString(
-            string: "Ваш е-мейл",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,
-                         NSAttributedString.Key.font:  UIFont(name: "Roboto-Regular", size: 15)!
-        ])
         field.textContentType = .emailAddress
-        return field
+        field.textColor = .black
+        
+        switch users.count {
+        case 0 :
+            field.attributedPlaceholder = NSAttributedString(
+                string: "Ваш е-мейл",
+                attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,
+                             NSAttributedString.Key.font:  UIFont(name: "Roboto-Regular", size: 15)!
+            ])
+            field.delegate = self
+            return field
+        default :
+            
+            let userName = users[0].value(forKey: "email") as? String
+            field.text = userName
+            field.delegate = self
+            return field
+        }
     }()
     
     lazy var userPassword: UITextField = {
         let field = UITextField()
-        field.textColor = .black
-        field.attributedPlaceholder = NSAttributedString(
-            string: "Введіть пароль",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,
-                         NSAttributedString.Key.font:  UIFont(name: "Roboto-Regular", size: 15)!
-        ])
         field.textContentType = .password
-        return field
+        field.textColor = .black
+        
+        switch users.count {
+        case 0 :
+            field.attributedPlaceholder = NSAttributedString(
+                string: "Введіть пароль",
+                attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,
+                             NSAttributedString.Key.font:  UIFont(name: "Roboto-Regular", size: 15)!])
+            field.delegate = self
+            return field
+            
+        default :
+            let userName = users[0].value(forKey: "password") as? String
+            field.text = userName
+            field.delegate = self
+            return field
+        }
     }()
     
     
@@ -99,9 +131,8 @@ class SettingsViewController: UIViewController{
         let email = self.userEmail.rx.text.orEmpty.asObservable()
         let phone = self.userPhone.rx.text.orEmpty.asObservable()
         
-        print(users)
         textFiledsViewModel.confirmButtonValid(username: username, password: password, phone: phone, email: email)
-        
+        print(" ALL USERS \(users)")
     }
     
     override func viewWillLayoutSubviews() {
@@ -214,11 +245,10 @@ class SettingsViewController: UIViewController{
             make.height.equalTo(40)
             make.width.equalTo(120)
             make.centerY.equalToSuperview().offset(15)
-            //   make.top.equalToSuperview().offset(10)
+            
         }
         view.addSubview(footerView)
         let tap = UITapGestureRecognizer(target: self, action: #selector(exitFromAccountSettings))
-        // let validTap = UIGestureRecognizer(target: self, action: #selector(dismissSettingsMenu))
         exitButton.addGestureRecognizer(tap)
         tap.rx.event.bind(onNext: { recognizer in
             print("Exit")
@@ -338,14 +368,9 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
     @objc func exitFromAccountSettings(sender: UIButton) {
         print("exit func ")
         
-        self.save(name: userName.text!, email: userName.text!)
+        self.save(name: userName.text!, email: userEmail.text! , password: userPassword.text! , phone:  userPhone.text!)
         
-        let userDefaults = UserDefaults.standard
-        if userDefaults.object(forKey: "Email")! as! String == "1" {
-            dismiss(animated: true, completion: nil)
-        } else {
-            print("Введите поле Email корректно 1w ")
-        }
+        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -369,14 +394,13 @@ extension SettingsViewController: UITextFieldDelegate {
 }
 
 extension SettingsViewController {
-    func save(name: String, email : String) {
-        //1
-        let user = CoreDataManager.sharedManager.insertUser(name: name, email: email)
-        //2'
-        
+    func save(name: String, email : String , password: String,phone : String) {
+        let user = CoreDataManager.sharedManager.insertUser(name: name, email : email , password: password,phone : phone)
         if user != nil {
             users.append(user!)//3
-            tableView.reloadData()//4
+            
+            print(" THIS IS user name : \(users[0].value(forKey: "name") as? String)")
+            userName.reloadInputViews()//4
         }
     }
     
