@@ -331,10 +331,11 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
         }
     }
     
-    @objc func dismissSettingsMenu(sender: UIButton!) {
+    @objc func dismissSettingsMenu(sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-    @objc func exitFromAccountSettings(sender: UIButton!) {
+    
+    @objc func exitFromAccountSettings(sender: UIButton) {
         print("exit func ")
         
         self.save(name: userName.text!, email: userName.text!)

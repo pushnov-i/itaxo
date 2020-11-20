@@ -41,25 +41,33 @@ class CoreDataManager {
         }
     }
     
-    func insertUser(name: String, email : String)->User? {
+    
+    func insertUser(name: String, email : String) -> User? {
         
         let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "User",in: managedContext)!
-        let user = NSManagedObject(entity: entity,insertInto: managedContext)
-        
-        user.setValue(name, forKeyPath: "name")
-        user.setValue(email, forKeyPath: "email")
+        let user: User =  NSEntityDescription.insertNewObject(forEntityName: "User", into: managedContext) as! User
+        user.name = name
+        user.email = email
         
         do {
             try managedContext.save()
-            return user as? User
+            return user
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
             return nil
         }
     }
     
-    
+    func fetchUser() -> User? {
+        let context = CoreDataManager.sharedManager.persistentContainer.viewContext
+        let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        guard let fetch = try? context.fetch(request) as? [User] else { return nil }
+        if !fetch.isEmpty {
+            return fetch[0]
+        } else {
+            return nil
+        }
+    }
     
     
     
