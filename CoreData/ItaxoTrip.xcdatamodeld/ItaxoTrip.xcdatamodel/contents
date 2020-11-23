@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Drive" representedClassName="Drive" syncable="YES" codeGenerationType="class">
+    <entity name="Drive" representedClassName="Drive" syncable="YES">
         <attribute name="car_id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="distance" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -16,14 +16,14 @@
         <relationship name="newRelationship1" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GeoPoint" inverseName="newRelationship" inverseEntity="GeoPoint"/>
         <relationship name="newRelationship2" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="newRelationship1" inverseEntity="Payment"/>
     </entity>
-    <entity name="GeoPoint" representedClassName="GeoPoint" syncable="YES" codeGenerationType="class">
+    <entity name="GeoPoint" representedClassName="GeoPoint" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="lon" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="newRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Drive" inverseName="newRelationship1" inverseEntity="Drive"/>
     </entity>
-    <entity name="Payment" representedClassName="Payment" syncable="YES" codeGenerationType="class">
+    <entity name="Payment" representedClassName="Payment" syncable="YES">
         <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="created_at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -34,7 +34,7 @@
         <relationship name="newRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Drive" inverseName="newRelationship" inverseEntity="Drive"/>
         <relationship name="newRelationship1" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Drive" inverseName="newRelationship2" inverseEntity="Drive"/>
     </entity>
-    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+    <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>

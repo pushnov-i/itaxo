@@ -43,37 +43,35 @@ class HomeController: UIViewController {
         mapView.snp.makeConstraints { maker in
             maker.edges.equalTo(view)
         }
-          
+        
         // добавляем хендлер тапа
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleMenu))
-       // mapView.addGestureRecognizer(tap)
+        // mapView.addGestureRecognizer(tap)
         view.addGestureRecognizer(tap)
         tap.rx.event.bind(onNext: { recognizer in
             print("touches: \(recognizer.numberOfTouches)")
         }).disposed(by: disposeBag)
-
+        
         
         //adding menu view controller
         
         guard let menuController = menuController,
-              let menuView = menuController.view
-
-        else { return }
-
+            let menuView = menuController.view
+            else { return }
+        
         self.menuController = menuController
-
         addChild(menuController)
         view.addSubview(menuView)
-
         menuController.didMove(toParent: self)
         let screenWidth = UIScreen.main.bounds.width
         self.menuWidth = screenWidth * 0.8
         menuView.frame.size.width = menuWidth
-        
         menuView.frame.origin.x = menuWidth * -1
-
-     
+        
+        
     }
+    
+    //TODO fix bug with creating of multiple menu views
     
     func configureMenuController() {
         //add our menu controller
@@ -90,18 +88,18 @@ class HomeController: UIViewController {
             //show Drawer menu
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
                 self.menuController.view.frame.origin.x = 0
-                 self.menuController.view.frame.origin.y = 20
+                self.menuController.view.frame.origin.y = 20
                 // TODO        //    self.mapView?.alpha = 0.5
                 self.menuController.view.snp.makeConstraints { maker in
-                                   maker.width.equalTo(self.view).multipliedBy(0.8)
-                                   maker.edges.equalTo(self.view)
-                               }
+                    maker.width.equalTo(self.view).multipliedBy(0.8)
+                    maker.edges.equalTo(self.view)
+                }
             }, completion: nil)
         } else {
             //hide Drawer menu
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
                 self.menuController.view.frame.origin.x = self.menuWidth * -1
-                 self.menuController.view.frame.origin.y = 30
+                self.menuController.view.frame.origin.y = 30
                 self.mapView? .alpha = 1
             }, completion: nil)
         }

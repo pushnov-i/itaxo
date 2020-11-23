@@ -25,6 +25,12 @@
 		8C0104812549B114003E1DA3 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0104802549B114003E1DA3 /* Protocols.swift */; };
 		8C0104832549B7BE003E1DA3 /* MenuOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0104822549B7BE003E1DA3 /* MenuOptionCell.swift */; };
 		8C0104852549C5E5003E1DA3 /* MenuOptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0104842549C5E5003E1DA3 /* MenuOptionViewModel.swift */; };
+		8C19DCCE256BEE6500CC4234 /* GeoPoint+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C19DCCD256BEE6500CC4234 /* GeoPoint+CoreDataClass.swift */; };
+		8C19DCD0256BEE8500CC4234 /* GeoPoint+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C19DCCF256BEE8500CC4234 /* GeoPoint+CoreDataProperties.swift */; };
+		8C19DCD2256BEEA500CC4234 /* Payment+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C19DCD1256BEEA500CC4234 /* Payment+CoreDataClass.swift */; };
+		8C19DCD4256BEEBC00CC4234 /* Payment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C19DCD3256BEEBC00CC4234 /* Payment+CoreDataProperties.swift */; };
+		8C19DCD6256BEECE00CC4234 /* Drive+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C19DCD5256BEECE00CC4234 /* Drive+CoreDataClass.swift */; };
+		8C19DCD8256BEEF200CC4234 /* Drive+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C19DCD7256BEEF200CC4234 /* Drive+CoreDataProperties.swift */; };
 		8C47C42E25544D7200DC3B68 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C47C42D25544D7200DC3B68 /* SettingsViewModel.swift */; };
 		8C47C4302554644700DC3B68 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C47C42F2554644700DC3B68 /* SettingsViewController.swift */; };
 		8C53E5182554BA5000913EE9 /* AccountSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C53E5172554BA5000913EE9 /* AccountSettingsCell.swift */; };
@@ -76,6 +82,12 @@
 		8C0104802549B114003E1DA3 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		8C0104822549B7BE003E1DA3 /* MenuOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionCell.swift; sourceTree = "<group>"; };
 		8C0104842549C5E5003E1DA3 /* MenuOptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionViewModel.swift; sourceTree = "<group>"; };
+		8C19DCCD256BEE6500CC4234 /* GeoPoint+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeoPoint+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8C19DCCF256BEE8500CC4234 /* GeoPoint+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeoPoint+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8C19DCD1256BEEA500CC4234 /* Payment+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Payment+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8C19DCD3256BEEBC00CC4234 /* Payment+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Payment+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8C19DCD5256BEECE00CC4234 /* Drive+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Drive+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8C19DCD7256BEEF200CC4234 /* Drive+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Drive+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8C47920D25655B3C007F61E6 /* ItaxoTrip.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ItaxoTrip.xcdatamodel; sourceTree = "<group>"; };
 		8C47C42D25544D7200DC3B68 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		8C47C42F2554644700DC3B68 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -258,6 +270,12 @@
 				8CBD344C2566BE18003A0A57 /* User+CoreDataClass.swift */,
 				8C47920C25655B3C007F61E6 /* ItaxoTrip.xcdatamodeld */,
 				8CBD3438256682A7003A0A57 /* CoreDataManager.swift */,
+				8C19DCCD256BEE6500CC4234 /* GeoPoint+CoreDataClass.swift */,
+				8C19DCCF256BEE8500CC4234 /* GeoPoint+CoreDataProperties.swift */,
+				8C19DCD1256BEEA500CC4234 /* Payment+CoreDataClass.swift */,
+				8C19DCD3256BEEBC00CC4234 /* Payment+CoreDataProperties.swift */,
+				8C19DCD5256BEECE00CC4234 /* Drive+CoreDataClass.swift */,
+				8C19DCD7256BEEF200CC4234 /* Drive+CoreDataProperties.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -429,6 +447,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C19DCD8256BEEF200CC4234 /* Drive+CoreDataProperties.swift in Sources */,
 				8CF63E1425642F4D00643CEE /* UIView+Borders.swift in Sources */,
 				8C47C4302554644700DC3B68 /* SettingsViewController.swift in Sources */,
 				8C89CCCF255E655100CA42DC /* ColorsFonts.swift in Sources */,
@@ -441,17 +460,22 @@
 				8CBD3439256682A7003A0A57 /* CoreDataManager.swift in Sources */,
 				8C53E51A2554BA8C00913EE9 /* AccountProgrammeCitySettingsCell.swift in Sources */,
 				6694D6BF251CE00900575904 /* RootViewController.swift in Sources */,
+				8C19DCCE256BEE6500CC4234 /* GeoPoint+CoreDataClass.swift in Sources */,
+				8C19DCD2256BEEA500CC4234 /* Payment+CoreDataClass.swift in Sources */,
 				8CB43FB4254C6B3200A1A065 /* HeaderAvatarNameVIew.swift in Sources */,
 				66C0A9E525213E8000AD1809 /* MapViewController.swift in Sources */,
 				66C0A9DD25209B8900AD1809 /* TextAttributes.swift in Sources */,
+				8C19DCD4256BEEBC00CC4234 /* Payment+CoreDataProperties.swift in Sources */,
 				8C47C42E25544D7200DC3B68 /* SettingsViewModel.swift in Sources */,
 				8CBD344F2566BE3D003A0A57 /* User+CoreDataProperties.swift in Sources */,
 				6694D6C2251CE0E000575904 /* SignUpViewController.swift in Sources */,
 				8C01047D25499DB0003E1DA3 /* HomeViewController.swift in Sources */,
 				66F5C9E7251D533D000E22D8 /* VerifyPhoneViewController.swift in Sources */,
 				8C01047F25499DD6003E1DA3 /* MenuViewController.swift in Sources */,
+				8C19DCD0256BEE8500CC4234 /* GeoPoint+CoreDataProperties.swift in Sources */,
 				8C53E5182554BA5000913EE9 /* AccountSettingsCell.swift in Sources */,
 				66C0A9E1252139BA00AD1809 /* AppCoordinator.swift in Sources */,
+				8C19DCD6256BEECE00CC4234 /* Drive+CoreDataClass.swift in Sources */,
 				66C0A9DA25209B7100AD1809 /* AttributedStringHelper.swift in Sources */,
 				8C0104832549B7BE003E1DA3 /* MenuOptionCell.swift in Sources */,
 				6694D6AD251CC33300575904 /* SceneDelegate.swift in Sources */,
