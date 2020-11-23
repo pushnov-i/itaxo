@@ -26,93 +26,19 @@ class SettingsViewController: UIViewController{
     
     
     lazy var userName: UITextField = {
-        let field = UITextField()
-        field.textContentType = .name
-        field.textColor = .black
-        switch users.count {
-        case 0 :
-            field.attributedPlaceholder = NSAttributedString(
-                string: "Ваше ім’я",
-                attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,
-                             NSAttributedString.Key.font:  UIFont(name: "Roboto-Regular", size: 15)!
-            ])
-            field.delegate = self
-            return field
-        default :
-            
-            let userName = users[0].value(forKey: "name") as? String
-            field.text = userName
-            field.delegate = self
-            return field
-        }
+        switchTextFields(textContentType: .name, placeholderText: "Ваше ім’я", keyForValue: "name")
     }()
     
     lazy var userPhone: UITextField = {
-        let field = UITextField()
-        field.textContentType = .telephoneNumber
-        field.textColor = .black
-        switch users.count {
-        case 0 :
-            field.attributedPlaceholder = NSAttributedString(
-                string: "Номер телефону",
-                attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,
-                             NSAttributedString.Key.font:  UIFont(name: "Roboto-Regular", size: 15)!
-            ])
-            field.delegate = self
-            return field
-        default :
-            
-            let userName = users[0].value(forKey: "phone") as? String
-            field.text = userName
-            field.delegate = self
-            return field
-        }
+        switchTextFields(textContentType: .telephoneNumber, placeholderText: "Номер телефону", keyForValue: "phone")
     }()
     
-    
     lazy var userEmail: UITextField = {
-        let field = UITextField()
-        field.textContentType = .emailAddress
-        field.textColor = .black
-        
-        switch users.count {
-        case 0 :
-            field.attributedPlaceholder = NSAttributedString(
-                string: "Ваш е-мейл",
-                attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,
-                             NSAttributedString.Key.font:  UIFont(name: "Roboto-Regular", size: 15)!
-            ])
-            field.delegate = self
-            return field
-        default :
-            
-            let userName = users[0].value(forKey: "email") as? String
-            field.text = userName
-            field.delegate = self
-            return field
-        }
+        switchTextFields(textContentType: .emailAddress, placeholderText: "Ваш е-мейл", keyForValue: "email")
     }()
     
     lazy var userPassword: UITextField = {
-        let field = UITextField()
-        field.textContentType = .password
-        field.textColor = .black
-        
-        switch users.count {
-        case 0 :
-            field.attributedPlaceholder = NSAttributedString(
-                string: "Введіть пароль",
-                attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,
-                             NSAttributedString.Key.font:  UIFont(name: "Roboto-Regular", size: 15)!])
-            field.delegate = self
-            return field
-            
-        default :
-            let userName = users[0].value(forKey: "password") as? String
-            field.text = userName
-            field.delegate = self
-            return field
-        }
+        switchTextFields(textContentType: .password, placeholderText: "Введіть пароль", keyForValue: "password")
     }()
     
     
@@ -259,7 +185,6 @@ class SettingsViewController: UIViewController{
 
 extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
     
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         3
     }
@@ -390,6 +315,28 @@ extension SettingsViewController: UITextFieldDelegate {
             () //make action after filling all textfields
         }
         return true
+    }
+    
+    func switchTextFields(textContentType: UITextContentType,placeholderText: String,keyForValue:String) -> UITextField {
+        let field = UITextField()
+        field.textContentType = textContentType
+        field.textColor = .black
+        
+        switch users.count {
+        case 0 :
+            field.attributedPlaceholder = NSAttributedString(
+                string: placeholderText,
+                attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,
+                             NSAttributedString.Key.font:  UIFont(name: "Roboto-Regular", size: 15)!])
+            field.delegate = self
+            return field
+            
+        default :
+            let userName = users[0].value(forKey: keyForValue) as? String
+            field.text = userName
+            field.delegate = self
+            return field
+        }
     }
 }
 
