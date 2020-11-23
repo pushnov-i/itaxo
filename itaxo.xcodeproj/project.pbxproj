@@ -31,6 +31,7 @@
 		8C19DCD4256BEEBC00CC4234 /* Payment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C19DCD3256BEEBC00CC4234 /* Payment+CoreDataProperties.swift */; };
 		8C19DCD6256BEECE00CC4234 /* Drive+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C19DCD5256BEECE00CC4234 /* Drive+CoreDataClass.swift */; };
 		8C19DCD8256BEEF200CC4234 /* Drive+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C19DCD7256BEEF200CC4234 /* Drive+CoreDataProperties.swift */; };
+		8C19DCDA256C054400CC4234 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C19DCD9256C054400CC4234 /* GoogleService-Info.plist */; };
 		8C47C42E25544D7200DC3B68 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C47C42D25544D7200DC3B68 /* SettingsViewModel.swift */; };
 		8C47C4302554644700DC3B68 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C47C42F2554644700DC3B68 /* SettingsViewController.swift */; };
 		8C53E5182554BA5000913EE9 /* AccountSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C53E5172554BA5000913EE9 /* AccountSettingsCell.swift */; };
@@ -88,6 +89,7 @@
 		8C19DCD3256BEEBC00CC4234 /* Payment+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Payment+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8C19DCD5256BEECE00CC4234 /* Drive+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Drive+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8C19DCD7256BEEF200CC4234 /* Drive+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Drive+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8C19DCD9256C054400CC4234 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8C47920D25655B3C007F61E6 /* ItaxoTrip.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ItaxoTrip.xcdatamodel; sourceTree = "<group>"; };
 		8C47C42D25544D7200DC3B68 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		8C47C42F2554644700DC3B68 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				8C8BBDDA2550DD7F00FB0AEC /* font */,
 				6694D6B5251CC33600575904 /* LaunchScreen.storyboard */,
 				6694D6B8251CC33600575904 /* Info.plist */,
+				8C19DCD9256C054400CC4234 /* GoogleService-Info.plist */,
 			);
 			path = itaxo;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				8C8BBDEC2550DDBE00FB0AEC /* Roboto-MediumItalic.ttf in Resources */,
 				8C8BBDEF2550DDBE00FB0AEC /* Roboto-BlackItalic.ttf in Resources */,
 				6694D6B2251CC33300575904 /* Main.storyboard in Resources */,
+				8C19DCDA256C054400CC4234 /* GoogleService-Info.plist in Resources */,
 				8C8BBDF42550DDBE00FB0AEC /* Roboto-BoldItalic.ttf in Resources */,
 				8C8BBDF02550DDBE00FB0AEC /* Roboto-Medium.ttf in Resources */,
 				8C8BBDF22550DDBE00FB0AEC /* Roboto-ThinItalic.ttf in Resources */,

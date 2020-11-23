@@ -91,7 +91,7 @@ class CoreDataManager {
         }
     }
     
-    func delete(ssn: String) -> [User]? {
+    func delete(object: String) -> [User]? {
         /*get reference to appdelegate file*/
         
         
@@ -102,7 +102,7 @@ class CoreDataManager {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
         
         /*pass your condition with NSPredicate. We only want to delete those records which match our condition*/
-        fetchRequest.predicate = NSPredicate(format: "ssn == %@" ,ssn)
+        fetchRequest.predicate = NSPredicate(format: "" ,object)
         do {
             
             /*managedContext.fetch(fetchRequest) will return array of person objects [personObjects]*/
@@ -126,6 +126,10 @@ class CoreDataManager {
             print("Could not fetch. \(error), \(error.userInfo)")
             return nil
         }
+        
+    }
+    
+    func search () {
         
     }
     
