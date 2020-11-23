@@ -20,9 +20,7 @@ class SettingsViewModel {
         self.textInput = textInput
         self.image = UIImageView(image: UIImage(named: imageLabel!))
         self.image?.contentMode = .scaleAspectFit
-        
-        let currentUser = CoreDataManager.sharedManager.fetchUser()
-        // print(currentUser?.value(forKey: "name")!)
+
     }
     
     

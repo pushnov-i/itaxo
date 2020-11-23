@@ -321,9 +321,9 @@ extension SettingsViewController: UITextFieldDelegate {
         let field = UITextField()
         field.textContentType = textContentType
         field.textColor = .black
-        
         switch users.count {
         case 0 :
+            
             field.attributedPlaceholder = NSAttributedString(
                 string: placeholderText,
                 attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: "#939393ff")! ,

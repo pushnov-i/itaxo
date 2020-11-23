@@ -58,7 +58,7 @@ class AccountSettingsCell: UITableViewCell {
             testInput.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 25),
             testInput.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             testInput.heightAnchor.constraint(equalToConstant: 20),
-            testInput.widthAnchor.constraint(equalToConstant: 100),
+            testInput.widthAnchor.constraint(equalToConstant: 130),
         ])
     }
 }
