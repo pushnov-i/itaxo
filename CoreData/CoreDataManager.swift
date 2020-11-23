@@ -70,6 +70,95 @@ class CoreDataManager {
         }
     }
     
+    /*delete*/
+    func delete(person : User){
+        
+        let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
+        
+        do {
+            
+            managedContext.delete(person)
+            
+        } catch {
+            // Do something in response to error condition
+            print(error)
+        }
+        
+        do {
+            try managedContext.save()
+        } catch {
+            // Do something in response to error condition
+        }
+    }
+    
+    func delete(ssn: String) -> [User]? {
+        /*get reference to appdelegate file*/
+        
+        
+        /*get reference of managed object context*/
+        let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
+        
+        /*init fetch request*/
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
+        
+        /*pass your condition with NSPredicate. We only want to delete those records which match our condition*/
+        fetchRequest.predicate = NSPredicate(format: "ssn == %@" ,ssn)
+        do {
+            
+            /*managedContext.fetch(fetchRequest) will return array of person objects [personObjects]*/
+            let item = try managedContext.fetch(fetchRequest)
+            var arrRemovedUsers = [User]()
+            for i in item {
+                
+                /*call delete method(aManagedObjectInstance)*/
+                /*here i is managed object instance*/
+                managedContext.delete(i)
+                
+                /*finally save the contexts*/
+                try managedContext.save()
+                
+                /*update your array also*/
+                arrRemovedUsers.append(i as! User)
+            }
+            return arrRemovedUsers
+            
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+            return nil
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
+    //       func fetchAllUser() -> [User]?{
+    //
+    //
+    //         /*Before you can do anything with Core Data, you need a managed object context. */
+    //         let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
+    //
+    //         /*As the name suggests, NSFetchRequest is the class responsible for fetching from Core Data.
+    //
+    //          Initializing a fetch request with init(entityName:), fetches all objects of a particular entity. This is what you do here to fetch all Person entities.
+    //          */
+    //         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Person")
+    //
+    //         /*You hand the fetch request over to the managed object context to do the heavy lifting. fetch(_:) returns an array of managed objects meeting the criteria specified by the fetch request.*/
+    //         do {
+    //           let people = try managedContext.fetch(fetchRequest)
+    //           return people as? [User]
+    //         } catch let error as NSError {
+    //           print("Could not fetch. \(error), \(error.userInfo)")
+    //           return nil
+    //         }
+    //       }
+    
+    
+    
+    
     //  func update(name:String, ssn : Int16, user : User) {
     //
     //    /*1.
@@ -108,86 +197,7 @@ class CoreDataManager {
     //    }
     //  }
     //
-    //  /*delete*/
-    //  func delete(person : User){
-    //
-    //    let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
-    //
-    //    do {
-    //
-    //      managedContext.delete(person)
-    //
-    //    } catch {
-    //      // Do something in response to error condition
-    //      print(error)
-    //    }
-    //
-    //    do {
-    //      try managedContext.save()
-    //    } catch {
-    //      // Do something in response to error condition
-    //    }
-    //  }
-    //
-    //  func fetchAllUser() -> [User]?{
-    //
-    //
-    //    /*Before you can do anything with Core Data, you need a managed object context. */
-    //    let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
-    //
-    //    /*As the name suggests, NSFetchRequest is the class responsible for fetching from Core Data.
-    //
-    //     Initializing a fetch request with init(entityName:), fetches all objects of a particular entity. This is what you do here to fetch all Person entities.
-    //     */
-    //    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Person")
-    //
-    //    /*You hand the fetch request over to the managed object context to do the heavy lifting. fetch(_:) returns an array of managed objects meeting the criteria specified by the fetch request.*/
-    //    do {
-    //      let people = try managedContext.fetch(fetchRequest)
-    //      return people as? [User]
-    //    } catch let error as NSError {
-    //      print("Could not fetch. \(error), \(error.userInfo)")
-    //      return nil
-    //    }
-    //  }
-    //
-    //  func delete(ssn: String) -> [User]? {
-    //    /*get reference to appdelegate file*/
-    //
-    //
-    //    /*get reference of managed object context*/
-    //    let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
-    //
-    //    /*init fetch request*/
-    //    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
-    //
-    //    /*pass your condition with NSPredicate. We only want to delete those records which match our condition*/
-    //    fetchRequest.predicate = NSPredicate(format: "ssn == %@" ,ssn)
-    //    do {
-    //
-    //      /*managedContext.fetch(fetchRequest) will return array of person objects [personObjects]*/
-    //      let item = try managedContext.fetch(fetchRequest)
-    //      var arrRemovedUsers = [User]()
-    //      for i in item {
-    //
-    //        /*call delete method(aManagedObjectInstance)*/
-    //        /*here i is managed object instance*/
-    //        managedContext.delete(i)
-    //
-    //        /*finally save the contexts*/
-    //        try managedContext.save()
-    //
-    //        /*update your array also*/
-    //        arrRemovedUsers.append(i as! User)
-    //      }
-    //      return arrRemovedUsers
-    //
-    //    } catch let error as NSError {
-    //      print("Could not fetch. \(error), \(error.userInfo)")
-    //  return nil
-    //    }
-    //
-    //  }
+    
 }
 
 

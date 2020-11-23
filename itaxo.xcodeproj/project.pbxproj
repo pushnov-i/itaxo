@@ -266,10 +266,10 @@
 		8C47920B25655ABA007F61E6 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				8CBD3438256682A7003A0A57 /* CoreDataManager.swift */,
+				8C47920C25655B3C007F61E6 /* ItaxoTrip.xcdatamodeld */,
 				8CBD344E2566BE3D003A0A57 /* User+CoreDataProperties.swift */,
 				8CBD344C2566BE18003A0A57 /* User+CoreDataClass.swift */,
-				8C47920C25655B3C007F61E6 /* ItaxoTrip.xcdatamodeld */,
-				8CBD3438256682A7003A0A57 /* CoreDataManager.swift */,
 				8C19DCCD256BEE6500CC4234 /* GeoPoint+CoreDataClass.swift */,
 				8C19DCCF256BEE8500CC4234 /* GeoPoint+CoreDataProperties.swift */,
 				8C19DCD1256BEEA500CC4234 /* Payment+CoreDataClass.swift */,
