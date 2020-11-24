@@ -44,7 +44,7 @@ class AccountProgrammeCitySettingsCell:UITableViewCell {
         backgroundColor = .white
         addSubview(stackView)
         stackView.snp.makeConstraints { make in
-            make.left.leading.equalToSuperview().offset(12)
+            make.left.equalTo(self.contentView.safeAreaLayoutGuide.snp.leftMargin).inset(20)
         }
     }
     
@@ -100,8 +100,7 @@ class AccountProgrammeLanguageSettingsCell: UITableViewCell {
         backgroundColor = .white
         addSubview(stackView)
         stackView.snp.makeConstraints { make in
-            make.left.leading.equalToSuperview().offset(12)
-        }
+            make.left.equalTo(self.contentView.safeAreaLayoutGuide.snp.leftMargin).inset(20)        }
     }
     
     

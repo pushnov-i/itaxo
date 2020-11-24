@@ -48,16 +48,14 @@ class SettingsTopHeaderViewComponent: UITableViewHeaderFooterView {
         headerSettingsLabel.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(50)
             make.width.equalTo(250)
-            //       make.top.equalTo(button.snp.bottom).offset(15)
-            //            make.leading.equalTo(contentView.snp.left).offset(20)
-            make.left.equalToSuperview().offset(12)
-            make.centerY.equalToSuperview().offset(25)
+            make.left.equalTo(self.contentView.safeAreaLayoutGuide.snp.leftMargin).inset(20)
+            make.centerY.equalToSuperview().offset(35)
         }
         addSubview(button)
         button.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(40)
             make.width.equalTo(40)
-            make.left.equalToSuperview().offset(12)
+            make.left.equalTo(self.contentView.safeAreaLayoutGuide.snp.leftMargin).inset(20)
             make.top.equalToSuperview().offset(10)
         }
     }
@@ -103,8 +101,7 @@ class SettingsAccountHeaderViewComponent: UITableViewHeaderFooterView {
         headerSettingsLabel.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(50)
             make.width.equalTo(325)
-            make.left.equalTo(12)
-            // make.leading.equalTo(view.snp.trailing).offset(20)
+            make.left.equalTo(self.contentView.safeAreaLayoutGuide.snp.leftMargin).inset(20)
             make.centerY.equalToSuperview()
         }
     }
@@ -150,7 +147,7 @@ class SettingsProgrammeHeaderViewComponent: UITableViewHeaderFooterView {
         headerSettingsLabel.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(50)
             make.width.equalTo(325)
-            make.left.equalTo(12)
+            make.left.equalTo(self.contentView.safeAreaLayoutGuide.snp.leftMargin).inset(20)
             make.centerY.equalToSuperview()
         }
         

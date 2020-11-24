@@ -96,7 +96,7 @@ class SettingsViewController: UIViewController{
             
             make.left.equalTo(self.view.safeAreaLayoutGuide.snp.leftMargin)
             make.right.equalTo(self.view.safeAreaLayoutGuide.snp.rightMargin)
-            make.top.equalTo( view.safeAreaLayoutGuide.snp.topMargin).inset(20)
+            make.top.equalTo( self.view.safeAreaLayoutGuide.snp.topMargin).inset(20)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottomMargin).inset(20)
         }
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
@@ -167,7 +167,7 @@ class SettingsViewController: UIViewController{
         
         footerView.addSubview(exitButton)
         exitButton.snp.makeConstraints{(make) -> Void in
-            make.left.equalTo(12)
+            make.left.equalTo(footerView.safeAreaLayoutGuide.snp.leftMargin).inset(20)
             make.height.equalTo(40)
             make.width.equalTo(120)
             make.centerY.equalToSuperview().offset(15)

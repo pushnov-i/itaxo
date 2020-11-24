@@ -38,7 +38,7 @@ class AccountSettingsCell: UITableViewCell {
         contentView.addSubview(imageView)
         imageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalTo(12)
+            make.left.equalTo(self.contentView.safeAreaLayoutGuide.snp.leftMargin).inset(20)
             make.height.equalTo(24)
             make.width.equalTo(24)
         }
