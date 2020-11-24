@@ -51,11 +51,13 @@
 		8C8BBDF22550DDBE00FB0AEC /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BBDE52550DDBD00FB0AEC /* Roboto-ThinItalic.ttf */; };
 		8C8BBDF32550DDBE00FB0AEC /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BBDE62550DDBD00FB0AEC /* Roboto-Bold.ttf */; };
 		8C8BBDF42550DDBE00FB0AEC /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BBDE72550DDBD00FB0AEC /* Roboto-BoldItalic.ttf */; };
+		8C96839A256D6AC00014DA5B /* RideListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C968399256D6AC00014DA5B /* RideListViewModel.swift */; };
 		8CB43FB4254C6B3200A1A065 /* HeaderAvatarNameVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB43FB3254C6B3200A1A065 /* HeaderAvatarNameVIew.swift */; };
 		8CBD3439256682A7003A0A57 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBD3438256682A7003A0A57 /* CoreDataManager.swift */; };
 		8CBD343F2566A703003A0A57 /* ItaxoTrip.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 8C47920C25655B3C007F61E6 /* ItaxoTrip.xcdatamodeld */; };
 		8CBD344D2566BE19003A0A57 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBD344C2566BE18003A0A57 /* User+CoreDataClass.swift */; };
 		8CBD344F2566BE3D003A0A57 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBD344E2566BE3D003A0A57 /* User+CoreDataProperties.swift */; };
+		8CEB18CB256D901200199402 /* CoreDataObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEB18CA256D901200199402 /* CoreDataObservable.swift */; };
 		8CF63E1425642F4D00643CEE /* UIView+Borders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF63E1325642F4D00643CEE /* UIView+Borders.swift */; };
 		9FB22AD6DB0CE764A77E747B /* Pods_itaxo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 723718595FDD7E863FC4992A /* Pods_itaxo.framework */; };
 /* End PBXBuildFile section */
@@ -110,10 +112,12 @@
 		8C8BBDE52550DDBD00FB0AEC /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-ThinItalic.ttf"; path = "Roboto/Roboto-ThinItalic.ttf"; sourceTree = SOURCE_ROOT; };
 		8C8BBDE62550DDBD00FB0AEC /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Bold.ttf"; path = "Roboto/Roboto-Bold.ttf"; sourceTree = SOURCE_ROOT; };
 		8C8BBDE72550DDBD00FB0AEC /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-BoldItalic.ttf"; path = "Roboto/Roboto-BoldItalic.ttf"; sourceTree = SOURCE_ROOT; };
+		8C968399256D6AC00014DA5B /* RideListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideListViewModel.swift; sourceTree = "<group>"; };
 		8CB43FB3254C6B3200A1A065 /* HeaderAvatarNameVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderAvatarNameVIew.swift; sourceTree = "<group>"; };
 		8CBD3438256682A7003A0A57 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		8CBD344C2566BE18003A0A57 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8CBD344E2566BE3D003A0A57 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8CEB18CA256D901200199402 /* CoreDataObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataObservable.swift; sourceTree = "<group>"; };
 		8CF63E1325642F4D00643CEE /* UIView+Borders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Borders.swift"; sourceTree = "<group>"; };
 		F54780FB957BCFB0159E60E4 /* Pods-itaxo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-itaxo.debug.xcconfig"; path = "Target Support Files/Pods-itaxo/Pods-itaxo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -254,6 +258,7 @@
 			children = (
 				8C0104842549C5E5003E1DA3 /* MenuOptionViewModel.swift */,
 				8C47C42D25544D7200DC3B68 /* SettingsViewModel.swift */,
+				8C968399256D6AC00014DA5B /* RideListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -279,6 +284,7 @@
 				8C19DCD3256BEEBC00CC4234 /* Payment+CoreDataProperties.swift */,
 				8C19DCD5256BEECE00CC4234 /* Drive+CoreDataClass.swift */,
 				8C19DCD7256BEEF200CC4234 /* Drive+CoreDataProperties.swift */,
+				8CEB18CA256D901200199402 /* CoreDataObservable.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -460,7 +466,9 @@
 				8CBD344D2566BE19003A0A57 /* User+CoreDataClass.swift in Sources */,
 				6694D6AB251CC33300575904 /* AppDelegate.swift in Sources */,
 				8C53E51C2554BAB100913EE9 /* HeaderSettingsCell.swift in Sources */,
+				8C96839A256D6AC00014DA5B /* RideListViewModel.swift in Sources */,
 				8C0104852549C5E5003E1DA3 /* MenuOptionViewModel.swift in Sources */,
+				8CEB18CB256D901200199402 /* CoreDataObservable.swift in Sources */,
 				8CBD3439256682A7003A0A57 /* CoreDataManager.swift in Sources */,
 				8C53E51A2554BA8C00913EE9 /* AccountProgrammeCitySettingsCell.swift in Sources */,
 				6694D6BF251CE00900575904 /* RootViewController.swift in Sources */,
@@ -558,7 +566,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -612,7 +620,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

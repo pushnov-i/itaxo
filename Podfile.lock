@@ -1,4 +1,5 @@
 PODS:
+  - Differentiator (4.0.1)
   - Firebase/Analytics (7.1.0):
     - Firebase/Core
   - Firebase/Core (7.1.0):
@@ -72,6 +73,10 @@ PODS:
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
+  - RxDataSources (4.0.1):
+    - Differentiator (~> 4.0)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
   - RxGoogleMaps (4.0.0):
     - GoogleMaps (~> 3)
     - RxCocoa (~> 5)
@@ -86,12 +91,14 @@ DEPENDENCIES:
   - GoogleMaps
   - GooglePlaces
   - RxCocoa (~> 5)
+  - RxDataSources (~> 4.0)
   - RxGoogleMaps
   - RxSwift (~> 5)
   - SnapKit (~> 5.0.0)
 
 SPEC REPOS:
   trunk:
+    - Differentiator
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -105,12 +112,14 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - RxCocoa
+    - RxDataSources
     - RxGoogleMaps
     - RxRelay
     - RxSwift
     - SnapKit
 
 SPEC CHECKSUMS:
+  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   Firebase: 78e8dd2e39d653de6270432ad84fe8b59f7bf4e8
   FirebaseAnalytics: 7f165a56dea86ddd5b8ce02af3bee982c683405c
   FirebaseCore: 20046127eef0fcb8fa25df7fc12f7b97d4e48611
@@ -124,11 +133,12 @@ SPEC CHECKSUMS:
   nanopb: 1bf24dd71191072e120b83dd02d08f3da0d65e53
   PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
   RxGoogleMaps: 5d8a91a26dc9e3f703c5be09424e3ecf7f607328
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: c995767fa8f06d651bf08735b06e257e409225a5
+PODFILE CHECKSUM: a9814cc47c7c54805dc8865b92dcd29f119c3992
 
 COCOAPODS: 1.9.3
