@@ -20,7 +20,7 @@ class SettingsViewModel {
         self.textInput = textInput
         self.image = UIImageView(image: UIImage(named: imageLabel!))
         self.image?.contentMode = .scaleAspectFit
-
+        
     }
     
     

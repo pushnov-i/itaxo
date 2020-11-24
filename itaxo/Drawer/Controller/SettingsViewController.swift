@@ -162,6 +162,12 @@ class SettingsViewController: UIViewController{
             button.layer.cornerRadius = 25
             button.isEnabled = true
             button.isUserInteractionEnabled = true
+            //adding shadow
+            button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+            button.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
+            button.layer.shadowOpacity = 1.0
+            button.layer.shadowRadius = 0.5
+            
             return button
         }()
         
@@ -173,6 +179,7 @@ class SettingsViewController: UIViewController{
             make.centerY.equalToSuperview().offset(15)
             
         }
+        
         view.addSubview(footerView)
         let tap = UITapGestureRecognizer(target: self, action: #selector(exitFromAccountSettings))
         exitButton.addGestureRecognizer(tap)

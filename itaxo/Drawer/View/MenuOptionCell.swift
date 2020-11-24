@@ -35,19 +35,19 @@ class MenuOptionCell: UITableViewCell {
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-        iconImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-        iconImageView.leftAnchor.constraint(equalTo: leftAnchor,constant: 12),
-        iconImageView.heightAnchor.constraint(equalToConstant: 24),
-        iconImageView.widthAnchor.constraint(equalToConstant: 24)
-            ])
+            iconImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            iconImageView.leftAnchor.constraint(equalTo: leftAnchor,constant: 12),
+            iconImageView.heightAnchor.constraint(equalToConstant: 24),
+            iconImageView.widthAnchor.constraint(equalToConstant: 24)
+        ])
         
         addSubview(descriptionLabel)
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-        descriptionLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-        descriptionLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor,constant: 12)
-          ])
+            descriptionLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            descriptionLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor,constant: 12)
+        ])
     }
     
     required init?(coder: NSCoder) {
