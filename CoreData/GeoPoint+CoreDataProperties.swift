@@ -16,10 +16,10 @@ extension GeoPoint {
         return NSFetchRequest<GeoPoint>(entityName: "GeoPoint")
     }
 
-    @NSManaged public var address: String?
+    @NSManaged public var address: String
     @NSManaged public var id: Int64
     @NSManaged public var lat: Double
     @NSManaged public var lon: Double
-    @NSManaged public var newRelationship: Drive?
+    @NSManaged public var newRelationship: Drive
 
 }

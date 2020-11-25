@@ -59,6 +59,8 @@
 		8CBD344F2566BE3D003A0A57 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBD344E2566BE3D003A0A57 /* User+CoreDataProperties.swift */; };
 		8CEB18CB256D901200199402 /* CoreDataObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEB18CA256D901200199402 /* CoreDataObservable.swift */; };
 		8CF63E1425642F4D00643CEE /* UIView+Borders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF63E1325642F4D00643CEE /* UIView+Borders.swift */; };
+		8CFFF32A256E7EDF0093E28C /* RideListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFFF329256E7EDF0093E28C /* RideListViewController.swift */; };
+		8CFFF32C256E7EF40093E28C /* RdieListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFFF32B256E7EF40093E28C /* RdieListCell.swift */; };
 		9FB22AD6DB0CE764A77E747B /* Pods_itaxo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 723718595FDD7E863FC4992A /* Pods_itaxo.framework */; };
 /* End PBXBuildFile section */
 
@@ -119,6 +121,8 @@
 		8CBD344E2566BE3D003A0A57 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8CEB18CA256D901200199402 /* CoreDataObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataObservable.swift; sourceTree = "<group>"; };
 		8CF63E1325642F4D00643CEE /* UIView+Borders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Borders.swift"; sourceTree = "<group>"; };
+		8CFFF329256E7EDF0093E28C /* RideListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideListViewController.swift; sourceTree = "<group>"; };
+		8CFFF32B256E7EF40093E28C /* RdieListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RdieListCell.swift; sourceTree = "<group>"; };
 		F54780FB957BCFB0159E60E4 /* Pods-itaxo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-itaxo.debug.xcconfig"; path = "Target Support Files/Pods-itaxo/Pods-itaxo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -234,6 +238,7 @@
 		8C01047425499D4A003E1DA3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8CFFF329256E7EDF0093E28C /* RideListViewController.swift */,
 				8C01047E25499DD6003E1DA3 /* MenuViewController.swift */,
 				8C01047C25499DB0003E1DA3 /* HomeViewController.swift */,
 				8C47C42F2554644700DC3B68 /* SettingsViewController.swift */,
@@ -244,6 +249,7 @@
 		8C01047725499D52003E1DA3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8CFFF32B256E7EF40093E28C /* RdieListCell.swift */,
 				8C0104822549B7BE003E1DA3 /* MenuOptionCell.swift */,
 				8CB43FB3254C6B3200A1A065 /* HeaderAvatarNameVIew.swift */,
 				8C53E5172554BA5000913EE9 /* AccountSettingsCell.swift */,
@@ -256,9 +262,9 @@
 		8C01047825499D54003E1DA3 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				8C968399256D6AC00014DA5B /* RideListViewModel.swift */,
 				8C0104842549C5E5003E1DA3 /* MenuOptionViewModel.swift */,
 				8C47C42D25544D7200DC3B68 /* SettingsViewModel.swift */,
-				8C968399256D6AC00014DA5B /* RideListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -466,7 +472,9 @@
 				8CBD344D2566BE19003A0A57 /* User+CoreDataClass.swift in Sources */,
 				6694D6AB251CC33300575904 /* AppDelegate.swift in Sources */,
 				8C53E51C2554BAB100913EE9 /* HeaderSettingsCell.swift in Sources */,
+				8CFFF32C256E7EF40093E28C /* RdieListCell.swift in Sources */,
 				8C96839A256D6AC00014DA5B /* RideListViewModel.swift in Sources */,
+				8CFFF32A256E7EDF0093E28C /* RideListViewController.swift in Sources */,
 				8C0104852549C5E5003E1DA3 /* MenuOptionViewModel.swift in Sources */,
 				8CEB18CB256D901200199402 /* CoreDataObservable.swift in Sources */,
 				8CBD3439256682A7003A0A57 /* CoreDataManager.swift in Sources */,

@@ -10,3 +10,12 @@ import Foundation
 
 import RxDataSources
 
+struct RideListModel {
+    let dateTime: String
+    let lengthRide: String
+    let fromPlace : String
+    let toPlace : String
+    let price : String
+}
+
+

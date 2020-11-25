@@ -17,13 +17,13 @@ extension Payment {
     }
 
     @NSManaged public var amount: Double
-    @NSManaged public var created_at: Date?
+    @NSManaged public var created_at: Date
     @NSManaged public var id: Int64
     @NSManaged public var status: Int16
-    @NSManaged public var token: String?
-    @NSManaged public var type: String?
-    @NSManaged public var updated_at: Date?
-    @NSManaged public var newRelationship: Drive?
-    @NSManaged public var newRelationship1: Drive?
+    @NSManaged public var token: String
+    @NSManaged public var type: String
+    @NSManaged public var updated_at: Date
+    @NSManaged public var newRelationship: Drive
+    @NSManaged public var newRelationship1: Drive
 
 }
