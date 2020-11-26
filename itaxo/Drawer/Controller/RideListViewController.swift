@@ -18,30 +18,39 @@ class RideListViewController :  UIViewController, UICollectionViewDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .light
+        configureCollectionView()
+        
+    }
+    
+    func configureCollectionView() {
+        //MARK Cant add constraits for collection view by Snapkit makeCostrains
+        
         // Create an instance of UICollectionViewFlowLayout since you cant
         // Initialize UICollectionView without a layout
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: view.frame.width, height: 150)
+        layout.itemSize = CGSize(width: view.frame.width, height: 300)
         
         collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(RideListCell.self, forCellWithReuseIdentifier: reuseIdentifierRideListCell)
-        
-        //        collectionView.snp.makeConstraints{(make) -> Void in
+        collectionView.backgroundColor = .white
+        view.backgroundColor = yellowBackground
+        //                collectionView.snp.makeConstraints{(make) -> Void in
         //
-        //            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.leftMargin)
-        //            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.rightMargin)
-        //            make.top.equalTo( self.view.safeAreaLayoutGuide.snp.topMargin).inset(20)
-        //            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottomMargin).inset(20)
-        //        }
+        //                    make.left.equalTo(self.view.safeAreaLayoutGuide.snp.leftMargin)
+        //                    make.right.equalTo(self.view.safeAreaLayoutGuide.snp.rightMargin)
+        //                    make.top.equalTo( self.view.safeAreaLayoutGuide.snp.topMargin).inset(20)
+        //                    make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottomMargin).inset(20)
+        //                }
         view.addSubview(collectionView)
         
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        2
+        4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

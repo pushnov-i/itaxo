@@ -132,7 +132,7 @@ class SettingsViewController: UIViewController{
         if let viewModel = viewModel {
             headerView.configure(withViewModel: viewModel)
         }
-        headerView.addBorder( side: .bottom, thickness: 10, color: UIColor.black)
+       // headerView.addBorder( side: .bottom, thickness: 10, color: UIColor.black)
         return headerView
     }
     

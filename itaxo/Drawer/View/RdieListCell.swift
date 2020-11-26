@@ -23,13 +23,17 @@ class RideListCell : UICollectionViewCell {
         lengthRideView.contentMode = .scaleAspectFit
         lengthRideView.clipsToBounds = true
         lengthRideView.text = "11.1 км"
+        lengthRideView.textAlignment = .right
+        //        lengthRideView.snp.makeConstraints{ (make)-> Void in
+        //            make.trailing.equalToSuperview()
+        //        }
         return lengthRideView
     }()
     
     lazy var dateLengthStackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
-        stack.spacing = 120
+        stack.spacing = 100
         stack.alignment = .fill
         stack.distribution = .fillEqually
         stack.contentMode = .scaleAspectFit
@@ -39,22 +43,72 @@ class RideListCell : UICollectionViewCell {
         return stack
     }()
     
-    override init(frame:CGRect) {
     
+    let fromLocationImageLabel: UIImageView = {
+        let image = UIImage(named: "pinFrom")
+        let fromLocationIconView = UIImageView(image: image)
+       // self.view .addSubview(fromLocationIconView)
+        
+       // fromLocationIconView.contentMode = .scaleAspectFit
+        fromLocationIconView.clipsToBounds = true
+        return fromLocationIconView
+    }()
+    
+    var fromLocationTextLabel: UILabel = {
+        let fromLocationTextView = UILabel()
+        fromLocationTextView.text = "Київ, Гагаріна Юрія проспект, 20"
+        fromLocationTextView.contentMode = .scaleAspectFit
+        fromLocationTextView.clipsToBounds = true
+        return fromLocationTextView
+    }()
+    
+    lazy var fromLocationStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .horizontal
+        stack.spacing = 20
+        stack.alignment = .fill
+        stack.distribution = .fillProportionally
+        stack.contentMode = .scaleAspectFit
+        stack.addArrangedSubview(fromLocationImageLabel)
+        stack.addArrangedSubview(fromLocationTextLabel)
+        return stack
+    }()
+    
+    
+    
+    override init(frame:CGRect) {
+        
         super.init(frame: .zero)
         contentView.addSubview(dateLengthStackView)
-        dateLengthStackView.addBorder( side: .bottom, thickness: 10, color: UIColor.black)
+        contentView.addSubview(fromLocationStackView)
+        dateLengthStackView.addViewBackedBorder(side: .bottom, thickness: 1, color: borderColor!)
         dateLengthStackView.snp.makeConstraints{(make) -> Void in
-            make.height.equalTo(100)
-            make.width.equalTo(360)
-            make.centerY.equalToSuperview()
+            
+            make.height.equalTo(30)
+            make.width.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-75)
+            make.centerX.equalToSuperview()
             
         }
-}
+        
+        fromLocationStackView.addViewBackedBorder(side: .bottom, thickness: 1, color: borderColor!)
+        fromLocationStackView.snp.makeConstraints{(make) -> Void in
+            
+            make.height.equalTo(30)
+            make.width.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-10)
+            make.centerX.equalToSuperview()
+            
+        }
+        
+        
+        
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-}
-
-
+    }
+    
+    
 }
