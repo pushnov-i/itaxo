@@ -65,6 +65,7 @@ class MenuOptionCell: UITableViewCell {
         descriptionLabel.text = viewModel.description
         iconImageView.image = UIImage(named:viewModel.image)
         
+        
     }
 }
 

@@ -36,7 +36,7 @@ class SettingsTopHeaderViewComponent: UITableViewHeaderFooterView {
         let buttonView = UIButton()
         buttonView.backgroundColor = .clear
         buttonView.layer.cornerRadius = 25
-        buttonView.setImage(UIImage(named: "cancel icon"), for: .normal)
+        buttonView.setImage(UIImage(named: "settingsMenu/cancel icon"), for: .normal)
         return buttonView
     }()
     

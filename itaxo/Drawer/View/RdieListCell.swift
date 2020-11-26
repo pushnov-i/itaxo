@@ -45,7 +45,7 @@ class RideListCell : UICollectionViewCell {
     
     
     let fromLocationImageLabel: UIImageView = {
-        let image = UIImage(named: "pinFrom")
+        let image = UIImage(named: "rideList/pinTo")
         let fromLocationIconView = UIImageView(image: image)
        // self.view .addSubview(fromLocationIconView)
         

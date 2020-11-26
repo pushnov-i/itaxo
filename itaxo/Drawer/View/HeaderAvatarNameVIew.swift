@@ -69,7 +69,7 @@ class HeaderViewComponent: UITableViewHeaderFooterView {
     
     func configure(withViewModel viewModel: MenuOptionRepresentable) {
         userNameLabel.text = viewModel.description
-        avatarImageView.image = UIImage(named:viewModel.image)!
+        avatarImageView.image = UIImage(named:viewModel.image)
         self.backgroundView = UIView(frame: self.bounds)
         self.backgroundView!.backgroundColor = UIColor(hex: "#FFDE43ff")
         print(viewModel.image)

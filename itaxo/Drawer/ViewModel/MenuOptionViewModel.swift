@@ -42,7 +42,7 @@ class DrawerViewModel {
         
         var image: String {
             switch userCredentials.self {
-            case .User: return "avatar"
+            case .User: return "drawerMenu/avatar"
             }
         }
         var state: Bool{
@@ -58,14 +58,14 @@ class DrawerViewModel {
         
         var image: String{
             switch menuOption.self {
-            case .Trips: return  "arrows icon"
-            case .Payment:return "card icon"
-            case .Help: return "help icon"
-            case .AboutService: return "Info icon"
-            case .EcoProjects: return "leaf icon"
-            case .Partners: return "handshake icon"
-            case .DriverRegistration: return "driver icon"
-            case .MapOfGasStation: return "petroil station icon"
+            case .Trips: return  "drawerMenu/arrows icon"
+            case .Payment:return "drawerMenu/card icon"
+            case .Help: return "drawerMenu/help icon"
+            case .AboutService: return "drawerMenu/Info icon"
+            case .EcoProjects: return "drawerMenu/leaf icon"
+            case .Partners: return "drawerMenu/handshake icon"
+            case .DriverRegistration: return "drawerMenu/driver icon"
+            case .MapOfGasStation: return "drawerMenu/petroil station icon"
             }
         }
         

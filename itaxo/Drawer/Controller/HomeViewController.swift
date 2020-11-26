@@ -16,7 +16,6 @@ class HomeController: UIViewController {
     var mapView: UIView?
     var menuController: UIViewController!
     var isExpanded = false
-    
     var menuWidth: CGFloat = 0
     
     override func viewDidLoad() {
@@ -45,11 +44,12 @@ class HomeController: UIViewController {
         }
         
         // добавляем хендлер тапа
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleMenu))
+        //let doubleTap =
+        let handleDrawerMenuTap = UITapGestureRecognizer(target: self, action: #selector(handleMenu))
         // mapView.addGestureRecognizer(tap)
-        view.addGestureRecognizer(tap)
-        tap.rx.event.bind(onNext: { recognizer in
-            print("touches: \(recognizer.numberOfTouches)")
+        menuController.view.addGestureRecognizer(handleDrawerMenuTap)
+        handleDrawerMenuTap.rx.event.bind(onNext: { recognizer in
+            print("handle drawer menu touches number: \(recognizer.numberOfTouches)")
         }).disposed(by: disposeBag)
         
         
@@ -89,7 +89,8 @@ class HomeController: UIViewController {
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
                 self.menuController.view.frame.origin.x = 0
                 self.menuController.view.frame.origin.y = 20
-                // TODO        //    self.mapView?.alpha = 0.5
+                // TODO
+                self.mapView?.alpha = 1
                 self.menuController.view.snp.makeConstraints { maker in
                     maker.width.equalTo(self.view).multipliedBy(0.8)
                     maker.edges.equalTo(self.view)
@@ -100,7 +101,7 @@ class HomeController: UIViewController {
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
                 self.menuController.view.frame.origin.x = self.menuWidth * -1
                 self.menuController.view.frame.origin.y = 30
-                self.mapView? .alpha = 1
+                // self.mapView? .alpha = 1
             }, completion: nil)
         }
     }
@@ -111,7 +112,8 @@ extension HomeController: HomeControllerDelegate {
     //handle menu is responsible for state
     @objc func handleMenu() {
         if !isExpanded {
-            configureMenuController()
+            dismiss(animated: true, completion: nil)
+            // configureMenuController()
         }
         
         isExpanded = !isExpanded

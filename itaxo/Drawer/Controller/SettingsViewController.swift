@@ -148,7 +148,7 @@ class SettingsViewController: UIViewController{
     }
     
     func configureFooterViewButtonExit() -> UIView? {
-        let cancelImageView = UIImage(named: "exitLabel")
+        let cancelImageView = UIImage(named: "settingsMenu/exitLabel")
         
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
         footerView.isUserInteractionEnabled = true
@@ -237,7 +237,7 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as!
             AccountSettingsCell
             
-            cell.configure(withViewModel: SettingsViewModel(textInput: userName, imageLabel: "avatar icon"))
+            cell.configure(withViewModel: SettingsViewModel(textInput: userName, imageLabel: "settingsMenu/avatar icon"))
             cell.addField(testInput: userName)
             
             return cell
@@ -246,7 +246,7 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as!
             AccountSettingsCell
             
-            cell.configure(withViewModel: SettingsViewModel(textInput: userPhone, imageLabel: "tel icon"))
+            cell.configure(withViewModel: SettingsViewModel(textInput: userPhone, imageLabel: "settingsMenu/tel icon"))
             cell.addField(testInput: userPhone)
             
             return cell
@@ -255,7 +255,7 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as!
             AccountSettingsCell
             
-            cell.configure(withViewModel: SettingsViewModel(textInput: userEmail, imageLabel: "mail"))
+            cell.configure(withViewModel: SettingsViewModel(textInput: userEmail, imageLabel: "settingsMenu/mail"))
             cell.addField(testInput: userEmail)
             
             return cell
@@ -264,7 +264,7 @@ extension SettingsViewController: UITableViewDelegate,UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierAccountCell, for: indexPath) as!
             AccountSettingsCell
             
-            cell.configure(withViewModel: SettingsViewModel(textInput: userPassword, imageLabel: "key"))
+            cell.configure(withViewModel: SettingsViewModel(textInput: userPassword, imageLabel: "settingsMenu/key"))
             cell.addField(testInput: userPassword)
             
             return cell

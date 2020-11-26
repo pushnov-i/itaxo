@@ -14,6 +14,7 @@ class AccountProgrammeCitySettingsCell:UITableViewCell {
         let iconView = UILabel()
         iconView.contentMode = .scaleAspectFit
         iconView.clipsToBounds = true
+        
         return iconView
     }()
     
@@ -24,16 +25,18 @@ class AccountProgrammeCitySettingsCell:UITableViewCell {
         return iconView
     }()
     
-    lazy var stackView: UIStackView = {
+    lazy var stackView: UIView = {
+        
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 5.0
         stack.alignment = .fill
-        stack.distribution = .fillEqually
+        stack.distribution = .fillProportionally
         stack.contentMode = .scaleAspectFit
-        [self.cityLabel,
-         self.cityTextLabel,
-            ].forEach { stack.addArrangedSubview($0) }
+        stack.addArrangedSubview(cityLabel)
+        stack.addArrangedSubview(cityTextLabel)
+        
+        
         return stack
     }()
     
@@ -42,9 +45,11 @@ class AccountProgrammeCitySettingsCell:UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         backgroundColor = .white
+        stackView.clipsToBounds = true
         addSubview(stackView)
         stackView.snp.makeConstraints { make in
             make.left.equalTo(self.contentView.safeAreaLayoutGuide.snp.leftMargin).inset(20)
+            make.top.equalTo(self.contentView.safeAreaLayoutGuide.snp.topMargin)
         }
     }
     
@@ -100,7 +105,9 @@ class AccountProgrammeLanguageSettingsCell: UITableViewCell {
         backgroundColor = .white
         addSubview(stackView)
         stackView.snp.makeConstraints { make in
-            make.left.equalTo(self.contentView.safeAreaLayoutGuide.snp.leftMargin).inset(20)        }
+            make.left.equalTo(self.contentView.safeAreaLayoutGuide.snp.leftMargin).inset(20)
+            make.top.equalTo(self.contentView.safeAreaLayoutGuide.snp.topMargin)
+        }
     }
     
     

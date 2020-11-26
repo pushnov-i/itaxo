@@ -76,10 +76,10 @@ class SettingsViewModel {
         
         var image: String? {
             switch accountSettings {
-            case .UserName : return "avatar icon"
-            case .UserPhoneNumber : return "tel icon"
-            case .UserEmail: return "mail"
-            case .UserPassword : return "key"
+            case .UserName : return "settingsMenu/avatar icon"
+            case .UserPhoneNumber : return "settingsMenu/tel icon"
+            case .UserEmail: return "settingsMenu/mail"
+            case .UserPassword : return "settingsMenu/key"
             }
         }
     }
