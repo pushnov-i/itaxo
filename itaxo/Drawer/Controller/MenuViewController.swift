@@ -16,7 +16,7 @@ class MenuController: UIViewController {
     let disposeBag = DisposeBag()
     //MARK: - Properties
     var tableView : UITableView!
-    //let tap = UITapGestureRecognizer(target: self, action: #selector(handleSettingsMenu))
+   
     // MARK - Init
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +25,9 @@ class MenuController: UIViewController {
         
         
         // добавляем хендлер тапа
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleSettingsMenu))
-        tableView.tableHeaderView?.addGestureRecognizer(tap)
-        tap.rx.event.bind(onNext: { recognizer in
+        let headerTap = UITapGestureRecognizer(target: self, action: #selector(handleSettingsMenu))
+        tableView.tableHeaderView?.addGestureRecognizer(headerTap)
+        headerTap.rx.event.bind(onNext: { recognizer in
             print("touches headerview : \(recognizer.numberOfTouches)")
         }).disposed(by: disposeBag)
         
@@ -55,7 +55,7 @@ class MenuController: UIViewController {
         tableView.separatorStyle = .none
         tableView.rowHeight = 50
         tableView.isScrollEnabled = false
-        
+        tableView.isUserInteractionEnabled = true
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.leading.equalToSuperview()
@@ -93,44 +93,54 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource{
         8
     }
     
-     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             
-//            func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
-//                     shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-//               // Don't recognize a single tap until a double-tap fails.
-//               if gestureRecognizer == self.tap &&
-//                      otherGestureRecognizer == self.doubleTapGesture {
-//                  return true
-//               }
-//               return false
-//            }
             
-//            let myScreenEdgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action:#selector(handleScreenEdgePan))
-//            myScreenEdgePanGestureRecognizer.delegate = self
-//                // Configure the gesture recognizer and attach it to the view.
-//
-//            ...
 //
 //            func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-//                guard let myView = myScreenEdgePanGestureRecognizer.view,
+//                guard let drawerView = handleDrawerMenuTap.view,
 //                      let otherView = otherGestureRecognizer.view else { return false }
-//
+//                
 //                return gestureRecognizer == myScreenEdgePanGestureRecognizer &&
-//                       otherView.isDescendant(of: myView)}1
-//
-//
-            tableView.cellForRow(at: indexPath)?.contentView
-                
-                .rx
-            .tapGesture()
-            .when(.recognized)
-            .subscribe(onNext: { _ in
-              handleRideList()
-            })
-            .disposed(by: disposeBag)
+//                       otherView.isDescendant(of: drawerView)}
+//            
+//            
+            //            func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+            //                     shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+            //               // Don't recognize a single tap until a double-tap fails.
+            //               if gestureRecognizer == self.tap &&
+            //                      otherGestureRecognizer == self.doubleTapGesture {
+            //                  return true
+            //               }
+            //               return false
+            //            }
             
-
+            //            let myScreenEdgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action:#selector(handleScreenEdgePan))
+            //            myScreenEdgePanGestureRecognizer.delegate = self
+            //                // Configure the gesture recognizer and attach it to the view.
+            //
+            //            ...
+            //
+            //            func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+            //                guard let myView = myScreenEdgePanGestureRecognizer.view,
+            //                      let otherView = otherGestureRecognizer.view else { return false }
+            //
+            //                return gestureRecognizer == myScreenEdgePanGestureRecognizer &&
+            //                       otherView.isDescendant(of: myView)}1
+            //
+            //
+            //            tableView.cellForRow(at: indexPath)?.contentView
+            //
+            //                .rx
+            //            .tapGesture()
+            //            .when(.recognized)
+            //            .subscribe(onNext: { _ in
+            //              handleRideList()
+            //            })
+            //            .disposed(by: disposeBag)
+            //
+            
         }
         print(indexPath.row)
     }
@@ -166,6 +176,14 @@ extension MenuController {
         self.present(settingsViewController, animated:true, completion:nil)
     }
     
+}
+extension MenuController : UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if touch.view!.isDescendant(of: tableView) {
+            return false
+        }
+        return true
+    }
 }
 
 

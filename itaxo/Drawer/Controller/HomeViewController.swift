@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import SnapKit
 
-class HomeController: UIViewController {
+class HomeController: UIViewController, UIGestureRecognizerDelegate {
     let disposeBag = DisposeBag()
     weak var delegate: HomeControllerDelegate?
     var mapView: UIView?
@@ -46,10 +46,11 @@ class HomeController: UIViewController {
         // добавляем хендлер тапа
         //let doubleTap =
         let handleDrawerMenuTap = UITapGestureRecognizer(target: self, action: #selector(handleMenu))
+        handleDrawerMenuTap.delegate = self
         // mapView.addGestureRecognizer(tap)
         menuController.view.addGestureRecognizer(handleDrawerMenuTap)
         handleDrawerMenuTap.rx.event.bind(onNext: { recognizer in
-            print("handle drawer menu touches number: \(recognizer.numberOfTouches)")
+            print("handle drwer menu touches number: \(recognizer.numberOfTouches)")
         }).disposed(by: disposeBag)
         
         
@@ -122,3 +123,5 @@ extension HomeController: HomeControllerDelegate {
     
     
 }
+
+
