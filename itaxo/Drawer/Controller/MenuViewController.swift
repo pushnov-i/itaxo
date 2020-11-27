@@ -12,7 +12,7 @@ import SnapKit
 
 private let reuseIdentifier = "MenuOptionCell"
 
-class MenuController: UIViewController {
+class MenuViewController: UIViewController {
     let disposeBag = DisposeBag()
     //MARK: - Properties
     var tableView : UITableView!
@@ -85,15 +85,22 @@ class MenuController: UIViewController {
         }
         tableView.tableHeaderView = headerView
     }
+    
+    func shouldTapRow(_ touch: CGPoint) -> Bool {
+        guard let indexPath = tableView.indexPathForRow(at: touch) else { return false }
+        tableView(self.tableView, didSelectRowAt: indexPath)
+        return true
+    }
 }
 
-extension MenuController: UITableViewDelegate, UITableViewDataSource{
+extension MenuViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         8
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selected \(indexPath)")
         if indexPath.row == 0 {
             
             
@@ -164,7 +171,7 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource{
     }
 }
 
-extension MenuController {
+extension MenuViewController {
     
     @objc func handleSettingsMenu() {
         let settingsViewController = SettingsViewController()
@@ -177,7 +184,7 @@ extension MenuController {
     }
     
 }
-extension MenuController : UIGestureRecognizerDelegate {
+extension MenuViewController : UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         if touch.view!.isDescendant(of: tableView) {
             return false

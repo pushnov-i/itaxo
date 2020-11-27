@@ -10,11 +10,11 @@ import UIKit
 import RxSwift
 import SnapKit
 
-class HomeController: UIViewController, UIGestureRecognizerDelegate {
+class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     let disposeBag = DisposeBag()
     weak var delegate: HomeControllerDelegate?
     var mapView: UIView?
-    var menuController: UIViewController!
+    var menuController: MenuViewController!
     var isExpanded = false
     var menuWidth: CGFloat = 0
     
@@ -37,7 +37,7 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
         view.addSubview(mapViewController.view)
         mapView.didMoveToWindow()
         mapViewController.didMove(toParent: self)
-        mapViewController.menuButton.addTarget(self, action: #selector(handleMenu), for: .touchUpInside)
+        mapViewController.menuButton.addTarget(self, action: #selector(toggleMenu), for: .touchUpInside)
         
         mapView.snp.makeConstraints { maker in
             maker.edges.equalTo(view)
@@ -45,22 +45,19 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
         
         // добавляем хендлер тапа
         //let doubleTap =
-        let handleDrawerMenuTap = UITapGestureRecognizer(target: self, action: #selector(handleMenu))
+        let handleDrawerMenuTap = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
         handleDrawerMenuTap.delegate = self
-        // mapView.addGestureRecognizer(tap)
+
+        self.menuController = MenuViewController()
+        guard let menuView = menuController.view else { return }
+
+        
         menuController.view.addGestureRecognizer(handleDrawerMenuTap)
         handleDrawerMenuTap.rx.event.bind(onNext: { recognizer in
             print("handle drwer menu touches number: \(recognizer.numberOfTouches)")
         }).disposed(by: disposeBag)
         
         
-        //adding menu view controller
-        
-        guard let menuController = menuController,
-            let menuView = menuController.view
-            else { return }
-        
-        self.menuController = menuController
         addChild(menuController)
         view.addSubview(menuView)
         menuController.didMove(toParent: self)
@@ -76,11 +73,11 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
     
     func configureMenuController() {
         //add our menu controller
-        menuController = MenuController()
-        menuController.view.frame.origin.x = CGFloat(self.menuWidth * -1)
-        view.addSubview(menuController.view)
-        menuController.didMove(toParent: self)
-        print("configure MenuController")
+//        menuController = MenuController()
+//        menuController.view.frame.origin.x = CGFloat(self.menuWidth * -1)
+//        view.addSubview(menuController.view)
+//        menuController.didMove(toParent: self)
+//        print("configure MenuController")
     }
     
     /// Perform animation for showing and  folding drawer view
@@ -89,7 +86,7 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
             //show Drawer menu
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
                 self.menuController.view.frame.origin.x = 0
-                self.menuController.view.frame.origin.y = 20
+                self.menuController.view.frame.origin.y = 0
                 // TODO
                 self.mapView?.alpha = 1
                 self.menuController.view.snp.makeConstraints { maker in
@@ -101,24 +98,35 @@ class HomeController: UIViewController, UIGestureRecognizerDelegate {
             //hide Drawer menu
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
                 self.menuController.view.frame.origin.x = self.menuWidth * -1
-                self.menuController.view.frame.origin.y = 30
+                self.menuController.view.frame.origin.y = 0
                 // self.mapView? .alpha = 1
             }, completion: nil)
         }
     }
 }
 
-extension HomeController: HomeControllerDelegate {
+extension HomeViewController: HomeControllerDelegate {
     
     //handle menu is responsible for state
-    @objc func handleMenu() {
+    
+    @objc func toggleMenu() {
         if !isExpanded {
             dismiss(animated: true, completion: nil)
             // configureMenuController()
         }
-        
         isExpanded = !isExpanded
         showMenuController(shouldExpand: isExpanded)
+        
+    }
+    
+    @objc func handleTap(sender: UIGestureRecognizer) {
+        
+        let pointOfTap = sender.location(in: menuController.tableView)
+        
+        if !menuController.shouldTapRow(pointOfTap) {
+            toggleMenu()
+        }
+
     }
     
     

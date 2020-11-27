@@ -8,7 +8,9 @@
 import UIKit
 
 protocol HomeControllerDelegate: class {
-    func handleMenu()
+    func handleTap(sender: UIGestureRecognizer)
+    func toggleMenu()
+    
 }
 
 protocol MenuOptionRepresentable {
