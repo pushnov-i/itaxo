@@ -9,6 +9,6 @@ target 'itaxo' do
     pod 'GooglePlaces'
     pod 'RxGoogleMaps'
     pod 'Firebase/Analytics'
-    pod 'RxDataSources', '~> 4.0'к
+    pod 'RxDataSources', '~> 4.0'
 	
 end
