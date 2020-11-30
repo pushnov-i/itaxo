@@ -26,17 +26,18 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
     
     
     func configureCollectionView() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
         
         // Create an instance of UICollectionViewFlowLayout since you cant
         // Initialize UICollectionView without a layout
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.itemSize = CGSize(width: view.frame.width, height: 200)
-        
+        layout.headerReferenceSize = CGSize(width: view.frame.width, height: 100)
         collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.dataSource = self
-        collectionView.delegate = self
+        
         collectionView.register(RideListCell.self, forCellWithReuseIdentifier: reuseIdentifierRideListCell)
         collectionView.register(RideListHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
         collectionView.backgroundColor = .white
@@ -53,14 +54,30 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: headerIdentifier, for: indexPath) as? RideListHeaderView else{ return fatalError("error") as! UICollectionReusableView}
-        return header
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier, for: indexPath) as! RideListHeaderView
+           // headerView.titleLabel.text = "Headers"
+           // headerView.backgroundColor = UIColor.red
+            return headerView
+        default:
+            assert(false, "Unexpected element kind")
+        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return .init(width: view.frame.width, height: 100)
-    }
+    
+//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+////        let header = collectionView.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: headerIdentifier, for: indexPath) as! RideListHeaderView
+////        return header
+////
+//
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//        return .init(width: view.frame.width, height: 100)
+//    }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         4
