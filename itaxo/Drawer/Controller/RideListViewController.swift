@@ -59,8 +59,8 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
         switch kind {
         case UICollectionView.elementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier, for: indexPath) as! RideListHeaderView
-           // headerView.titleLabel.text = "Headers"
-           // headerView.backgroundColor = UIColor.red
+            // headerView.titleLabel.text = "Headers"
+            // headerView.backgroundColor = UIColor.red
             return headerView
         default:
             assert(false, "Unexpected element kind")
@@ -68,16 +68,16 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
     }
     
     
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-////        let header = collectionView.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: headerIdentifier, for: indexPath) as! RideListHeaderView
-////        return header
-////
-//
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-//        return .init(width: view.frame.width, height: 100)
-//    }
+    //    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    ////        let header = collectionView.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: headerIdentifier, for: indexPath) as! RideListHeaderView
+    ////        return header
+    ////
+    //
+    //    }
+    //
+    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    //        return .init(width: view.frame.width, height: 100)
+    //    }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         4

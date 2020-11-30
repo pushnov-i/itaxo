@@ -131,7 +131,7 @@ class RideListCell : UICollectionViewCell {
         fromLocationTextView.clipsToBounds = true
         return fromLocationTextView
     }()
-
+    
     lazy var paymentStackView: UIStackView = {
         let placeholder = UIView()
         placeholder.setContentHuggingPriority(.defaultLow, for: .horizontal)
@@ -142,7 +142,7 @@ class RideListCell : UICollectionViewCell {
         stack.axis = .horizontal
         stack.spacing = 5
         stack.alignment = .trailing
-       // stack.distribution = .equalSpacing
+        // stack.distribution = .equalSpacing
         stack.contentMode = .scaleAspectFit
         stack.addArrangedSubview(currencyIcon)
         stack.addArrangedSubview(priceLabel)
@@ -260,7 +260,7 @@ class RideListCell : UICollectionViewCell {
         }
         
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

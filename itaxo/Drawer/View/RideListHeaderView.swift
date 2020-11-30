@@ -50,15 +50,15 @@ class RideListHeaderView: UICollectionReusableView {
         headerRideListLabel.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(50)
             make.width.equalTo(250)
-           // make.left.equalTo(self.inputView!.safeAreaLayoutGuide.snp.leftMargin).inset(20)
+            // make.left.equalTo(self.inputView!.safeAreaLayoutGuide.snp.leftMargin).inset(20)
             make.centerY.equalToSuperview().offset(35)
         }
-
+        
         addSubview(button)
         button.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(40)
             make.width.equalTo(40)
-           // make.left.equalTo(self.inputView!.safeAreaLayoutGuide.snp.leftMargin).inset(20)
+            // make.left.equalTo(self.inputView!.safeAreaLayoutGuide.snp.leftMargin).inset(20)
             make.top.equalToSuperview().offset(10)
         }
     }
