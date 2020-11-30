@@ -48,8 +48,6 @@ class RideListCell : UICollectionViewCell {
     let fromLocationImageLabel: UIImageView = {
         let image = UIImage(named: "rideList/pinFrom")
         let fromLocationIconView = UIImageView(image: image)
-       // self.view .addSubview(fromLocationIconView)
-        
         fromLocationIconView.contentMode = .scaleAspectFit
         fromLocationIconView.clipsToBounds = true
         return fromLocationIconView
@@ -63,23 +61,21 @@ class RideListCell : UICollectionViewCell {
         return fromLocationTextView
     }()
     let toLocationImageLabel: UIImageView = {
-          let image = UIImage(named: "rideList/pinTo")
-          let fromLocationIconView = UIImageView(image: image)
-         // self.view .addSubview(fromLocationIconView)
-          
-          fromLocationIconView.contentMode = .scaleAspectFit
-          fromLocationIconView.clipsToBounds = true
-          return fromLocationIconView
-      }()
-      
-      var toLocationTextLabel: UILabel = {
-          let fromLocationTextView = UILabel()
-          fromLocationTextView.text = "Київ, Парк Дружби народів"
-          fromLocationTextView.contentMode = .scaleAspectFit
-          fromLocationTextView.clipsToBounds = true
-          return fromLocationTextView
-      }()
-      
+        let image = UIImage(named: "rideList/pinTo")
+        let fromLocationIconView = UIImageView(image: image)
+        fromLocationIconView.contentMode = .scaleAspectFit
+        fromLocationIconView.clipsToBounds = true
+        return fromLocationIconView
+    }()
+    
+    var toLocationTextLabel: UILabel = {
+        let fromLocationTextView = UILabel()
+        fromLocationTextView.text = "Київ, Парк Дружби народів"
+        fromLocationTextView.contentMode = .scaleAspectFit
+        fromLocationTextView.clipsToBounds = true
+        return fromLocationTextView
+    }()
+    
     
     
     lazy var fromLocationStackView: UIStackView = {
@@ -110,31 +106,31 @@ class RideListCell : UICollectionViewCell {
     }()
     
     let currencyIcon: UIImageView = {
-         let image = UIImage(named: "rideList/UAHIcon")
-         let fromLocationIconView = UIImageView(image: image)
+        let image = UIImage(named: "rideList/UAHIcon")
+        let fromLocationIconView = UIImageView(image: image)
         // self.view .addSubview(fromLocationIconView)
-         
-         fromLocationIconView.contentMode = .scaleAspectFit
-         fromLocationIconView.clipsToBounds = true
-         return fromLocationIconView
-     }()
+        
+        fromLocationIconView.contentMode = .scaleAspectFit
+        fromLocationIconView.clipsToBounds = true
+        return fromLocationIconView
+    }()
     let paymentMetodIcon: UIImageView = {
-         let image = UIImage(named: "rideList/cardIcon")
-         let fromLocationIconView = UIImageView(image: image)
+        let image = UIImage(named: "rideList/cardIcon")
+        let fromLocationIconView = UIImageView(image: image)
         // self.view .addSubview(fromLocationIconView)
-         
-         fromLocationIconView.contentMode = .scaleAspectFit
-         fromLocationIconView.clipsToBounds = true
-         return fromLocationIconView
-     }()
+        
+        fromLocationIconView.contentMode = .scaleAspectFit
+        fromLocationIconView.clipsToBounds = true
+        return fromLocationIconView
+    }()
     
     var  priceLabel: UILabel = {
-            let fromLocationTextView = UILabel()
-            fromLocationTextView.text = "106"
-            fromLocationTextView.contentMode = .scaleAspectFit
-            fromLocationTextView.clipsToBounds = true
-            return fromLocationTextView
-        }()
+        let fromLocationTextView = UILabel()
+        fromLocationTextView.text = "106"
+        fromLocationTextView.contentMode = .scaleAspectFit
+        fromLocationTextView.clipsToBounds = true
+        return fromLocationTextView
+    }()
     lazy var paymentStackView: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -168,7 +164,7 @@ class RideListCell : UICollectionViewCell {
         
         return button
     }()
-
+    
     let repeatTripButton : UIButton! = {
         let button = UIButton(type: .custom)
         button.setTitle("Повторити", for: .normal)
@@ -200,7 +196,7 @@ class RideListCell : UICollectionViewCell {
         return stack
     }()
     
-        
+    
     override init(frame:CGRect) {
         
         super.init(frame: .zero)
@@ -219,7 +215,7 @@ class RideListCell : UICollectionViewCell {
             
         }
         
-    
+        
         fromLocationStackView.snp.makeConstraints{(make) -> Void in
             
             make.height.equalTo(30)
@@ -231,36 +227,34 @@ class RideListCell : UICollectionViewCell {
         
         toLocationStackView.addViewBackedBorder(side: .bottom, thickness: 1, color: borderColor!)
         toLocationStackView.snp.makeConstraints{(make) -> Void in
-                  
-                  make.height.equalTo(30)
-                  make.width.equalToSuperview()
-                  make.centerY.equalToSuperview().offset(30)
-                  make.centerX.equalToSuperview()
-                  
-              }
-        
-        paymentStackView.snp.makeConstraints{(make) -> Void in
             
             make.height.equalTo(30)
             make.width.equalToSuperview()
-            make.centerY.equalToSuperview().offset(50)
+            make.centerY.equalToSuperview().offset(40)
             make.centerX.equalToSuperview()
             
         }
-            
         
-            buttonStackView.snp.makeConstraints{(make) -> Void in
-                make.height.equalTo(30)
-                make.width.equalToSuperview()
-                make.centerY.equalToSuperview().offset(80)
-                make.centerX.equalToSuperview()
-                
-            }
+        paymentStackView.snp.makeConstraints{(make) -> Void in
+            
+            make.height.equalTo(35)
+            make.width.equalToSuperview()
+            make.centerY.equalToSuperview().offset(70)
+            make.centerX.equalToSuperview()
+            
+        }
+        
+        
+        buttonStackView.snp.makeConstraints{(make) -> Void in
+            make.height.equalTo(40)
+            make.width.equalToSuperview()
+            make.centerY.equalToSuperview().offset(130)
+            make.centerX.equalToSuperview()
+            
+        }
         
     }
-    
-    
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

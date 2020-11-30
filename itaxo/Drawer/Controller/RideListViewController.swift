@@ -25,7 +25,6 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
     }
     
     func configureCollectionView() {
-        //MARK Cant add constraits for collection view by Snapkit makeCostrains
         
         // Create an instance of UICollectionViewFlowLayout since you cant
         // Initialize UICollectionView without a layout
@@ -34,6 +33,7 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
         layout.itemSize = CGSize(width: view.frame.width, height: 300)
         
         collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(RideListCell.self, forCellWithReuseIdentifier: reuseIdentifierRideListCell)
@@ -55,16 +55,13 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
     
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: headerIdentifier, for: indexPath)
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: headerIdentifier, for: indexPath) as? RideListHeaderViewComponent else { fatalError("Invalid view type")}
         return header
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return .init(width: view.frame.width, height: 200)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return .init(width: view.frame.width, height: 100)
     }
-    
-    
-    
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         4
