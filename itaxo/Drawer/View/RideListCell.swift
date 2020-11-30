@@ -14,14 +14,14 @@ class RideListCell : UICollectionViewCell {
     let dateTimeLabel : UILabel = {
         let dateTimeView = UILabel()
         dateTimeView.contentMode = .scaleAspectFit
-        dateTimeView.clipsToBounds = true
+        dateTimeView.clipsToBounds = false
         dateTimeView.text = "13.05.2020, 17:25"
         return dateTimeView
     }()
     let lengthRide : UILabel = {
         let lengthRideView = UILabel()
         lengthRideView.contentMode = .scaleAspectFit
-        lengthRideView.clipsToBounds = true
+        lengthRideView.clipsToBounds = false
         lengthRideView.text = "11.1 км"
         lengthRideView.textAlignment = .right
         //        lengthRideView.snp.makeConstraints{ (make)-> Void in
@@ -32,6 +32,7 @@ class RideListCell : UICollectionViewCell {
     
     lazy var dateLengthStackView: UIStackView = {
         let stack = UIStackView()
+        stack.clipsToBounds = false 
         stack.axis = .horizontal
         stack.spacing = 100
         stack.alignment = .fill
@@ -49,7 +50,7 @@ class RideListCell : UICollectionViewCell {
         let fromLocationIconView = UIImageView(image: image)
        // self.view .addSubview(fromLocationIconView)
         
-       // fromLocationIconView.contentMode = .scaleAspectFit
+        fromLocationIconView.contentMode = .scaleAspectFit
         fromLocationIconView.clipsToBounds = true
         return fromLocationIconView
     }()

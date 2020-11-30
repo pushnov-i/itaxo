@@ -11,9 +11,10 @@ import UIKit
 
 
 
-class RideListViewController :  UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    var collectionView : UICollectionView!
+class RideListViewController :  UICollectionViewController,UICollectionViewDelegateFlowLayout {
+   // var collectionView : UICollectionView!
     var reuseIdentifierRideListCell = "rideListCell"
+    var headerIdentifier = "rideListHeaderView"
     
     
     override func viewDidLoad() {
@@ -36,8 +37,9 @@ class RideListViewController :  UIViewController, UICollectionViewDataSource, UI
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(RideListCell.self, forCellWithReuseIdentifier: reuseIdentifierRideListCell)
+        collectionView.register(RideListHeaderViewComponent.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
         collectionView.backgroundColor = .white
-       // collectionView.
+        // collectionView.
         view.backgroundColor = yellowBackground
         //                collectionView.snp.makeConstraints{(make) -> Void in
         //
@@ -49,30 +51,26 @@ class RideListViewController :  UIViewController, UICollectionViewDataSource, UI
         view.addSubview(collectionView)
         
     }
-    func configureTopHeaderTableView() -> UIView?  {
-          
-          var viewModel : SettingsHeaderTopDelegate?
-          let headerView = SettingsTopHeaderViewComponent(frame: .zero)
-          // добавляем хендлер тапа для дисмиса экрана настроек
-          let tap = UITapGestureRecognizer(target: self, action: #selector(dismissRideListView))
-          headerView.button.addGestureRecognizer(tap)
-//          tap.rx.event.bind(onNext: { recognizer in
-//              print("cancel button")
-//          }).disposed(by: disposeBag)
-          
-          viewModel = SettingsViewModel.HeaderSettings()
-          if let viewModel = viewModel {
-              headerView.configure(withViewModel: viewModel )
-          }
-          
-          return headerView
-      }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: headerIdentifier, for: indexPath)
+        return header
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return .init(width: view.frame.width, height: 200)
+    }
+    
+    
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         4
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifierRideListCell, for: indexPath) as! RideListCell
         return cell

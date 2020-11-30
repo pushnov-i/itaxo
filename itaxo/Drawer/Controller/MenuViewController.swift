@@ -16,7 +16,7 @@ class MenuViewController: UIViewController {
     let disposeBag = DisposeBag()
     //MARK: - Properties
     var tableView : UITableView!
-    
+   
     // MARK - Init
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,8 +134,8 @@ extension MenuViewController {
     }
     
     func handleRideList() {
-        let settingsViewController = RideListViewController()
-        self.present(settingsViewController, animated:true, completion:nil)
+        let rideListViewController = RideListViewController(collectionViewLayout: UICollectionViewLayout())
+        self.present(rideListViewController, animated:true, completion:nil)
     }
     
 }

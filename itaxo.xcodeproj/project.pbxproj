@@ -37,6 +37,7 @@
 		8C53E5182554BA5000913EE9 /* AccountSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C53E5172554BA5000913EE9 /* AccountSettingsCell.swift */; };
 		8C53E51A2554BA8C00913EE9 /* AccountProgrammeCitySettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C53E5192554BA8C00913EE9 /* AccountProgrammeCitySettingsCell.swift */; };
 		8C53E51C2554BAB100913EE9 /* HeaderSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C53E51B2554BAB100913EE9 /* HeaderSettingsCell.swift */; };
+		8C6D0A17257173690073C5F3 /* RideListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6D0A16257173690073C5F3 /* RideListHeaderView.swift */; };
 		8C89CCCF255E655100CA42DC /* ColorsFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C89CCCE255E655100CA42DC /* ColorsFonts.swift */; };
 		8C8BBDE82550DDBD00FB0AEC /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BBDDB2550DDBD00FB0AEC /* Roboto-Light.ttf */; };
 		8C8BBDE92550DDBD00FB0AEC /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BBDDC2550DDBD00FB0AEC /* Roboto-Thin.ttf */; };
@@ -60,7 +61,7 @@
 		8CEB18CB256D901200199402 /* CoreDataObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEB18CA256D901200199402 /* CoreDataObservable.swift */; };
 		8CF63E1425642F4D00643CEE /* UIView+Borders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF63E1325642F4D00643CEE /* UIView+Borders.swift */; };
 		8CFFF32A256E7EDF0093E28C /* RideListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFFF329256E7EDF0093E28C /* RideListViewController.swift */; };
-		8CFFF32C256E7EF40093E28C /* RdieListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFFF32B256E7EF40093E28C /* RdieListCell.swift */; };
+		8CFFF32C256E7EF40093E28C /* RideListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFFF32B256E7EF40093E28C /* RideListCell.swift */; };
 		9FB22AD6DB0CE764A77E747B /* Pods_itaxo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 723718595FDD7E863FC4992A /* Pods_itaxo.framework */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +101,7 @@
 		8C53E5172554BA5000913EE9 /* AccountSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsCell.swift; sourceTree = "<group>"; };
 		8C53E5192554BA8C00913EE9 /* AccountProgrammeCitySettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountProgrammeCitySettingsCell.swift; sourceTree = "<group>"; };
 		8C53E51B2554BAB100913EE9 /* HeaderSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSettingsCell.swift; sourceTree = "<group>"; };
+		8C6D0A16257173690073C5F3 /* RideListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideListHeaderView.swift; sourceTree = "<group>"; };
 		8C89CCCE255E655100CA42DC /* ColorsFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsFonts.swift; sourceTree = "<group>"; };
 		8C8BBDDB2550DDBD00FB0AEC /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Light.ttf"; path = "Roboto/Roboto-Light.ttf"; sourceTree = SOURCE_ROOT; };
 		8C8BBDDC2550DDBD00FB0AEC /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Thin.ttf"; path = "Roboto/Roboto-Thin.ttf"; sourceTree = SOURCE_ROOT; };
@@ -122,7 +124,7 @@
 		8CEB18CA256D901200199402 /* CoreDataObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataObservable.swift; sourceTree = "<group>"; };
 		8CF63E1325642F4D00643CEE /* UIView+Borders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Borders.swift"; sourceTree = "<group>"; };
 		8CFFF329256E7EDF0093E28C /* RideListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideListViewController.swift; sourceTree = "<group>"; };
-		8CFFF32B256E7EF40093E28C /* RdieListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RdieListCell.swift; sourceTree = "<group>"; };
+		8CFFF32B256E7EF40093E28C /* RideListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideListCell.swift; sourceTree = "<group>"; };
 		F54780FB957BCFB0159E60E4 /* Pods-itaxo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-itaxo.debug.xcconfig"; path = "Target Support Files/Pods-itaxo/Pods-itaxo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -249,7 +251,8 @@
 		8C01047725499D52003E1DA3 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8CFFF32B256E7EF40093E28C /* RdieListCell.swift */,
+				8CFFF32B256E7EF40093E28C /* RideListCell.swift */,
+				8C6D0A16257173690073C5F3 /* RideListHeaderView.swift */,
 				8C0104822549B7BE003E1DA3 /* MenuOptionCell.swift */,
 				8CB43FB3254C6B3200A1A065 /* HeaderAvatarNameVIew.swift */,
 				8C53E5172554BA5000913EE9 /* AccountSettingsCell.swift */,
@@ -472,7 +475,7 @@
 				8CBD344D2566BE19003A0A57 /* User+CoreDataClass.swift in Sources */,
 				6694D6AB251CC33300575904 /* AppDelegate.swift in Sources */,
 				8C53E51C2554BAB100913EE9 /* HeaderSettingsCell.swift in Sources */,
-				8CFFF32C256E7EF40093E28C /* RdieListCell.swift in Sources */,
+				8CFFF32C256E7EF40093E28C /* RideListCell.swift in Sources */,
 				8C96839A256D6AC00014DA5B /* RideListViewModel.swift in Sources */,
 				8CFFF32A256E7EDF0093E28C /* RideListViewController.swift in Sources */,
 				8C0104852549C5E5003E1DA3 /* MenuOptionViewModel.swift in Sources */,
@@ -493,6 +496,7 @@
 				66F5C9E7251D533D000E22D8 /* VerifyPhoneViewController.swift in Sources */,
 				8C01047F25499DD6003E1DA3 /* MenuViewController.swift in Sources */,
 				8C19DCD0256BEE8500CC4234 /* GeoPoint+CoreDataProperties.swift in Sources */,
+				8C6D0A17257173690073C5F3 /* RideListHeaderView.swift in Sources */,
 				8C53E5182554BA5000913EE9 /* AccountSettingsCell.swift in Sources */,
 				66C0A9E1252139BA00AD1809 /* AppCoordinator.swift in Sources */,
 				8C19DCD6256BEECE00CC4234 /* Drive+CoreDataClass.swift in Sources */,

@@ -20,7 +20,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //  configureMenuController()
+      //  configureMenuController()
         configureHomeController()
     }
     
@@ -47,18 +47,18 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         //let doubleTap =
         let handleDrawerMenuTap = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
         handleDrawerMenuTap.delegate = self
-        
+
         self.menuController = MenuViewController()
         guard let menuView = menuController.view else { return }
         
-        
+
         view.addGestureRecognizer(handleDrawerMenuTap)
         handleDrawerMenuTap.rx.event.bind(onNext: { recognizer in
             print("handle drawer menu touches number: \(recognizer.numberOfTouches)")
             self.handleTap(sender: handleDrawerMenuTap)
             
             
-            
+
         }).disposed(by: disposeBag)
         
         
@@ -118,9 +118,9 @@ extension HomeViewController: HomeControllerDelegate {
         let pointOfTap = sender.location(in: menuController.tableView)
         
         if menuController.shouldTapRow(pointOfTap) {
-            showMenuController(shouldExpand: isExpanded)
+            toggleMenu()
         }
-        
+
     }
     
     
