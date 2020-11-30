@@ -131,17 +131,23 @@ class RideListCell : UICollectionViewCell {
         fromLocationTextView.clipsToBounds = true
         return fromLocationTextView
     }()
+
     lazy var paymentStackView: UIStackView = {
+        let placeholder = UIView()
+        placeholder.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        placeholder.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
-        stack.spacing = 20
-        stack.alignment = .fill
-        stack.distribution = .fillProportionally
+        stack.spacing = 5
+        stack.alignment = .trailing
+       // stack.distribution = .equalSpacing
         stack.contentMode = .scaleAspectFit
         stack.addArrangedSubview(currencyIcon)
         stack.addArrangedSubview(priceLabel)
         stack.addArrangedSubview(paymentMetodIcon)
+        stack.addArrangedSubview(placeholder)
         return stack
     }()
     
@@ -210,7 +216,7 @@ class RideListCell : UICollectionViewCell {
             
             make.height.equalTo(30)
             make.width.equalToSuperview()
-            make.centerY.equalToSuperview().offset(-75)
+            make.centerY.equalToSuperview().offset(-80)
             make.centerX.equalToSuperview()
             
         }
@@ -220,7 +226,7 @@ class RideListCell : UICollectionViewCell {
             
             make.height.equalTo(30)
             make.width.equalToSuperview()
-            make.centerY.equalToSuperview().offset(-10)
+            make.centerY.equalToSuperview().offset(-50)
             make.centerX.equalToSuperview()
             
         }
@@ -230,7 +236,7 @@ class RideListCell : UICollectionViewCell {
             
             make.height.equalTo(30)
             make.width.equalToSuperview()
-            make.centerY.equalToSuperview().offset(40)
+            make.centerY.equalToSuperview().offset(-0)
             make.centerX.equalToSuperview()
             
         }
@@ -239,7 +245,7 @@ class RideListCell : UICollectionViewCell {
             
             make.height.equalTo(35)
             make.width.equalToSuperview()
-            make.centerY.equalToSuperview().offset(70)
+            make.centerY.equalToSuperview().offset(50)
             make.centerX.equalToSuperview()
             
         }
@@ -248,7 +254,7 @@ class RideListCell : UICollectionViewCell {
         buttonStackView.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(40)
             make.width.equalToSuperview()
-            make.centerY.equalToSuperview().offset(130)
+            make.centerY.equalToSuperview().offset(90)
             make.centerX.equalToSuperview()
             
         }

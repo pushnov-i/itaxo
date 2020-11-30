@@ -12,7 +12,7 @@ import UIKit
 
 
 class RideListViewController :  UICollectionViewController,UICollectionViewDelegateFlowLayout {
-   // var collectionView : UICollectionView!
+    // var collectionView : UICollectionView!
     var reuseIdentifierRideListCell = "rideListCell"
     var headerIdentifier = "rideListHeaderView"
     
@@ -24,20 +24,21 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
         
     }
     
+    
     func configureCollectionView() {
         
         // Create an instance of UICollectionViewFlowLayout since you cant
         // Initialize UICollectionView without a layout
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: view.frame.width, height: 300)
+        layout.itemSize = CGSize(width: view.frame.width, height: 200)
         
         collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(RideListCell.self, forCellWithReuseIdentifier: reuseIdentifierRideListCell)
-        collectionView.register(RideListHeaderViewComponent.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
+        collectionView.register(RideListHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
         collectionView.backgroundColor = .white
         // collectionView.
         view.backgroundColor = yellowBackground
@@ -52,10 +53,8 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
         
     }
     
-    
-    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: headerIdentifier, for: indexPath) as? RideListHeaderViewComponent else { fatalError("Invalid view type")}
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: headerIdentifier, for: indexPath) as? RideListHeaderView else{ return fatalError("error") as! UICollectionReusableView}
         return header
     }
     
@@ -76,7 +75,6 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
     @objc func dismissRideListView() {
         dismiss(animated: true, completion: nil)
     }
-    
 }
 
 

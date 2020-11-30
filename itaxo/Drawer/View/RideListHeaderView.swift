@@ -11,7 +11,7 @@ import SnapKit
 import RxSwift
 
 
-class RideListHeaderViewComponent: UICollectionReusableView {
+class RideListHeaderView: UICollectionReusableView {
     
     // var reuseIdentifier = "headerRideList"
     
@@ -46,7 +46,6 @@ class RideListHeaderViewComponent: UICollectionReusableView {
     override init(frame:CGRect) {
         super.init(frame:frame)
         print("add header")
-        
         backgroundColor = .green
         addSubview(headerRideListLabel)
         headerRideListLabel.snp.makeConstraints{(make) -> Void in
