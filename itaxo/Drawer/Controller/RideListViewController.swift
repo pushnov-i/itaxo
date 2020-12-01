@@ -59,8 +59,6 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
         switch kind {
         case UICollectionView.elementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier, for: indexPath) as! RideListHeaderView
-            // headerView.titleLabel.text = "Headers"
-            // headerView.backgroundColor = UIColor.red
             return headerView
         default:
             assert(false, "Unexpected element kind")

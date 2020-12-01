@@ -23,8 +23,9 @@ class RideListCell : UICollectionViewCell {
         lengthRideView.contentMode = .scaleAspectFit
         lengthRideView.clipsToBounds = false
         lengthRideView.text = "11.1 км"
+        lengthRideView.textColor = UIColor(hex: "#818181ff")
         lengthRideView.textAlignment = .right
-        //        lengthRideView.snp.makeConstraints{ (make)-> Void in
+        //        lengthRideView.snp.makeConstraints{ (make)-> Void inz
         //            make.trailing.equalToSuperview()
         //        }
         return lengthRideView
@@ -56,14 +57,14 @@ class RideListCell : UICollectionViewCell {
     var fromLocationTextLabel: UILabel = {
         let fromLocationTextView = UILabel()
         fromLocationTextView.text = "Київ, Гагаріна Юрія проспект, 20"
-        fromLocationTextView.contentMode = .scaleAspectFit
+        fromLocationTextView.contentMode = .scaleAspectFill
         fromLocationTextView.clipsToBounds = true
         return fromLocationTextView
     }()
     let toLocationImageLabel: UIImageView = {
         let image = UIImage(named: "rideList/pinTo")
         let fromLocationIconView = UIImageView(image: image)
-        fromLocationIconView.contentMode = .scaleAspectFit
+        fromLocationIconView.contentMode = .scaleAspectFill
         fromLocationIconView.clipsToBounds = true
         return fromLocationIconView
     }()
@@ -71,7 +72,7 @@ class RideListCell : UICollectionViewCell {
     var toLocationTextLabel: UILabel = {
         let fromLocationTextView = UILabel()
         fromLocationTextView.text = "Київ, Парк Дружби народів"
-        fromLocationTextView.contentMode = .scaleAspectFit
+        fromLocationTextView.contentMode = .scaleAspectFill
         fromLocationTextView.clipsToBounds = true
         return fromLocationTextView
     }()
@@ -85,7 +86,7 @@ class RideListCell : UICollectionViewCell {
         stack.spacing = 20
         stack.alignment = .fill
         stack.distribution = .fillProportionally
-        stack.contentMode = .scaleAspectFit
+        stack.contentMode = .scaleAspectFill
         stack.addArrangedSubview(fromLocationImageLabel)
         stack.addArrangedSubview(fromLocationTextLabel)
         return stack
@@ -99,7 +100,7 @@ class RideListCell : UICollectionViewCell {
         stack.spacing = 20
         stack.alignment = .fill
         stack.distribution = .fillProportionally
-        stack.contentMode = .scaleAspectFit
+        stack.contentMode = .scaleAspectFill
         stack.addArrangedSubview(toLocationImageLabel)
         stack.addArrangedSubview(toLocationTextLabel)
         return stack
@@ -110,7 +111,7 @@ class RideListCell : UICollectionViewCell {
         let fromLocationIconView = UIImageView(image: image)
         // self.view .addSubview(fromLocationIconView)
         
-        fromLocationIconView.contentMode = .scaleAspectFit
+        fromLocationIconView.contentMode = .scaleAspectFill
         fromLocationIconView.clipsToBounds = true
         return fromLocationIconView
     }()
@@ -119,7 +120,7 @@ class RideListCell : UICollectionViewCell {
         let fromLocationIconView = UIImageView(image: image)
         // self.view .addSubview(fromLocationIconView)
         
-        fromLocationIconView.contentMode = .scaleAspectFit
+        fromLocationIconView.contentMode = .scaleAspectFill
         fromLocationIconView.clipsToBounds = true
         return fromLocationIconView
     }()
@@ -127,7 +128,7 @@ class RideListCell : UICollectionViewCell {
     var  priceLabel: UILabel = {
         let fromLocationTextView = UILabel()
         fromLocationTextView.text = "106"
-        fromLocationTextView.contentMode = .scaleAspectFit
+        fromLocationTextView.contentMode = .scaleAspectFill
         fromLocationTextView.clipsToBounds = true
         return fromLocationTextView
     }()
@@ -143,7 +144,7 @@ class RideListCell : UICollectionViewCell {
         stack.spacing = 5
         stack.alignment = .trailing
         // stack.distribution = .equalSpacing
-        stack.contentMode = .scaleAspectFit
+        stack.contentMode = .scaleAspectFill
         stack.addArrangedSubview(currencyIcon)
         stack.addArrangedSubview(priceLabel)
         stack.addArrangedSubview(paymentMetodIcon)
@@ -196,7 +197,7 @@ class RideListCell : UICollectionViewCell {
         stack.spacing = 20
         stack.alignment = .fill
         stack.distribution = .fillProportionally
-        stack.contentMode = .scaleAspectFit
+        stack.contentMode = .scaleAspectFill
         stack.addArrangedSubview(returnTripButton)
         stack.addArrangedSubview(repeatTripButton)
         return stack
@@ -206,6 +207,7 @@ class RideListCell : UICollectionViewCell {
     override init(frame:CGRect) {
         
         super.init(frame: .zero)
+        contentView.contentMode = .scaleAspectFill
         contentView.addSubview(dateLengthStackView)
         contentView.addSubview(fromLocationStackView)
         contentView.addSubview(toLocationStackView)
