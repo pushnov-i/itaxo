@@ -128,6 +128,13 @@ class RideListCell : UICollectionViewCell {
     var  priceLabel: UILabel = {
         let fromLocationTextView = UILabel()
         fromLocationTextView.text = "106"
+        guard let customFont = UIFont(name: "Roboto-Regular", size: 29) else {
+            fatalError("""
+            Failed to load the "Roboto-Regular" font.
+            """
+            )
+        }
+        fromLocationTextView.font = UIFontMetrics.default.scaledFont(for: customFont)
         fromLocationTextView.contentMode = .scaleAspectFill
         fromLocationTextView.clipsToBounds = true
         return fromLocationTextView
