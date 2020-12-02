@@ -24,7 +24,6 @@ class RideListHeaderView: UICollectionReusableView {
         guard let customFont = UIFont(name: "Roboto-Regular", size: 17) else {
             fatalError("""
             Failed to load the "Roboto-Regular" font.
-            Make sure the font file is included in the project and the font name is spelled correctly.
             """
             )
         }

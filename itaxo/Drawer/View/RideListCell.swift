@@ -9,8 +9,13 @@
 import Foundation
 import UIKit
 
+let imagePinFrom = UIImage(named: "rideList/pinFrom")
+let imagePinTo = UIImage(named: "rideList/pinTo")
+let imageUAHIcon = UIImage(named: "rideList/UAHIcon")
+let imageCardIcon = UIImage(named: "rideList/cardIcon")
+
 class RideListCell : UICollectionViewCell {
-    
+
     let dateTimeLabel : UILabel = {
         let dateTimeView = UILabel()
         dateTimeView.contentMode = .scaleAspectFit
@@ -25,9 +30,6 @@ class RideListCell : UICollectionViewCell {
         lengthRideView.text = "11.1 км"
         lengthRideView.textColor = UIColor(hex: "#818181ff")
         lengthRideView.textAlignment = .right
-        //        lengthRideView.snp.makeConstraints{ (make)-> Void inz
-        //            make.trailing.equalToSuperview()
-        //        }
         return lengthRideView
     }()
     
@@ -47,8 +49,7 @@ class RideListCell : UICollectionViewCell {
     
     
     let fromLocationImageLabel: UIImageView = {
-        let image = UIImage(named: "rideList/pinFrom")
-        let fromLocationIconView = UIImageView(image: image)
+        let fromLocationIconView = UIImageView(image: imagePinFrom)
         fromLocationIconView.contentMode = .scaleAspectFit
         fromLocationIconView.clipsToBounds = true
         return fromLocationIconView
@@ -62,8 +63,7 @@ class RideListCell : UICollectionViewCell {
         return fromLocationTextView
     }()
     let toLocationImageLabel: UIImageView = {
-        let image = UIImage(named: "rideList/pinTo")
-        let fromLocationIconView = UIImageView(image: image)
+        let fromLocationIconView = UIImageView(image: imagePinTo)
         fromLocationIconView.contentMode = .scaleAspectFill
         fromLocationIconView.clipsToBounds = true
         return fromLocationIconView
@@ -107,19 +107,13 @@ class RideListCell : UICollectionViewCell {
     }()
     
     let currencyIcon: UIImageView = {
-        let image = UIImage(named: "rideList/UAHIcon")
-        let fromLocationIconView = UIImageView(image: image)
-        // self.view .addSubview(fromLocationIconView)
-        
+        let fromLocationIconView = UIImageView(image: imageUAHIcon)
         fromLocationIconView.contentMode = .scaleAspectFill
         fromLocationIconView.clipsToBounds = true
         return fromLocationIconView
     }()
     let paymentMetodIcon: UIImageView = {
-        let image = UIImage(named: "rideList/cardIcon")
-        let fromLocationIconView = UIImageView(image: image)
-        // self.view .addSubview(fromLocationIconView)
-        
+        let fromLocationIconView = UIImageView(image: imageCardIcon)
         fromLocationIconView.contentMode = .scaleAspectFill
         fromLocationIconView.clipsToBounds = true
         return fromLocationIconView
@@ -150,7 +144,6 @@ class RideListCell : UICollectionViewCell {
         stack.axis = .horizontal
         stack.spacing = 5
         stack.alignment = .trailing
-        // stack.distribution = .equalSpacing
         stack.contentMode = .scaleAspectFill
         stack.addArrangedSubview(currencyIcon)
         stack.addArrangedSubview(priceLabel)

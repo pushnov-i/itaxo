@@ -20,6 +20,7 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
         super.viewDidLoad()
         overrideUserInterfaceStyle = .light
         configureCollectionView()
+        //configureDataSource()
         
     }
     
@@ -39,6 +40,7 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
         collectionView.backgroundColor = .white
         // collectionView.
         view.backgroundColor = yellowBackground
+        //MARK: How to enaible snp.make constrainst instead of (let layout = UICollectionViewFlowLayout)?
         //                collectionView.snp.makeConstraints{(make) -> Void in
         //
         //                    make.left.equalTo(self.view.safeAreaLayoutGuide.snp.leftMargin)
@@ -60,15 +62,39 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
             assert(false, "Unexpected element kind")
         }
     }
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        4
+//    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        4
+//    }
+//
+//    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifierRideListCell, for: indexPath) as! RideListCell
+//       // cell.dateTimeLabel.text =
+//        return cell
+//    }
+//
+    struct RideViewModel: Hashable {
+        let dateTime: String = "123445"
+        let lengthRide: String
+        let fromPlace : String
+        let toPlace : String
+        let price : String
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func configureDataSource(){
+        _ = UICollectionViewDiffableDataSource<Int,RideViewModel>(collectionView: collectionView) { (collectionView, indexPath, rideModel) -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.reuseIdentifierRideListCell, for: indexPath) as! RideListCell
+            cell.dateTimeLabel.text = rideModel.dateTime
+            return cell
+        }
+        var snapshot = NSDiffableDataSourceSnapshot<Int, RideViewModel>()
+        snapshot.appendSections([1])
+        snapshot.appendItems([RideViewModel(lengthRide: "11", fromPlace: "one", toPlace: "two", price: "106")], toSection: 1)
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifierRideListCell, for: indexPath) as! RideListCell
-        return cell
+
     }
+
+
     
     @objc func dismissRideListView() {
         dismiss(animated: true, completion: nil)

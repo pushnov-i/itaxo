@@ -52,7 +52,7 @@
 		8C8BBDF22550DDBE00FB0AEC /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BBDE52550DDBD00FB0AEC /* Roboto-ThinItalic.ttf */; };
 		8C8BBDF32550DDBE00FB0AEC /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BBDE62550DDBD00FB0AEC /* Roboto-Bold.ttf */; };
 		8C8BBDF42550DDBE00FB0AEC /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C8BBDE72550DDBD00FB0AEC /* Roboto-BoldItalic.ttf */; };
-		8C96839A256D6AC00014DA5B /* RideListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C968399256D6AC00014DA5B /* RideListViewModel.swift */; };
+		8C96839A256D6AC00014DA5B /* RideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C968399256D6AC00014DA5B /* RideViewModel.swift */; };
 		8CB43FB4254C6B3200A1A065 /* HeaderAvatarNameVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB43FB3254C6B3200A1A065 /* HeaderAvatarNameVIew.swift */; };
 		8CBD3439256682A7003A0A57 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBD3438256682A7003A0A57 /* CoreDataManager.swift */; };
 		8CBD343F2566A703003A0A57 /* ItaxoTrip.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 8C47920C25655B3C007F61E6 /* ItaxoTrip.xcdatamodeld */; };
@@ -116,7 +116,7 @@
 		8C8BBDE52550DDBD00FB0AEC /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-ThinItalic.ttf"; path = "Roboto/Roboto-ThinItalic.ttf"; sourceTree = SOURCE_ROOT; };
 		8C8BBDE62550DDBD00FB0AEC /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Bold.ttf"; path = "Roboto/Roboto-Bold.ttf"; sourceTree = SOURCE_ROOT; };
 		8C8BBDE72550DDBD00FB0AEC /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-BoldItalic.ttf"; path = "Roboto/Roboto-BoldItalic.ttf"; sourceTree = SOURCE_ROOT; };
-		8C968399256D6AC00014DA5B /* RideListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideListViewModel.swift; sourceTree = "<group>"; };
+		8C968399256D6AC00014DA5B /* RideViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideViewModel.swift; sourceTree = "<group>"; };
 		8CB43FB3254C6B3200A1A065 /* HeaderAvatarNameVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderAvatarNameVIew.swift; sourceTree = "<group>"; };
 		8CBD3438256682A7003A0A57 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		8CBD344C2566BE18003A0A57 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -265,7 +265,7 @@
 		8C01047825499D54003E1DA3 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				8C968399256D6AC00014DA5B /* RideListViewModel.swift */,
+				8C968399256D6AC00014DA5B /* RideViewModel.swift */,
 				8C0104842549C5E5003E1DA3 /* MenuOptionViewModel.swift */,
 				8C47C42D25544D7200DC3B68 /* SettingsViewModel.swift */,
 			);
@@ -476,7 +476,7 @@
 				6694D6AB251CC33300575904 /* AppDelegate.swift in Sources */,
 				8C53E51C2554BAB100913EE9 /* HeaderSettingsCell.swift in Sources */,
 				8CFFF32C256E7EF40093E28C /* RideListCell.swift in Sources */,
-				8C96839A256D6AC00014DA5B /* RideListViewModel.swift in Sources */,
+				8C96839A256D6AC00014DA5B /* RideViewModel.swift in Sources */,
 				8CFFF32A256E7EDF0093E28C /* RideListViewController.swift in Sources */,
 				8C0104852549C5E5003E1DA3 /* MenuOptionViewModel.swift in Sources */,
 				8CEB18CB256D901200199402 /* CoreDataObservable.swift in Sources */,
