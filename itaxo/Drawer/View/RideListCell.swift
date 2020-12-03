@@ -57,7 +57,6 @@ class RideListCell : UICollectionViewCell {
     
     var fromLocationTextLabel: UILabel = {
         let fromLocationTextView = UILabel()
-        fromLocationTextView.text = "Київ, Гагаріна Юрія проспект, 20"
         fromLocationTextView.contentMode = .scaleAspectFill
         fromLocationTextView.clipsToBounds = true
        
@@ -72,7 +71,6 @@ class RideListCell : UICollectionViewCell {
     
     var toLocationTextLabel: UILabel = {
         let fromLocationTextView = UILabel()
-        fromLocationTextView.text = "Київ, Парк Дружби народів"
         fromLocationTextView.contentMode = .scaleAspectFill
         fromLocationTextView.clipsToBounds = true
         return fromLocationTextView

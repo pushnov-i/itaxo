@@ -70,8 +70,10 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
     }
     
     struct RideList {
-        var rideList : [RideModel] = [RideModel(dateTime: "3244t636456", lengthRide: "11", fromPlace: "one", toPlace: "two", price: "106"),
-                                      RideModel(dateTime: "213123213", lengthRide: "12", fromPlace: "one", toPlace: "two", price: "2332")]
+        var rideList : [RideModel] = [
+            RideModel(dateTime: "13.05.2020, 17:25", lengthRide: "11.1 км", fromPlace: "Київ, Гагаріна Юрія проспект, 20", toPlace: "Київ, Парк Дружби народів", price: "106"),
+            RideModel(dateTime: "13.05.2020, 18:15", lengthRide: "12.3 км", fromPlace: "Київ, вул. Бойчука Михайла 46", toPlace: "Київ, вул. Глибочицька 79", price: "103")
+        ]
     }
     
     
