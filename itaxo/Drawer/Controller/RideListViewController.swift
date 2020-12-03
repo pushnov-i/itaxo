@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import CoreData
 
 class RideListViewController :  UICollectionViewController,UICollectionViewDelegateFlowLayout {
     let reuseIdentifierRideListCell = "rideListCell"
@@ -57,7 +57,6 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
             kind: String,
             indexPath: IndexPath) -> UICollectionReusableView? in
             let header: RideListHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: self.headerIdentifier, for: indexPath) as! RideListHeaderView
-            
             return header
         }
     }
@@ -107,13 +106,14 @@ extension RideListViewController {
             self.dataSource.apply(snapshot,animatingDifferences: animate)
         }
     }
+    @available(iOS 13.0, *)
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChangeContentWith snapshot: NSDiffableDataSourceSnapshotReference) {
+        guard let dataSource = collectionView?.dataSource as? UICollectionViewDiffableDataSourceReference else {
+            fatalError("The data source has not implemented snapshot support while it should")
+        }
+        dataSource.applySnapshot(snapshot, animatingDifferences: true)
+    }
 }
 
-//@available(iOS 13.0, *)
-//func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChangeContentWith snapshot: NSDiffableDataSourceSnapshotReference) {
-//    guard let dataSource = collectionView?.dataSource as? UICollectionViewDiffableDataSourceReference else {
-//        fatalError("The data source has not implemented snapshot support while it should")
-//    }
-//    dataSource.applySnapshot(snapshot, animatingDifferences: true)
-//}
+
 
