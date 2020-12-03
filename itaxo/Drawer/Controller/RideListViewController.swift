@@ -41,6 +41,7 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
                                 withReuseIdentifier: headerIdentifier)
         collectionView.backgroundColor = .white
         collectionView.dataSource = dataSource
+        update(with: RideList())
         view.backgroundColor = yellowBackground
         //MARK: How to enaible snp.make constrainst instead of (let layout = UICollectionViewFlowLayout)?
         //                collectionView.snp.makeConstraints{(make) -> Void in
@@ -60,6 +61,7 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
             kind: String,
             indexPath: IndexPath) -> UICollectionReusableView? in
             let header: RideListHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: self.headerIdentifier, for: indexPath) as! RideListHeaderView
+            
             return header
         }
     }
@@ -148,7 +150,7 @@ private extension RideListViewController {
 extension RideListViewController {
     func update(with list: RideList, animate: Bool = true) {
         var snapshot = NSDiffableDataSourceSnapshot<Int, RideModel>()
-        snapshot.appendSections([1,2,3])
+        snapshot.appendSections([1])
         snapshot.appendItems(list.rideList, toSection: 1)
         dataSource.apply(snapshot, animatingDifferences: animate)
     }
