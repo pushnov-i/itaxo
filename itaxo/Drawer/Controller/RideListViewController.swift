@@ -8,8 +8,6 @@
 
 import Foundation
 import UIKit
-//import CoreData
-
 
 
 class RideListViewController :  UICollectionViewController,UICollectionViewDelegateFlowLayout {
@@ -22,8 +20,6 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
         overrideUserInterfaceStyle = .light
         configureHeader()
         configureCollectionView()
-        
-        //     configureDataSource()
     }
     
     
@@ -66,28 +62,6 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
         }
     }
     
-    //    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-    //        switch kind {
-    //        case UICollectionView.elementKindSectionHeader:
-    //            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier, for: indexPath) as! RideListHeaderView
-    //            return headerView
-    //        default:
-    //            assert(false, "Unexpected element kind")
-    //        }
-    //    }
-    //        override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    //            4
-    //        }
-    //
-    
-    //
-    //    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    //
-    //        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifierRideListCell, for: indexPath) as! RideListCell
-    //       // cell.dateTimeLabel.text =
-    //        return cell
-    //    }
-    //
     struct RideModel: Hashable {
         let dateTime: String
         let lengthRide: String
@@ -100,29 +74,6 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
         var rideList : [RideModel] = [RideModel(dateTime: "3244t636456", lengthRide: "11", fromPlace: "one", toPlace: "two", price: "106"),
                                       RideModel(dateTime: "213123213", lengthRide: "12", fromPlace: "one", toPlace: "two", price: "2332")]
     }
-    
-    //    func configureDataSource(){
-    //        let dataSource = UICollectionViewDiffableDataSource<Int,RideModel>(collectionView: collectionView) { (collectionView, indexPath, rideModel) -> UICollectionViewCell? in
-    //            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.reuseIdentifierRideListCell, for: indexPath) as! RideListCell
-    //            cell.dateTimeLabel.text = rideModel.dateTime
-    //            cell.lengthRide.text = rideModel.lengthRide
-    //            cell.fromLocationTextLabel.text = rideModel.fromPlace
-    //            cell.toLocationTextLabel.text = rideModel.toPlace
-    //            return cell
-    //        }
-    //        var snapshot = NSDiffableDataSourceSnapshot<Int, RideModel>()
-    //        snapshot.appendSections([1,2])
-    //        snapshot.appendItems([RideModel(dateTime: "3244t636456", lengthRide: "11", fromPlace: "one", toPlace: "two", price: "106"),RideModel(dateTime: "213123213", lengthRide: "12", fromPlace: "one", toPlace: "two", price: "2332")], toSection: 1)
-    //        // dataSource.apply(snapshot, animatingDifferences: true)
-    //
-    //        @available(iOS 13.0, *)
-    //        func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChangeContentWith snapshot: NSDiffableDataSourceSnapshotReference) {
-    //            guard let dataSource = collectionView?.dataSource as? UICollectionViewDiffableDataSourceReference else {
-    //                fatalError("The data source has not implemented snapshot support while it should")
-    //            }
-    //            dataSource.applySnapshot(snapshot, animatingDifferences: true)
-    //        }
-    //    }
     
     
     @objc func dismissRideListView() {
@@ -148,13 +99,21 @@ private extension RideListViewController {
 }
 
 extension RideListViewController {
-    func update(with list: RideList, animate: Bool = true) {
+    func update(with list: RideList, animate: Bool = false) {
         var snapshot = NSDiffableDataSourceSnapshot<Int, RideModel>()
         snapshot.appendSections([1])
         snapshot.appendItems(list.rideList, toSection: 1)
-        dataSource.apply(snapshot, animatingDifferences: animate)
+        DispatchQueue.main.async {
+            self.dataSource.apply(snapshot,animatingDifferences: animate)
+        }
     }
 }
 
-
+//@available(iOS 13.0, *)
+//func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChangeContentWith snapshot: NSDiffableDataSourceSnapshotReference) {
+//    guard let dataSource = collectionView?.dataSource as? UICollectionViewDiffableDataSourceReference else {
+//        fatalError("The data source has not implemented snapshot support while it should")
+//    }
+//    dataSource.applySnapshot(snapshot, animatingDifferences: true)
+//}
 
