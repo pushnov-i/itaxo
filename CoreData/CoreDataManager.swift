@@ -59,6 +59,42 @@ class CoreDataManager {
         }
     }
     
+
+    
+    func insertRideModel(dateTime: String, lengthRide: String, fromPlace: String, toPlace: String, price: String) -> Drive? {
+        
+        let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
+        let drive: Drive =  NSEntityDescription.insertNewObject(forEntityName: "Drive", into: managedContext) as! Drive
+
+        drive.date = dateTime
+        drive.distance = lengthRide
+        drive.from = fromPlace
+        drive.to = toPlace
+        drive.paiment_id = price
+
+        do {
+            try managedContext.save()
+            return drive
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+            return nil
+        }
+    }
+    
+    func getRideModel() -> Drive? {
+        let context = CoreDataManager.sharedManager.persistentContainer.viewContext
+        let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Drive")
+        let sort = NSSortDescriptor(key: "date", ascending: false)
+        request.sortDescriptors = [sort]
+        guard let fetch = try? context.fetch(request) as? [Drive] else { return nil }
+        if !fetch.isEmpty {
+            print(fetch)
+            return fetch[0]
+        } else {
+            return nil
+        }
+    }
+    
     func fetchUser() -> User? {
         let context = CoreDataManager.sharedManager.persistentContainer.viewContext
         let request: NSFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")

@@ -17,15 +17,15 @@ extension Drive {
     }
 
     @NSManaged public var car_id: Int64
-    @NSManaged public var date: Date
-    @NSManaged public var distance: Double
+    @NSManaged public var date: String//Date
+    @NSManaged public var distance: String//Double
     @NSManaged public var driver_id: Int64
-    @NSManaged public var from: Int64
+    @NSManaged public var from: String//Int64
     @NSManaged public var id: Int64
-    @NSManaged public var paiment_id: Int64
+    @NSManaged public var paiment_id: String//Int64
     @NSManaged public var polyline: String
     @NSManaged public var status: Bool
-    @NSManaged public var to: Int64
+    @NSManaged public var to: String//Int64
     @NSManaged public var user_id: Int64
     @NSManaged public var newRelationship: NSSet?
     @NSManaged public var newRelationship1: GeoPoint

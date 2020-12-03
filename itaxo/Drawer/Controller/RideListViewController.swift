@@ -10,7 +10,13 @@ import Foundation
 import UIKit
 import CoreData
 
+
+var rides: [NSManagedObject] = []
+
+var rideNew : [Drive] = []
+
 class RideListViewController :  UICollectionViewController,UICollectionViewDelegateFlowLayout {
+    
     let reuseIdentifierRideListCell = "rideListCell"
     let headerIdentifier = "rideListHeaderView"
     private lazy var dataSource = makeDataSource()
@@ -20,11 +26,22 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
         overrideUserInterfaceStyle = .light
         configureHeader()
         configureCollectionView()
+        
+        
+        self.getRides()
+        self.save(dateTime: "13.05.2020, 18:15", lengthRide: "12.3 км", fromPlace: "Київ, вул. Бойчука Михайла 46", toPlace: "Київ, вул. Глибочицька 79", price: "103")
+        self.save(dateTime: "13.05.2020, 18:15", lengthRide: "12.3 км", fromPlace: "Київ, вул. Бойчука Михайла 46", toPlace: "Київ, вул. Глибочицька 79", price: "104")
+        self.save(dateTime: "13.05.2020, 18:15", lengthRide: "12.3 км", fromPlace: "Київ, вул. Бойчука Михайла 46", toPlace: "Київ, вул. Глибочицька 79", price: "105")
+        // print(rides)
+        DispatchQueue.main.async {
+            print(rideNew)
+        }
+        
     }
     
     
     func configureCollectionView() {
-        collectionView.dataSource = self
+        // collectionView.dataSource = self
         collectionView.delegate = self
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -47,7 +64,7 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
         //                    make.top.equalTo( self.view.safeAreaLayoutGuide.snp.topMargin).inset(20)
         //                    make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottomMargin).inset(20)
         //                }
-        view.addSubview(collectionView)
+        //view.addSubview(collectionView)
         
     }
     
@@ -71,8 +88,7 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
     
     struct RideList {
         var rideList : [RideModel] = [
-            RideModel(dateTime: "13.05.2020, 17:25", lengthRide: "11.1 км", fromPlace: "Київ, Гагаріна Юрія проспект, 20", toPlace: "Київ, Парк Дружби народів", price: "106"),
-            RideModel(dateTime: "13.05.2020, 18:15", lengthRide: "12.3 км", fromPlace: "Київ, вул. Бойчука Михайла 46", toPlace: "Київ, вул. Глибочицька 79", price: "103")
+            RideModel(dateTime: "13.05.2020, 17:25", lengthRide: "11.1 км", fromPlace: "Київ, Гагаріна Юрія проспект, 20", toPlace: "Київ, Парк Дружби народів", price: "106")
         ]
     }
     
@@ -104,9 +120,7 @@ extension RideListViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Int, RideModel>()
         snapshot.appendSections([1])
         snapshot.appendItems(list.rideList, toSection: 1)
-        DispatchQueue.main.async {
-            self.dataSource.apply(snapshot,animatingDifferences: animate)
-        }
+        self.dataSource.apply(snapshot,animatingDifferences: animate)
     }
     @available(iOS 13.0, *)
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChangeContentWith snapshot: NSDiffableDataSourceSnapshotReference) {
@@ -116,6 +130,22 @@ extension RideListViewController {
         dataSource.applySnapshot(snapshot, animatingDifferences: true)
     }
 }
-
+extension RideListViewController {
+    func save(dateTime: String, lengthRide: String, fromPlace: String, toPlace: String, price: String) {
+        let drive = CoreDataManager.sharedManager.insertRideModel(dateTime: dateTime, lengthRide: lengthRide, fromPlace: fromPlace, toPlace: toPlace, price: price)
+        if drive != nil {
+            rides.append(drive!)//3
+        }
+    }
+    
+    func getRides() {
+        let drive = CoreDataManager.sharedManager.getRideModel()
+        if drive != nil {
+            rideNew.append(drive!)
+            print(drive)//3
+        }
+    }
+    
+}
 
 
