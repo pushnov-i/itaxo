@@ -20,14 +20,14 @@ class RideListCell : UICollectionViewCell {
         let dateTimeView = UILabel()
         dateTimeView.contentMode = .scaleAspectFit
         dateTimeView.clipsToBounds = false
-        dateTimeView.text = "13.05.2020, 17:25"
+      //  dateTimeView.text = "13.05.2020, 17:25"
         return dateTimeView
     }()
     let lengthRide : UILabel = {
         let lengthRideView = UILabel()
         lengthRideView.contentMode = .scaleAspectFit
         lengthRideView.clipsToBounds = false
-        lengthRideView.text = "11.1 км"
+     //   lengthRideView.text = "11.1 км"
         lengthRideView.textColor = UIColor(hex: "#818181ff")
         lengthRideView.textAlignment = .right
         return lengthRideView
@@ -60,6 +60,7 @@ class RideListCell : UICollectionViewCell {
         fromLocationTextView.text = "Київ, Гагаріна Юрія проспект, 20"
         fromLocationTextView.contentMode = .scaleAspectFill
         fromLocationTextView.clipsToBounds = true
+       
         return fromLocationTextView
     }()
     let toLocationImageLabel: UIImageView = {
@@ -205,6 +206,7 @@ class RideListCell : UICollectionViewCell {
     
     
     override init(frame:CGRect) {
+         print(fromLocationTextLabel.text)
         
         super.init(frame: .zero)
         contentView.contentMode = .scaleAspectFill
