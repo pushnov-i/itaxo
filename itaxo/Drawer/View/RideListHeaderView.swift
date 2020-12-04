@@ -20,17 +20,16 @@ class RideListHeaderView: UICollectionReusableView {
         let label = UILabel()
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .darkGray
+        label.textColor = .black
         guard let customFont = UIFont(name: "Roboto-Regular", size: 17) else {
             fatalError("""
             Failed to load the "Roboto-Regular" font.
             """
             )
         }
-        label.text = "МОЇ ПОЇЗДКИ"
         label.font = UIFontMetrics.default.scaledFont(for: customFont)
         label.adjustsFontForContentSizeCategory = true
-        
+        label.text = "МОЇ ПОЇЗДКИ"
         return label
     }()
     
@@ -49,7 +48,7 @@ class RideListHeaderView: UICollectionReusableView {
         headerRideListLabel.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(50)
             make.width.equalTo(250)
-            // make.left.equalTo(self.inputView!.safeAreaLayoutGuide.snp.leftMargin).inset(20)
+            make.left.equalTo(self.safeAreaLayoutGuide.snp.leftMargin).inset(20)
             make.centerY.equalToSuperview().offset(35)
         }
         
@@ -57,7 +56,7 @@ class RideListHeaderView: UICollectionReusableView {
         button.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(40)
             make.width.equalTo(40)
-            // make.left.equalTo(self.inputView!.safeAreaLayoutGuide.snp.leftMargin).inset(20)
+            make.left.equalTo(self.safeAreaLayoutGuide.snp.leftMargin).inset(20)
             make.top.equalToSuperview().offset(10)
         }
     }

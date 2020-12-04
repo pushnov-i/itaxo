@@ -30,7 +30,6 @@ class MenuViewController: UIViewController {
         headerTap.rx.event.bind(onNext: { recognizer in
             print("touches headerview : \(recognizer.numberOfTouches)")
         }).disposed(by: disposeBag)
-        
     }
     
     override func viewWillLayoutSubviews() {

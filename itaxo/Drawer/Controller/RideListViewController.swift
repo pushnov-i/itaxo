@@ -27,53 +27,68 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
         configureHeader()
         configureCollectionView()
         
-        
+       //Testing CoreData exchange
         self.getRides()
-        self.save(dateTime: "13.05.2020, 18:15", lengthRide: "12.3 км", fromPlace: "Київ, вул. Бойчука Михайла 46", toPlace: "Київ, вул. Глибочицька 79", price: "103")
-        self.save(dateTime: "13.05.2020, 18:15", lengthRide: "12.3 км", fromPlace: "Київ, вул. Бойчука Михайла 46", toPlace: "Київ, вул. Глибочицька 79", price: "104")
-        self.save(dateTime: "13.05.2020, 18:15", lengthRide: "12.3 км", fromPlace: "Київ, вул. Бойчука Михайла 46", toPlace: "Київ, вул. Глибочицька 79", price: "105")
+        self.save(dateTime: "13.05.2020, 18:15",
+                  lengthRide: "12.3 км",
+                  fromPlace: "Київ, вул. Бойчука Михайла 46",
+                  toPlace: "Київ, вул. Глибочицька 79",
+                  price: "103")
+        self.save(dateTime: "13.05.2020, 18:15",
+                  lengthRide: "12.3 км",
+                  fromPlace: "Київ, вул. Бойчука Михайла 46",
+                  toPlace: "Київ, вул. Глибочицька 79",
+                  price: "104")
+        self.save(dateTime: "13.05.2020, 18:15",
+                  lengthRide: "12.3 км",
+                  fromPlace: "Київ, вул. Бойчука Михайла 46",
+                  toPlace: "Київ, вул. Глибочицька 79",
+                  price: "105")
         // print(rides)
-        DispatchQueue.main.async {
-            print(rideNew)
-        }
-        
     }
     
     
     func configureCollectionView() {
-        // collectionView.dataSource = self
+        
         collectionView.delegate = self
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.itemSize = CGSize(width: view.frame.width, height: 200)
         layout.headerReferenceSize = CGSize(width: view.frame.width, height: 100)
-        collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+        collectionView = UICollectionView(frame: self.view.frame,
+                                          collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(RideListCell.self, forCellWithReuseIdentifier: reuseIdentifierRideListCell)
-        collectionView.register(RideListHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+        collectionView.register(RideListCell.self,
+                                forCellWithReuseIdentifier: reuseIdentifierRideListCell)
+        collectionView.register(RideListHeaderView.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: headerIdentifier)
         collectionView.backgroundColor = .white
         collectionView.dataSource = dataSource
-        update(with: RideList())
         view.backgroundColor = yellowBackground
-        //MARK: How to enaible snp.make constrainst instead of (let layout = UICollectionViewFlowLayout)?
-        //                collectionView.snp.makeConstraints{(make) -> Void in
-        //
-        //                    make.left.equalTo(self.view.safeAreaLayoutGuide.snp.leftMargin)
-        //                    make.right.equalTo(self.view.safeAreaLayoutGuide.snp.rightMargin)
-        //                    make.top.equalTo( self.view.safeAreaLayoutGuide.snp.topMargin).inset(20)
-        //                    make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottomMargin).inset(20)
-        //                }
-        //view.addSubview(collectionView)
-        
+        collectionView.snp.makeConstraints{(make) -> Void in
+            
+            make.left.equalTo(self.view.safeAreaLayoutGuide.snp.leftMargin)
+            make.right.equalTo(self.view.safeAreaLayoutGuide.snp.rightMargin)
+            make.top.equalTo( self.view.safeAreaLayoutGuide.snp.topMargin).inset(20)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottomMargin).inset(20)
+        }
+        update(with: RideList())
     }
     
     func configureHeader() {
+        
         dataSource.supplementaryViewProvider = { (
             collectionView: UICollectionView,
             kind: String,
             indexPath: IndexPath) -> UICollectionReusableView? in
-            let header: RideListHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: self.headerIdentifier, for: indexPath) as! RideListHeaderView
+            let header: RideListHeaderView = collectionView
+                .dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
+                                                  withReuseIdentifier: self.headerIdentifier,
+                                                  for: indexPath) as! RideListHeaderView
+//            header.snp.makeConstraints{(make) -> Void in
+//                make.left.equalTo(self.view.safeAreaLayoutGuide.snp.leftMargin).inset(20)
+//            }
             return header
         }
     }
@@ -88,7 +103,11 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
     
     struct RideList {
         var rideList : [RideModel] = [
-            RideModel(dateTime: "13.05.2020, 17:25", lengthRide: "11.1 км", fromPlace: "Київ, Гагаріна Юрія проспект, 20", toPlace: "Київ, Парк Дружби народів", price: "106")
+            RideModel(dateTime: "13.05.2020, 17:25",
+                      lengthRide: "11.1 км",
+                      fromPlace: "Київ, Гагаріна Юрія проспект, 20",
+                      toPlace: "Київ, Парк Дружби народів",
+                      price: "106")
         ]
     }
     
@@ -104,7 +123,8 @@ private extension RideListViewController {
         return UICollectionViewDiffableDataSource(
             collectionView: collectionView,
             cellProvider: { (collectionView, indexPath, rideModel) -> UICollectionViewCell? in
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.reuseIdentifierRideListCell, for: indexPath) as! RideListCell
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.reuseIdentifierRideListCell,
+                                                              for: indexPath) as! RideListCell
                 cell.dateTimeLabel.text = rideModel.dateTime
                 cell.lengthRide.text = rideModel.lengthRide
                 cell.fromLocationTextLabel.text = rideModel.fromPlace
@@ -123,7 +143,8 @@ extension RideListViewController {
         self.dataSource.apply(snapshot,animatingDifferences: animate)
     }
     @available(iOS 13.0, *)
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChangeContentWith snapshot: NSDiffableDataSourceSnapshotReference) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChangeContentWith snapshot: NSDiffableDataSourceSnapshotReference) {
         guard let dataSource = collectionView?.dataSource as? UICollectionViewDiffableDataSourceReference else {
             fatalError("The data source has not implemented snapshot support while it should")
         }
@@ -132,7 +153,11 @@ extension RideListViewController {
 }
 extension RideListViewController {
     func save(dateTime: String, lengthRide: String, fromPlace: String, toPlace: String, price: String) {
-        let drive = CoreDataManager.sharedManager.insertRideModel(dateTime: dateTime, lengthRide: lengthRide, fromPlace: fromPlace, toPlace: toPlace, price: price)
+        let drive = CoreDataManager.sharedManager.insertRideModel(dateTime: dateTime,
+                                                                  lengthRide: lengthRide,
+                                                                  fromPlace: fromPlace,
+                                                                  toPlace: toPlace,
+                                                                  price: price)
         if drive != nil {
             rides.append(drive!)//3
         }
@@ -142,10 +167,9 @@ extension RideListViewController {
         let drive = CoreDataManager.sharedManager.getRideModel()
         if drive != nil {
             rideNew.append(drive!)
-            print(drive)//3
+            print(drive as Any)
         }
     }
-    
 }
 
 
