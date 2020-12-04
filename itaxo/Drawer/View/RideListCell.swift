@@ -15,19 +15,19 @@ let imageUAHIcon = UIImage(named: "rideList/UAHIcon")
 let imageCardIcon = UIImage(named: "rideList/cardIcon")
 
 class RideListCell : UICollectionViewCell {
-
+    
     let dateTimeLabel : UILabel = {
         let dateTimeView = UILabel()
         dateTimeView.contentMode = .scaleAspectFit
         dateTimeView.clipsToBounds = false
-      //  dateTimeView.text = "13.05.2020, 17:25"
+        //  dateTimeView.text = "13.05.2020, 17:25"
         return dateTimeView
     }()
     let lengthRide : UILabel = {
         let lengthRideView = UILabel()
         lengthRideView.contentMode = .scaleAspectFit
         lengthRideView.clipsToBounds = false
-     //   lengthRideView.text = "11.1 км"
+        //   lengthRideView.text = "11.1 км"
         lengthRideView.textColor = UIColor(hex: "#818181ff")
         lengthRideView.textAlignment = .right
         return lengthRideView
@@ -37,7 +37,7 @@ class RideListCell : UICollectionViewCell {
         let stack = UIStackView()
         stack.clipsToBounds = false 
         stack.axis = .horizontal
-        stack.spacing = 100
+        stack.spacing = 30
         stack.alignment = .fill
         stack.distribution = .fillEqually
         stack.contentMode = .scaleAspectFit
@@ -59,7 +59,7 @@ class RideListCell : UICollectionViewCell {
         let fromLocationTextView = UILabel()
         fromLocationTextView.contentMode = .scaleAspectFill
         fromLocationTextView.clipsToBounds = true
-       
+        
         return fromLocationTextView
     }()
     let toLocationImageLabel: UIImageView = {
@@ -82,12 +82,16 @@ class RideListCell : UICollectionViewCell {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
-        stack.spacing = 20
+        stack.spacing = 25
         stack.alignment = .fill
         stack.distribution = .fillProportionally
         stack.contentMode = .scaleAspectFill
         stack.addArrangedSubview(fromLocationImageLabel)
         stack.addArrangedSubview(fromLocationTextLabel)
+        
+        fromLocationImageLabel.snp.makeConstraints{(make) -> Void in
+            make.width.equalTo(20)
+        }
         return stack
     }()
     
@@ -96,12 +100,15 @@ class RideListCell : UICollectionViewCell {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
-        stack.spacing = 20
+        stack.spacing = 25
         stack.alignment = .fill
         stack.distribution = .fillProportionally
         stack.contentMode = .scaleAspectFill
         stack.addArrangedSubview(toLocationImageLabel)
         stack.addArrangedSubview(toLocationTextLabel)
+        toLocationImageLabel.snp.makeConstraints{(make) -> Void in
+              make.width.equalTo(20)
+          }
         return stack
     }()
     
@@ -142,12 +149,14 @@ class RideListCell : UICollectionViewCell {
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
         stack.spacing = 5
-        stack.alignment = .trailing
+        stack.alignment = .center
         stack.contentMode = .scaleAspectFill
         stack.addArrangedSubview(currencyIcon)
         stack.addArrangedSubview(priceLabel)
         stack.addArrangedSubview(paymentMetodIcon)
         stack.addArrangedSubview(placeholder)
+        
+        
         return stack
     }()
     
@@ -204,7 +213,7 @@ class RideListCell : UICollectionViewCell {
     
     
     override init(frame:CGRect) {
-         print(fromLocationTextLabel.text)
+        print(fromLocationTextLabel.text)
         
         super.init(frame: .zero)
         contentView.contentMode = .scaleAspectFill
@@ -217,7 +226,8 @@ class RideListCell : UICollectionViewCell {
         dateLengthStackView.snp.makeConstraints{(make) -> Void in
             
             make.height.equalTo(30)
-            make.width.equalToSuperview()
+            make.width.equalToSuperview().inset(20)
+            make.left.equalTo(self.safeAreaLayoutGuide.snp.leftMargin).inset(20)
             make.centerY.equalToSuperview().offset(-80)
             make.centerX.equalToSuperview()
             
@@ -228,7 +238,8 @@ class RideListCell : UICollectionViewCell {
             
             make.height.equalTo(30)
             make.width.equalToSuperview()
-            make.centerY.equalToSuperview().offset(-50)
+            make.left.equalTo(self.safeAreaLayoutGuide.snp.leftMargin).inset(20)
+            make.centerY.equalToSuperview().offset(-40)
             make.centerX.equalToSuperview()
             
         }
@@ -237,8 +248,9 @@ class RideListCell : UICollectionViewCell {
         toLocationStackView.snp.makeConstraints{(make) -> Void in
             
             make.height.equalTo(30)
-            make.width.equalToSuperview()
+            make.width.equalToSuperview().inset(30)
             make.centerY.equalToSuperview().offset(-0)
+            make.left.equalTo(self.safeAreaLayoutGuide.snp.leftMargin).inset(20)
             make.centerX.equalToSuperview()
             
         }
@@ -246,8 +258,9 @@ class RideListCell : UICollectionViewCell {
         paymentStackView.snp.makeConstraints{(make) -> Void in
             
             make.height.equalTo(35)
-            make.width.equalToSuperview()
-            make.centerY.equalToSuperview().offset(50)
+            make.width.equalToSuperview().inset(30)
+            make.centerY.equalToSuperview().offset(40)
+            make.left.equalTo(self.safeAreaLayoutGuide.snp.leftMargin).inset(20)
             make.centerX.equalToSuperview()
             
         }
@@ -255,8 +268,9 @@ class RideListCell : UICollectionViewCell {
         
         buttonStackView.snp.makeConstraints{(make) -> Void in
             make.height.equalTo(40)
-            make.width.equalToSuperview()
+            make.width.equalToSuperview().inset(20)
             make.centerY.equalToSuperview().offset(90)
+            make.left.equalTo(self.safeAreaLayoutGuide.snp.leftMargin).inset(20)
             make.centerX.equalToSuperview()
             
         }
