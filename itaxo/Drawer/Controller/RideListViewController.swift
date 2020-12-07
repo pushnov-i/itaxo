@@ -14,8 +14,10 @@ import CoreData
 var rides: [NSManagedObject] = []
 
 var rideNew : [Drive] = []
+var driveLeanth : [String?] = []
 
-class RideListViewController :  UICollectionViewController,UICollectionViewDelegateFlowLayout {
+class RideListViewController :  UICollectionViewController,
+UICollectionViewDelegateFlowLayout {
     
     let reuseIdentifierRideListCell = "rideListCell"
     let headerIdentifier = "rideListHeaderView"
@@ -27,7 +29,7 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
         configureHeader()
         configureCollectionView()
         
-       //Testing CoreData exchange
+        //Testing CoreData exchange
         self.getRides()
         self.save(dateTime: "13.05.2020, 18:15",
                   lengthRide: "12.3 км",
@@ -44,7 +46,7 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
                   fromPlace: "Київ, вул. Бойчука Михайла 46",
                   toPlace: "Київ, вул. Глибочицька 79",
                   price: "105")
-        // print(rides)
+        print(driveLeanth)
     }
     
     
@@ -86,9 +88,9 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
                 .dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
                                                   withReuseIdentifier: self.headerIdentifier,
                                                   for: indexPath) as! RideListHeaderView
-//            header.snp.makeConstraints{(make) -> Void in
-//                make.left.equalTo(self.view.safeAreaLayoutGuide.snp.leftMargin).inset(20)
-//            }
+            //            header.snp.makeConstraints{(make) -> Void in
+            //                make.left.equalTo(self.view.safeAreaLayoutGuide.snp.leftMargin).inset(20)
+            //            }
             return header
         }
     }
@@ -109,6 +111,11 @@ class RideListViewController :  UICollectionViewController,UICollectionViewDeleg
                       toPlace: "Київ, Парк Дружби народів",
                       price: "106")
         ]
+        //            {
+        //            set(newRide){
+        //
+        //            }
+        //        }
     }
     
     
@@ -140,6 +147,7 @@ extension RideListViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Int, RideModel>()
         snapshot.appendSections([1])
         snapshot.appendItems(list.rideList, toSection: 1)
+        snapshot.appendItems([getRides()], toSection: 1)
         self.dataSource.apply(snapshot,animatingDifferences: animate)
     }
     @available(iOS 13.0, *)
@@ -163,12 +171,16 @@ extension RideListViewController {
         }
     }
     
-    func getRides() {
+    func getRides()->RideModel {
         let drive = CoreDataManager.sharedManager.getRideModel()
-        if drive != nil {
-            rideNew.append(drive!)
-            print(drive as Any)
-        }
+        
+            let ride = RideModel(dateTime: drive!.date, lengthRide: drive!.distance, fromPlace: drive!.from, toPlace: drive!.to, price: drive!.paiment_id)
+            print(ride)
+            return ride
+            //  driveLeanth.append(drive?.distance)
+            //   rideNew.append(drive!)
+            
+        
     }
 }
 

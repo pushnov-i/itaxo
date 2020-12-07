@@ -107,8 +107,8 @@ class RideListCell : UICollectionViewCell {
         stack.addArrangedSubview(toLocationImageLabel)
         stack.addArrangedSubview(toLocationTextLabel)
         toLocationImageLabel.snp.makeConstraints{(make) -> Void in
-              make.width.equalTo(20)
-          }
+            make.width.equalTo(20)
+        }
         return stack
     }()
     
