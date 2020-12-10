@@ -35,8 +35,8 @@
             filePath = "itaxo/Drawer/Controller/RideListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "save(dateTime:lengthRide:fromPlace:toPlace:price:)"
             landmarkType = "7">
          </BreakpointContent>

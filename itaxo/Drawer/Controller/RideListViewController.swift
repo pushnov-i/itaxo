@@ -14,7 +14,6 @@ import CoreData
 var rides: [NSManagedObject] = []
 
 var rideNew : [Drive] = []
-var driveLeanth : [String?] = []
 
 class RideListViewController :  UICollectionViewController,
 UICollectionViewDelegateFlowLayout {
@@ -46,7 +45,6 @@ UICollectionViewDelegateFlowLayout {
                   fromPlace: "Київ, вул. Бойчука Михайла 46",
                   toPlace: "Київ, вул. Глибочицька 79",
                   price: "105")
-        print(driveLeanth)
     }
     
     
@@ -88,9 +86,6 @@ UICollectionViewDelegateFlowLayout {
                 .dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
                                                   withReuseIdentifier: self.headerIdentifier,
                                                   for: indexPath) as! RideListHeaderView
-            //            header.snp.makeConstraints{(make) -> Void in
-            //                make.left.equalTo(self.view.safeAreaLayoutGuide.snp.leftMargin).inset(20)
-            //            }
             return header
         }
     }
@@ -111,11 +106,6 @@ UICollectionViewDelegateFlowLayout {
                       toPlace: "Київ, Парк Дружби народів",
                       price: "106")
         ]
-        //            {
-        //            set(newRide){
-        //
-        //            }
-        //        }
     }
     
     
@@ -177,10 +167,6 @@ extension RideListViewController {
             let ride = RideModel(dateTime: drive!.date, lengthRide: drive!.distance, fromPlace: drive!.from, toPlace: drive!.to, price: drive!.paiment_id)
             print(ride)
             return ride
-            //  driveLeanth.append(drive?.distance)
-            //   rideNew.append(drive!)
-            
-        
     }
 }
 
